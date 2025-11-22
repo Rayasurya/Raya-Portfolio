@@ -4,7 +4,7 @@ import { Dock, DockIcon } from "./ui/dock";
 export function DockDemo() {
     return (
         <div className="relative w-full h-full flex items-center justify-center bg-white rounded-[24px]">
-            <Dock direction="middle" className="bg-black/5 border-black/10">
+            <Dock direction="middle">
                 <DockIcon>
                     <Icons.gitHub className="size-6 text-white" />
                 </DockIcon>
