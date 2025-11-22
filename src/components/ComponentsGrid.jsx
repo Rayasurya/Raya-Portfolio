@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { DockDemo } from './DockDemo';
-import { GradualSpacing } from './ui/gradual-spacing';
+import { BubbleText } from './ui/bubble-text';
 
 const ComponentsGrid = () => {
   return (
@@ -21,9 +21,9 @@ const ComponentsGrid = () => {
           <MagneticButton>Hover Me</MagneticButton>
         </div>
 
-        {/* 2. Gradual Spacing Text */}
+        {/* 2. Bubble Text */}
         <div className="component-box span-2">
-          <GradualSpacing text="GRADUAL" className="font-bold text-4xl text-black" />
+          <BubbleText text="INTERACTIVE" />
         </div>
 
         {/* 3. Interactive Slider */}

@@ -13,20 +13,21 @@ export function GradualSpacing({
     className,
 }) {
     return (
-        <div className="flex justify-center space-x-1">
+        <div className="flex justify-center">
             <AnimatePresence>
                 {text.split("").map((char, i) => (
-                    <motion.h1
+                    <motion.span
                         key={i}
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
                         variants={framerProps}
                         transition={{ duration, delay: i * delayMultiple }}
-                        className={cn("drop-shadow-sm", className)}
+                        className={cn("drop-shadow-sm inline-block", className)}
+                        style={{ marginRight: char === " " ? "0.5rem" : "0.1rem" }}
                     >
-                        {char === " " ? <span>&nbsp;</span> : char}
-                    </motion.h1>
+                        {char === " " ? "\u00A0" : char}
+                    </motion.span>
                 ))}
             </AnimatePresence>
         </div>
