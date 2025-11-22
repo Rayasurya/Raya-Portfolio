@@ -29,8 +29,8 @@ const projects = [
 
 const Projects = () => {
     return (
-        <section style={{
-            padding: '2rem 0',
+        <section id="projects" className="projects-section" style={{
+            padding: '4rem 2rem',
             maxWidth: '100%',
         }}>
             <h2 style={{

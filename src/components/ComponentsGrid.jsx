@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { DockDemo } from './DockDemo';
 
 const ComponentsGrid = () => {
   return (
@@ -15,70 +16,95 @@ const ComponentsGrid = () => {
       <div className="grid-container">
 
         {/* 1. Magnetic Button */}
-        <div className="component-box">
+        <div className="component-box span-1">
           <MagneticButton>Hover Me</MagneticButton>
         </div>
 
         {/* 2. Glitch Text */}
-        <div className="component-box">
+        <div className="component-box span-2">
           <GlitchText text="GLITCH" />
         </div>
 
         {/* 3. Interactive Slider */}
-        <div className="component-box">
+        <div className="component-box span-1">
           <InteractiveSlider />
         </div>
 
         {/* 4. Card Hover Reveal */}
-        <div className="component-box" style={{ padding: 0 }}>
+        <div className="component-box span-1" style={{ padding: 0 }}>
           <CardReveal />
         </div>
 
         {/* 5. Animated Toggle */}
-        <div className="component-box">
+        <div className="component-box span-1">
           <AnimatedToggle />
         </div>
 
         {/* 6. Floating Input */}
-        <div className="component-box">
+        <div className="component-box span-2">
           <FloatingInput placeholder="Type here..." />
         </div>
 
         {/* 7. Loader (Polished) */}
-        <div className="component-box">
+        <div className="component-box span-1">
           <div className="loader"></div>
         </div>
 
         {/* 8. Ripple Button (Polished) */}
-        <div className="component-box">
+        <div className="component-box span-1">
           <button className="ripple-btn">Click Effect</button>
+        </div>
+
+        {/* 9. Dock Component */}
+        <div className="component-box span-2">
+          <DockDemo />
         </div>
 
       </div>
       <style>{`
         .grid-container {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 2.5rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          grid-auto-rows: 280px;
         }
+
+        .span-1 { grid-column: span 1; }
+        .span-2 { grid-column: span 2; }
+        .span-3 { grid-column: span 3; }
+        .span-4 { grid-column: span 4; }
 
         .component-box {
           background: #fff;
           border-radius: 24px;
-          height: 280px;
           display: flex;
           justify-content: center;
           align-items: center;
           position: relative;
           overflow: hidden;
           transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-          box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-          border: 1px solid rgba(0,0,0,0.03);
+          box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+          border: 1px solid rgba(0,0,0,0.05);
         }
 
         .component-box:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        }
+
+        @media (max-width: 1024px) {
+          .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .span-1, .span-2, .span-3, .span-4 { grid-column: span 1; }
+          .span-2 { grid-column: span 2; } /* Keep span-2 on tablet if it fits */
+        }
+
+        @media (max-width: 640px) {
+          .grid-container {
+            grid-template-columns: 1fr;
+          }
+          .span-1, .span-2, .span-3, .span-4 { grid-column: span 1; }
         }
 
         /* --- Magnetic Button --- */
@@ -304,31 +330,6 @@ const ComponentsGrid = () => {
         }
         .ripple-btn:active {
           transform: scale(0.98);
-        }
-        @media (max-width: 768px) {
-          section {
-            padding: 4rem 1.5rem !important;
-          }
-          h2 {
-            font-size: 2.5rem !important;
-            margin-bottom: 3rem !important;
-          }
-          .grid-container {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          .component-box {
-            height: 240px !important;
-          }
-        }
-
-        @media (max-width: 480px) {
-          h2 {
-            font-size: 2rem !important;
-          }
-          .component-box {
-            height: 220px !important;
-          }
         }
       `}</style>
     </section>

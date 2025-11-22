@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
     return (
-        <section style={{
+        <section id="about" style={{
             maxWidth: '900px',
             margin: '0 auto',
             padding: '6rem 2rem',

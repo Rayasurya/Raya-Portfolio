@@ -51,7 +51,7 @@ const FloatingActionMenu = ({
                         }}
                         className="absolute bottom-20 right-0 mb-2"
                     >
-                        <div className="flex flex-col items-end gap-3">
+                        <div className="flex flex-col items-end gap-2">
                             {options.map((option, index) => (
                                 <motion.div
                                     key={index}
@@ -69,10 +69,10 @@ const FloatingActionMenu = ({
                                             setIsOpen(false);
                                         }}
                                         size="sm"
-                                        className="flex items-center gap-2 bg-[#1f1f1f] text-white hover:bg-[#2a2a2a] shadow-lg border border-[#333] rounded-xl backdrop-blur-md px-4 py-2 h-auto min-w-[120px] justify-start"
+                                        className="flex items-center gap-3 bg-white text-gray-900 hover:bg-gray-50 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 rounded-full px-5 py-3 h-auto min-w-[140px] justify-start transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(0,0,0,0.12)]"
                                     >
-                                        {option.Icon}
-                                        <span className="font-medium text-sm">{option.label}</span>
+                                        <span className="text-gray-600 group-hover:text-black transition-colors">{option.Icon}</span>
+                                        <span className="font-medium text-sm tracking-wide">{option.label}</span>
                                     </Button>
                                 </motion.div>
                             ))}
