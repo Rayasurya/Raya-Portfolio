@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { DockDemo } from './DockDemo';
+import { GradualSpacing } from './ui/gradual-spacing';
 
 const ComponentsGrid = () => {
   return (
@@ -20,9 +21,9 @@ const ComponentsGrid = () => {
           <MagneticButton>Hover Me</MagneticButton>
         </div>
 
-        {/* 2. Glitch Text */}
+        {/* 2. Gradual Spacing Text */}
         <div className="component-box span-2">
-          <GlitchText text="GLITCH" />
+          <GradualSpacing text="GRADUAL" className="font-bold text-4xl text-black" />
         </div>
 
         {/* 3. Interactive Slider */}
@@ -120,51 +121,6 @@ const ComponentsGrid = () => {
           transition: transform 0.1s ease;
         }
 
-        /* --- Glitch Text --- */
-        .glitch {
-          font-size: 3rem;
-          font-weight: 900;
-          position: relative;
-          color: #000;
-          letter-spacing: -0.05em;
-        }
-        .glitch::before, .glitch::after {
-          content: attr(data-text);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #fff;
-        }
-        .glitch::before {
-          left: 2px;
-          text-shadow: -1px 0 #ff0000;
-          clip: rect(24px, 550px, 90px, 0);
-          animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        .glitch::after {
-          left: -2px;
-          text-shadow: -1px 0 #0000ff;
-          clip: rect(85px, 550px, 140px, 0);
-          animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-        @keyframes glitch-anim {
-          0% { clip: rect(14px, 9999px, 127px, 0); }
-          20% { clip: rect(57px, 9999px, 87px, 0); }
-          40% { clip: rect(90px, 9999px, 5px, 0); }
-          60% { clip: rect(23px, 9999px, 145px, 0); }
-          80% { clip: rect(6px, 9999px, 63px, 0); }
-          100% { clip: rect(108px, 9999px, 34px, 0); }
-        }
-        @keyframes glitch-anim-2 {
-          0% { clip: rect(109px, 9999px, 38px, 0); }
-          20% { clip: rect(5px, 9999px, 147px, 0); }
-          40% { clip: rect(66px, 9999px, 24px, 0); }
-          60% { clip: rect(135px, 9999px, 89px, 0); }
-          80% { clip: rect(2px, 9999px, 122px, 0); }
-          100% { clip: rect(44px, 9999px, 58px, 0); }
-        }
 
         /* --- Interactive Slider --- */
         .slider-container {
@@ -367,13 +323,6 @@ const MagneticButton = ({ children }) => {
   );
 };
 
-const GlitchText = ({ text }) => {
-  return (
-    <div className="glitch" data-text={text}>
-      {text}
-    </div>
-  );
-};
 
 const InteractiveSlider = () => {
   const [value, setValue] = useState(50);
