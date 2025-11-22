@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FloatingActionMenu from './components/ui/floating-action-menu';
 import { Home, Briefcase, User, FileText } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
@@ -68,8 +67,6 @@ function App() {
     <div className="app-container">
       <CustomCursor />
       <ReactiveBackground />
-
-      <FloatingActionMenu options={menuOptions} />
 
       <nav style={{
         position: 'fixed',
