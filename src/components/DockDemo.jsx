@@ -6,7 +6,7 @@ export function DockDemo() {
         <div className="relative w-full h-full flex items-center justify-center bg-white rounded-[24px]">
             <Dock direction="middle">
                 <DockIcon>
-                    <Icons.gitHub className="size-6 text-white" />
+                    <Icons.gitHub className="size-6 text-black" />
                 </DockIcon>
                 <DockIcon>
                     <Icons.googleDrive className="size-6" />
