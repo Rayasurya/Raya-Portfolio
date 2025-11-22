@@ -1,0 +1,47 @@
+import React, { useState } from "react";
+
+export const BubbleText = ({ text = "INTERACTIVE", className = "" }) => {
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    return (
+        <h2
+            onMouseLeave={() => setHoveredIndex(null)}
+            className={`text-center text-5xl font-thin text-black ${className}`}
+        >
+            {text.split("").map((char, idx) => {
+                const distance = hoveredIndex !== null ? Math.abs(hoveredIndex - idx) : null;
+
+                // Base styles
+                let style = {
+                    transition: 'all 0.3s ease-in-out',
+                    cursor: 'default',
+                    display: 'inline-block',
+                    fontWeight: 100,
+                    transform: 'scale(1)'
+                };
+
+                // Apply different styles based on the distance from the hovered character
+                if (distance === 0) {
+                    style.fontWeight = 900;
+                    style.transform = 'scale(1.3)';
+                } else if (distance === 1) {
+                    style.fontWeight = 500;
+                    style.transform = 'scale(1.15)';
+                } else if (distance === 2) {
+                    style.fontWeight = 300;
+                    style.transform = 'scale(1.05)';
+                }
+
+                return (
+                    <span
+                        key={idx}
+                        onMouseEnter={() => setHoveredIndex(idx)}
+                        style={style}
+                    >
+                        {char === " " ? "\u00A0" : char}
+                    </span>
+                );
+            })}
+        </h2>
+    );
+};
