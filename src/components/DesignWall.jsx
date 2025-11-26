@@ -51,7 +51,7 @@ const columns = [
   },
 ];
 
-const DesignWall = () => {
+const DesignWall = ({ onViewProject }) => {
   return (
     <section style={{ padding: '0 2rem 4rem', maxWidth: '1600px', margin: '-4rem auto 0', overflow: 'visible', position: 'relative', zIndex: 0 }}>
       <div className="design-masonry">
@@ -65,6 +65,7 @@ const DesignWall = () => {
               <div
                 key={design.id}
                 className="design-item"
+                onClick={() => onViewProject && onViewProject(design.id)}
                 style={{
                   background: design.color,
                   backgroundImage: design.isImage ? `url(${centerImg})` : 'none',
@@ -81,7 +82,10 @@ const DesignWall = () => {
                       <span>{design.type}</span>
                     </div>
                     <div className="design-overlay">
-                      <button>View Project</button>
+                      <button onClick={(e) => {
+                        e.stopPropagation();
+                        onViewProject && onViewProject(design.id);
+                      }}>View Project</button>
                     </div>
                   </>
                 )}

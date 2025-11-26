@@ -17,7 +17,9 @@ function App() {
         return (
           <>
             <Hero />
-            <DesignWall />
+            <DesignWall onViewProject={(id) => {
+              if (id === 51) setCurrentView('project-udhaar');
+            }} />
           </>
         );
       case 'components':
@@ -26,8 +28,12 @@ function App() {
         return <About />;
       case 'resume':
         return <Resume />;
+      case 'project-udhaar':
+        return <ProjectUdhaar onBack={() => setCurrentView('work')} />;
       default:
-        return <DesignWall />;
+        return <DesignWall onViewProject={(id) => {
+          if (id === 51) setCurrentView('project-udhaar');
+        }} />;
     }
   };
 
@@ -145,6 +151,7 @@ function App() {
   );
 }
 
+import ProjectUdhaar from './components/ProjectUdhaar';
 import AnimatedSocialLinks from './components/ui/social-links';
 
 const socialLinks = [
