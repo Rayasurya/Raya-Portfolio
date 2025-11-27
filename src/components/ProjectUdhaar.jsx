@@ -126,6 +126,8 @@ const ProjectUdhaar = ({ onBack }) => {
                         <AudioPlayer
                             title="Merchant Interview • Ramesh, Bangalore"
                             src="/src/assets/merchant_interview.m4a"
+                            variant="whatsapp"
+                            caption="Are madam, sham ke 7 baje bheed hoti hai... (Ma'am, at 7 PM it's crowded...)"
                         />
 
                         <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
@@ -301,6 +303,14 @@ const ProjectUdhaar = ({ onBack }) => {
                                         alt="Success Screen"
                                         className="w-full h-full object-contain drop-shadow-lg"
                                     />
+                                    {/* Color Theory Annotation */}
+                                    <div className="absolute -right-4 top-1/4 bg-gray-900 text-white p-3 rounded-lg shadow-xl max-w-[140px] z-20 hidden md:block animate-in fade-in slide-in-from-left-4 duration-700 delay-500">
+                                        <div className="absolute -left-2 top-4 w-4 h-4 bg-gray-900 transform rotate-45"></div>
+                                        <div className="relative z-10">
+                                            <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider mb-1">Color Theory</div>
+                                            <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-3 mb-2">
@@ -476,6 +486,48 @@ const ProjectUdhaar = ({ onBack }) => {
                     </div>
                 </section>
 
+                {/* 6. Impact Banner (New Section) */}
+                <section className="bg-gray-900 text-white py-20 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                        <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+                    </div>
+
+                    <div className="max-w-5xl mx-auto px-6 relative z-10">
+                        <div className="mb-12">
+                            <h2 className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-4">06 — The Results</h2>
+                            <h3 className="text-3xl md:text-5xl font-bold mb-6">Projected Impact</h3>
+                            <p className="text-gray-400 max-w-2xl text-lg">
+                                Based on proxy metrics from similar offline-first deployments (e.g., YouTube Go, Google Maps Offline).
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-12 border-t border-gray-800 pt-12">
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">15%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Reduction in Drop-offs</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Targeted decrease in checkout abandonment during peak congestion.
+                                </p>
+                            </div>
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">&lt; 10%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Merchant Rejection Rate</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Expected pushback from merchants due to the "Sensory Verification" cues.
+                                </p>
+                            </div>
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">0.5%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Default Risk (Fraud)</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Estimated loss rate due to strict "Trust Score" eligibility criteria.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section className="border-t border-gray-200 pt-20">
                     <h2 className="text-3xl font-bold text-gray-900 mb-6">Reflection</h2>
                     <p className="text-lg text-gray-600 leading-relaxed">
@@ -483,7 +535,7 @@ const ProjectUdhaar = ({ onBack }) => {
                     </p>
                 </section>
             </div>
-        </div>
+        </div >
     );
 };
 
