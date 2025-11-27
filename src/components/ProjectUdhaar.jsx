@@ -295,16 +295,16 @@ const ProjectUdhaar = ({ onBack }) => {
                         </div>
 
                         {/* Step 3 */}
-                        <div className="group">
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                        <div className="group relative mb-8">
+                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                                 <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
                                         className="w-full h-full object-contain drop-shadow-lg"
                                     />
-                                    {/* Color Theory Annotation */}
-                                    <div className="absolute -right-4 top-1/4 bg-gray-900 text-white p-3 rounded-lg shadow-xl max-w-[140px] z-20 hidden md:block animate-in fade-in slide-in-from-left-4 duration-700 delay-500">
+                                    {/* Color Theory Hover Tooltip */}
+                                    <div className="absolute -right-4 top-1/4 bg-gray-900 text-white p-3 rounded-lg shadow-xl max-w-[140px] z-20 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                                         <div className="absolute -left-2 top-4 w-4 h-4 bg-gray-900 transform rotate-45"></div>
                                         <div className="relative z-10">
                                             <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider mb-1">Color Theory</div>

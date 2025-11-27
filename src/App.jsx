@@ -1,24 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, Briefcase, User, FileText } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
+import ProjectUdhaar from './components/ProjectUdhaar';
+
+import AnimatedSocialLinks from './components/ui/social-links';
 import CustomCursor from './components/CustomCursor';
 import ComponentsGrid from './components/ComponentsGrid';
 import About from './components/About';
 import Resume from './components/Resume';
 
 function App() {
-  const [currentView, setCurrentView] = useState('home');
+  // Initialize view from URL hash or default to 'home'
+  const getInitialView = () => {
+    const hash = window.location.hash.slice(1); // Remove '#'
+    return hash || 'home';
+  };
+
+  const [currentView, setCurrentView] = useState(getInitialView());
+
+  // Navigate and update browser history
+  const navigateTo = (view) => {
+    setCurrentView(view);
+    window.history.pushState({ view }, '', `#${view}`);
+  };
+
+  // Listen to browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = (event) => {
+      const view = event.state?.view || getInitialView();
+      setCurrentView(view);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    // Set initial state
+    window.history.replaceState({ view: currentView }, '', `#${currentView}`);
+
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const renderView = () => {
     switch (currentView) {
       case 'home':
         return (
           <>
-            <Hero onOpenProject={() => setCurrentView('project-udhaar')} />
+            <Hero onOpenProject={() => navigateTo('project-udhaar')} />
             <DesignWall onViewProject={(id) => {
-              if (id === 51) setCurrentView('project-udhaar');
+              if (id === 51) navigateTo('project-udhaar');
             }} />
           </>
         );
@@ -29,10 +59,10 @@ function App() {
       case 'resume':
         return <Resume />;
       case 'project-udhaar':
-        return <ProjectUdhaar onBack={() => setCurrentView('home')} />;
+        return <ProjectUdhaar onBack={() => navigateTo('home')} />;
       default:
         return <DesignWall onViewProject={(id) => {
-          if (id === 51) setCurrentView('project-udhaar');
+          if (id === 51) navigateTo('project-udhaar');
         }} />;
     }
   };
@@ -90,7 +120,7 @@ function App() {
           borderBottom: '1px solid rgba(0,0,0,0.05)',
         }}>
           <div
-            onClick={() => setCurrentView('home')}
+            onClick={() => navigateTo('home')}
             style={{
               fontSize: '1.5rem',
               fontWeight: 'bold',
@@ -104,7 +134,7 @@ function App() {
             {['home', 'components', 'about', 'resume'].map((view) => (
               <button
                 key={view}
-                onClick={() => setCurrentView(view)}
+                onClick={() => navigateTo(view)}
                 style={{
                   background: 'transparent',
                   color: currentView === view ? '#000' : '#666',
@@ -161,8 +191,7 @@ function App() {
   );
 }
 
-import ProjectUdhaar from './components/ProjectUdhaar';
-import AnimatedSocialLinks from './components/ui/social-links';
+
 
 const socialLinks = [
   {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Play, Pause } from 'lucide-react';
 
-const AudioPlayer = ({ src, caption, title = "Audio Recording" }) => {
+const AudioPlayer = ({ src, caption, title = "Audio Recording", variant }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const audioRef = React.useRef(null);
@@ -48,7 +48,7 @@ const AudioPlayer = ({ src, caption, title = "Audio Recording" }) => {
         setIsPlaying(!isPlaying);
     };
 
-    if (props.variant === 'whatsapp') {
+    if (variant === 'whatsapp') {
         return (
             <div className="w-full max-w-md my-6">
                 <div className="bg-[#DCF8C6] p-3 rounded-tr-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-none shadow-sm inline-flex items-center gap-3 relative max-w-[90%]">
@@ -93,9 +93,9 @@ const AudioPlayer = ({ src, caption, title = "Audio Recording" }) => {
                     </div>
                 </div>
 
-                {props.caption && (
+                {caption && (
                     <p className="text-sm text-gray-500 mt-2 ml-2 italic">
-                        "{props.caption}"
+                        "{caption}"
                     </p>
                 )}
             </div>
