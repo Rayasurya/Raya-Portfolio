@@ -9,14 +9,14 @@ import About from './components/About';
 import Resume from './components/Resume';
 
 function App() {
-  const [currentView, setCurrentView] = useState('work');
+  const [currentView, setCurrentView] = useState('home');
 
   const renderView = () => {
     switch (currentView) {
-      case 'work':
+      case 'home':
         return (
           <>
-            <Hero />
+            <Hero onOpenProject={() => setCurrentView('project-udhaar')} />
             <DesignWall onViewProject={(id) => {
               if (id === 51) setCurrentView('project-udhaar');
             }} />
@@ -29,7 +29,7 @@ function App() {
       case 'resume':
         return <Resume />;
       case 'project-udhaar':
-        return <ProjectUdhaar onBack={() => setCurrentView('work')} />;
+        return <ProjectUdhaar onBack={() => setCurrentView('home')} />;
       default:
         return <DesignWall onViewProject={(id) => {
           if (id === 51) setCurrentView('project-udhaar');
@@ -88,11 +88,19 @@ function App() {
         backdropFilter: 'blur(10px)',
         borderBottom: '1px solid rgba(0,0,0,0.05)',
       }}>
-        <div style={{ fontSize: '1.5rem', fontWeight: 'bold', letterSpacing: '-0.5px' }}>
+        <div
+          onClick={() => setCurrentView('home')}
+          style={{
+            fontSize: '1.5rem',
+            fontWeight: 'bold',
+            letterSpacing: '-0.5px',
+            cursor: 'pointer'
+          }}
+        >
           Raya.
         </div>
         <div style={{ display: 'flex', gap: '2rem' }}>
-          {['work', 'components', 'about', 'resume'].map((view) => (
+          {['home', 'components', 'about', 'resume'].map((view) => (
             <button
               key={view}
               onClick={() => setCurrentView(view)}
