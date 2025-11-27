@@ -180,6 +180,77 @@ const ProjectUdhaar = ({ onBack }) => {
                         </div>
                     </div>
                 </section>
+
+                {/* 3.1 The Trust Logic (New Section) */}
+                <section className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">02.1 — The Trust Logic</h2>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">The "Trust Index" Algorithm</h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                        To balance user convenience with fraud risk, I defined a weighted scoring model. The "Pay Offline" button is only triggered if the user passes the following real-time checks locally on the device:
+                    </p>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {/* Card 1 */}
+                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-2xl">🤝</div>
+                                <h4 className="font-bold text-gray-900">Merchant Affinity</h4>
+                            </div>
+                            <div className="flex justify-between items-center mb-3 text-sm">
+                                <span className="text-gray-500 font-medium">Threshold</span>
+                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs">&gt; 5 txns in 60 days</span>
+                            </div>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                Proves an existing relationship. We leverage historical graph data to lend to "Regulars," not strangers.
+                            </p>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-2xl">🛡️</div>
+                                <h4 className="font-bold text-gray-900">Device Integrity</h4>
+                            </div>
+                            <div className="flex justify-between items-center mb-3 text-sm">
+                                <span className="text-gray-500 font-medium">Threshold</span>
+                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs">SafetyNet API = Pass</span>
+                            </div>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                Ensures the runtime environment is secure and the device is not rooted/jailbroken to bypass local storage security.
+                            </p>
+                        </div>
+
+                        {/* Card 3 */}
+                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-2xl">📍</div>
+                                <h4 className="font-bold text-gray-900">Geo-Fencing</h4>
+                            </div>
+                            <div className="flex justify-between items-center mb-3 text-sm">
+                                <span className="text-gray-500 font-medium">Threshold</span>
+                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs">GPS &lt; 50m of Merchant</span>
+                            </div>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                Verifies physical presence at the registered Store ID location, preventing remote spoofing attacks.
+                            </p>
+                        </div>
+
+                        {/* Card 4 */}
+                        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center text-2xl">📊</div>
+                                <h4 className="font-bold text-gray-900">Spending Pattern</h4>
+                            </div>
+                            <div className="flex justify-between items-center mb-3 text-sm">
+                                <span className="text-gray-500 font-medium">Threshold</span>
+                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs">Amt &lt; Avg. Historical</span>
+                            </div>
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                                Anomaly detection: If a user typically spends ₹50, a sudden ₹2,000 transaction flags a risk block.
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             {/* 4. The Solution - Wide Section */}
@@ -287,6 +358,120 @@ const ProjectUdhaar = ({ onBack }) => {
                             <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
                             <div className="text-sm font-medium text-blue-900">Digital Ledger</div>
                             <div className="text-xs text-blue-700 mt-1">Migration from manual "Khata"</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">05 — Engineering</h2>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Technical Architecture (Under the Hood)</h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                        I collaborated with engineering constraints to define how this system remains secure without a live server connection.
+                    </p>
+
+                    <div className="bg-[#1E1E1E] rounded-3xl p-8 md:p-12 text-gray-300 font-mono text-sm shadow-2xl overflow-hidden relative">
+                        {/* Decorative header */}
+                        <div className="flex gap-2 mb-8 border-b border-gray-700 pb-4">
+                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            <div className="ml-4 text-gray-500 text-xs">system_architecture.md</div>
+                        </div>
+
+                        <div className="space-y-12">
+                            {/* 1. Secure Enclave */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">01.</span> The Secure Enclave
+                                </h4>
+                                <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-700">
+                                    When the user taps "Pay", the transaction payload isn't just cached. It is cryptographically signed and stored in the <span className="text-yellow-300">Android Keystore System</span> (Hardware-backed security). This ensures the data is immutable and cannot be tampered with by the user or third-party apps.
+                                </p>
+                            </div>
+
+                            {/* 2. Payload Structure */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">02.</span> The Payload Structure
+                                </h4>
+                                <div className="pl-8 border-l border-gray-700">
+                                    <p className="mb-4 opacity-80">The token generation creates a lightweight JSON payload:</p>
+                                    <div className="bg-black/50 p-4 rounded-lg border border-gray-700 overflow-x-auto">
+                                        <code className="text-blue-300">
+                                            {`{ "Amount": "₹200", "Timestamp": "14:02", "DeviceID": "X99", "Nonce": "8821", "MerchID": "77B" }`}
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* 3. Sync Mechanism */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">03.</span> The Sync Mechanism
+                                </h4>
+                                <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-700">
+                                    We utilize Android's <span className="text-yellow-300">WorkManager API</span> to queue the synchronization task. It passively listens for the <span className="text-purple-300">CONNECTIVITY_CHANGE</span> event. As soon as the device detects a stable packet (4G or Wi-Fi), the signed payload is silently pushed to the UPI server in the background.
+                                </p>
+                            </div>
+
+                            {/* 4. Protocol Comparison Table */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+                                    <span className="text-green-400">04.</span> Protocol Comparison
+                                </h4>
+                                <div className="overflow-x-auto pl-8">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="border-b border-gray-700 text-gray-500 text-xs uppercase tracking-wider">
+                                                <th className="py-3 pr-4">Feature</th>
+                                                <th className="py-3 pr-4">Standard UPI (Online)</th>
+                                                <th className="py-3">Trust Token (Offline)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="text-gray-300">
+                                            <tr className="border-b border-gray-800">
+                                                <td className="py-3 pr-4 text-gray-500">Authentication</td>
+                                                <td className="py-3 pr-4">Server-Side (UPI PIN)</td>
+                                                <td className="py-3 text-green-400">Local Device (Biometric)</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-800">
+                                                <td className="py-3 pr-4 text-gray-500">Ledger State</td>
+                                                <td className="py-3 pr-4">Real-time Bank Database</td>
+                                                <td className="py-3 text-green-400">Local Encrypted Queue</td>
+                                            </tr>
+                                            <tr className="border-b border-gray-800">
+                                                <td className="py-3 pr-4 text-gray-500">Risk Check</td>
+                                                <td className="py-3 pr-4">Check Account Balance</td>
+                                                <td className="py-3 text-green-400">Check "Trust Score"</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="py-3 pr-4 text-gray-500">Settlement</td>
+                                                <td className="py-3 pr-4">Immediate (T+0)</td>
+                                                <td className="py-3 text-green-400">Asynchronous (Next Sync)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            {/* 5. Failure Handling */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+                                    <span className="text-green-400">05.</span> Failure Handling (Risk Logic)
+                                </h4>
+                                <div className="pl-8">
+                                    <div className="grid gap-4">
+                                        <div className="bg-red-900/20 border border-red-900/50 p-4 rounded-lg">
+                                            <div className="text-red-400 font-bold mb-1">Zero Balance (at sync time)</div>
+                                            <div className="text-gray-400 text-xs">Resolution: <span className="text-white">Micro-Overdraft</span>. Bank authorizes temporary negative balance (up to ₹500).</div>
+                                        </div>
+                                        <div className="bg-red-900/20 border border-red-900/50 p-4 rounded-lg">
+                                            <div className="text-red-400 font-bold mb-1">App Uninstall (before sync)</div>
+                                            <div className="text-gray-400 text-xs">Resolution: <span className="text-white">Device Ban</span>. Token linked to IMEI. User blacklisted until settled.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
