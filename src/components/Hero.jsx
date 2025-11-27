@@ -22,7 +22,7 @@ const Hero = ({ onOpenProject }) => {
         color: '#666',
         fontWeight: '600',
       }}>
-        Product Designer & Vibe Coder
+        Product Designer & Design Engineer
       </div>
       <h1 style={{
         fontSize: '4rem',
@@ -32,7 +32,7 @@ const Hero = ({ onOpenProject }) => {
         lineHeight: '1.1',
         letterSpacing: '-1px',
       }}>
-        Crafting Digital Experiences with Purpose.
+        Designing Interfaces That Feel Inevitable.
       </h1>
       <p style={{
         fontSize: '1.2rem',
@@ -41,7 +41,7 @@ const Hero = ({ onOpenProject }) => {
         color: '#444',
         marginBottom: '2rem',
       }}>
-        I specialize in creating intuitive, user-centric interfaces that blend aesthetics with functionality.
+        Bridging the gap between creative vision and engineering excellence to build scalable, human-centric products.
       </p>
       <button className="hero-cta" onClick={onOpenProject}>
         Open my best project
