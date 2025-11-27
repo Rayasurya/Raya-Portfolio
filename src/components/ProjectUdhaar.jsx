@@ -268,9 +268,13 @@ const ProjectUdhaar = ({ onBack }) => {
                         <p className="text-xl italic text-gray-800 mb-4">
                             "Yes, if the screen turns Orange and makes a 'Tring' sound, that works. I just need the assurance that money will come."
                         </p>
-                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
                             <span>Merchant Feedback</span>
                         </div>
+                        <AudioPlayer
+                            title="Feedback • Shopkeeper 2"
+                            src="/src/assets/merchant_feedback.mp3"
+                        />
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 mt-16">

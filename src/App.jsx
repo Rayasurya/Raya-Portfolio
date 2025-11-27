@@ -74,66 +74,68 @@ function App() {
       <CustomCursor />
       <ReactiveBackground />
 
-      <nav style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        padding: '1.5rem 2rem',
-        zIndex: 100,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        background: 'rgba(255, 255, 255, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(0,0,0,0.05)',
-      }}>
-        <div
-          onClick={() => setCurrentView('home')}
-          style={{
-            fontSize: '1.5rem',
-            fontWeight: 'bold',
-            letterSpacing: '-0.5px',
-            cursor: 'pointer'
-          }}
-        >
-          Raya.
-        </div>
-        <div style={{ display: 'flex', gap: '2rem' }}>
-          {['home', 'components', 'about', 'resume'].map((view) => (
-            <button
-              key={view}
-              onClick={() => setCurrentView(view)}
-              style={{
-                background: 'transparent',
-                color: currentView === view ? '#000' : '#666',
-                border: 'none',
-                padding: '0.5rem 0',
-                cursor: 'pointer',
-                textTransform: 'capitalize',
-                fontWeight: currentView === view ? '600' : '400',
-                fontSize: '1rem',
-                position: 'relative',
-              }}
-            >
-              {view}
-              {currentView === view && (
-                <span style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '2px',
-                  background: '#000',
-                }} />
-              )}
-            </button>
-          ))}
-        </div>
-      </nav>
+      {currentView !== 'project-udhaar' && (
+        <nav style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          padding: '1.5rem 2rem',
+          zIndex: 100,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          background: 'rgba(255, 255, 255, 0.9)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '1px solid rgba(0,0,0,0.05)',
+        }}>
+          <div
+            onClick={() => setCurrentView('home')}
+            style={{
+              fontSize: '1.5rem',
+              fontWeight: 'bold',
+              letterSpacing: '-0.5px',
+              cursor: 'pointer'
+            }}
+          >
+            Raya.
+          </div>
+          <div style={{ display: 'flex', gap: '2rem' }}>
+            {['home', 'components', 'about', 'resume'].map((view) => (
+              <button
+                key={view}
+                onClick={() => setCurrentView(view)}
+                style={{
+                  background: 'transparent',
+                  color: currentView === view ? '#000' : '#666',
+                  border: 'none',
+                  padding: '0.5rem 0',
+                  cursor: 'pointer',
+                  textTransform: 'capitalize',
+                  fontWeight: currentView === view ? '600' : '400',
+                  fontSize: '1rem',
+                  position: 'relative',
+                }}
+              >
+                {view}
+                {currentView === view && (
+                  <span style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '2px',
+                    background: '#000',
+                  }} />
+                )}
+              </button>
+            ))}
+          </div>
+        </nav>
+      )}
 
       <main style={{
-        paddingTop: '80px', // Space for fixed nav
+        paddingTop: currentView === 'project-udhaar' ? '0' : '80px', // Remove padding for project view
         minHeight: '100vh',
         position: 'relative',
         zIndex: 1,
