@@ -257,6 +257,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </section>
             </div>
 
