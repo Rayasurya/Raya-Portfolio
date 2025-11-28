@@ -346,10 +346,17 @@ const InteractiveSlider = () => {
 const CardReveal = () => {
   return (
     <div className="reveal-card">
-      <div style={{ fontSize: '1.2rem', fontWeight: '600' }}>Hover Me</div>
+      <div className="reveal-text-desktop" style={{ fontSize: '1.2rem', fontWeight: '600' }}>Hover Me</div>
+      <div className="reveal-text-mobile" style={{ fontSize: '1.2rem', fontWeight: '600', display: 'none' }}>Tap Me</div>
       <div className="reveal-content">
         <span style={{ fontWeight: 'bold', letterSpacing: '1px' }}>REVEALED</span>
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+            .reveal-text-desktop { display: none !important; }
+            .reveal-text-mobile { display: block !important; }
+        }
+      `}</style>
     </div>
   );
 };

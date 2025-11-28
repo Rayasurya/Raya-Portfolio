@@ -52,22 +52,44 @@ const Hero = ({ onOpenProject }) => {
       </button>
       <style>{`
         .hero-cta {
+          /* 1. Sizing Strategy */
+          width: auto !important;       /* Stop stretching */
+          min-width: 180px;             /* Minimum touch target width */
+          max-width: 90%;               /* Safety margin */
           display: inline-flex;
+          
+          /* 2. Positioning */
+          margin: 32px auto 0 auto;     /* Center horizontally */
+          
+          /* 3. The "Pill" Look */
+          padding: 16px 32px;           /* Fat, clickable area */
+          border-radius: 999px;         /* Fully round ends */
+          
+          /* 4. Visuals */
+          background: #000000;
+          color: #ffffff;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Lift it up */
+          
+          /* 5. Clickability */
+          cursor: pointer;
+          z-index: 50;                  /* Ensure it's above background particles */
+          
+          /* Flex alignment */
           align-items: center;
           gap: 12px;
-          padding: 16px 32px;
-          background: #111;
-          color: #fff;
           border: none;
-          border-radius: 100px;
           font-size: 1.1rem;
-          font-weight: 500;
-          cursor: pointer;
           transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
           text-decoration: none;
           position: relative;
-          z-index: 10;
           min-height: 56px;
+        }
+        
+        /* Tactile Feedback (Mobile Hover) */
+        .hero-cta:active {
+          transform: scale(0.96);
         }
         .hero-cta:hover {
           background: #000;

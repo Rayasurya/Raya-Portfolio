@@ -25,7 +25,11 @@ const About = () => {
                 fontWeight: '400',
                 maxWidth: '700px',
                 marginLeft: 'auto',
-                marginRight: 'auto'
+                marginRight: 'auto',
+                textAlign: 'left',  /* Force left alignment */
+                fontSize: '16px',   /* Standard readable size */
+                lineHeight: '1.6',  /* Breathing room */
+                padding: '0 16px'   /* Safety gutters */
             }}>
                 Designed & launched key features at nference. Executed 15+ UX projects at Togepe. Grew an AI Youtube content to 100K+ audience. Proficient in Figma, Blender, AI tools. Skilled in user research, motion graphics & content strategy.
             </p>

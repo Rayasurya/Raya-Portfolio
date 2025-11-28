@@ -132,7 +132,7 @@ const ProjectUdhaar = ({ onBack }) => {
 
                         <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
                             <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Transcript Summary</div>
-                            <div className="text-sm text-gray-600 leading-relaxed space-y-3">
+                            <div className="text-sm text-gray-600 leading-relaxed space-y-3 transcription-text">
                                 <p className="font-semibold text-gray-700">Customer: "Brother, why isn't the internet working properly here lately?"</p>
 
                                 <p><span className="font-semibold text-gray-700">Merchant:</span> "Since Vinayaka Chavithi... from September 1st until now, the Jio SIM hasn't worked here. I got calls from Customer Care about 10 times asking 'When will you subscribe to the 3-month plan?' but when I tell them that here in Marathahalli, there is absolutely no internet, calls are breaking, and the voice isn't clear... they just say 'Okay, we will solve it, which area are you in?'"</p>
@@ -143,6 +143,12 @@ const ProjectUdhaar = ({ onBack }) => {
 
                                 <p>"Customers aren't coming properly because of this. Saying 'If we go there, the net won't work'... the number of customers has decreased because of this. That is our trouble."</p>
                             </div>
+                            <style>{`
+                                .transcription-text {
+                                    font-size: 16px !important;   /* Reduce from current large size */
+                                    color: #4b5563 !important;    /* Dark Grey (easier on eyes than black) */
+                                }
+                            `}</style>
                         </div>
                     </div>
                 </section>

@@ -225,37 +225,60 @@ const DesignWall = ({ onViewProject }) => {
             padding: 0 1rem 3rem !important;
             margin: -2rem auto 0 !important;
           }
+          
+          /* 1. The Container */
           .design-masonry {
-            flex-direction: column; /* Stack columns vertically */
-            gap: 24px;
+            display: grid;
+            grid-template-columns: 1fr !important; /* Force Single Column */
+            gap: 24px !important;
+            padding-bottom: 40px; /* Space for scrolling */
           }
+          
           .design-column {
-            flex: 1 1 100%; /* Full width */
-            width: 100%;
+            display: contents; /* Let items participate in the grid directly */
           }
+
+          /* 2. The Card Itself */
           .design-item {
-            min-height: auto !important;
-            height: auto !important;
+            height: 280px !important;      /* Fixed Tall Height */
+            min-height: 280px !important;  /* Safety enforcement */
+            width: 100%;                   /* Full width */
+            
+            /* Layout: Push text to bottom left */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
             padding: 24px;
-            width: 100%;
+            
+            /* Visuals */
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative; /* Essential for background images */
+            background-color: #f3f4f6; /* Fallback color if image fails */
             aspect-ratio: auto;
-            cursor: pointer;
-            position: relative;
             z-index: 1;
           }
-          .design-content h3 {
-            font-size: 1.2rem;
+
+          /* 3. Text Readability Layer */
+          /* Ensure text sits ON TOP of the image */
+          .design-content h3, 
+          .design-content span,
+          .design-overlay button {
+            position: relative;
+            z-index: 10;
+            /* color: white;  -- Removed assumption of dark background for all cards, keeping original colors but ensuring z-index */
+            text-shadow: 0 2px 10px rgba(255,255,255,0.5); /* Legibility protection for light backgrounds */
           }
-          .design-content span {
-            font-size: 0.8rem;
-          }
+          
+          /* Specific fix for Profile Image Card */
+           .design-item:has(.profile-img) {
+              padding: 0 !important;    /* Remove padding so image bleeds to edge */
+              background: #e5e7eb;      /* Loading state color */
+           }
         }
 
         @media (max-width: 480px) {
-          .design-item {
-            min-height: 180px;
-            padding: 1rem;
-          }
           .design-content h3 {
             font-size: 1.1rem;
           }
@@ -269,11 +292,12 @@ const DesignWall = ({ onViewProject }) => {
         .profile-img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
-          object-position: center top;
+          object-fit: cover;        /* CRITICAL: Prevents squashing */
+          object-position: center 25%; /* Focus on the face (25% from top) */
           position: absolute;
           top: 0;
           left: 0;
+          display: block;
         }
       `}</style>
     </section>
