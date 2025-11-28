@@ -68,11 +68,10 @@ const DesignWall = ({ onViewProject }) => {
                 onClick={() => onViewProject && onViewProject(design.id)}
                 style={{
                   background: design.color,
-                  backgroundImage: design.isImage ? `url(${centerImg})` : 'none',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
                   border: design.isImage ? 'none' : '1px solid rgba(0,0,0,0.05)',
                   height: design.height,
+                  position: 'relative',
+                  overflow: 'hidden'
                 }}
               >
                 {!design.isImage && (
@@ -90,9 +89,12 @@ const DesignWall = ({ onViewProject }) => {
                   </>
                 )}
                 {design.isImage && (
-                  <div className="design-overlay image-overlay">
-                    <button>Know Me</button>
-                  </div>
+                  <>
+                    <img src={centerImg} alt="Profile" className="profile-img" />
+                    <div className="design-overlay image-overlay">
+                      <button>Know Me</button>
+                    </div>
+                  </>
                 )}
               </div>
             ))}
@@ -223,12 +225,18 @@ const DesignWall = ({ onViewProject }) => {
             padding: 0 1rem 3rem !important;
             margin: -2rem auto 0 !important;
           }
+          .design-masonry {
+            flex-direction: column; /* Stack columns vertically */
+            gap: 24px;
+          }
           .design-column {
-            flex: 1 1 100%; /* 1 column */
+            flex: 1 1 100%; /* Full width */
+            width: 100%;
           }
           .design-item {
             min-height: 200px;
             padding: 1.25rem;
+            width: 100%;
           }
           .design-content h3 {
             font-size: 1.2rem;
@@ -250,6 +258,17 @@ const DesignWall = ({ onViewProject }) => {
             padding: 10px 20px;
             font-size: 0.9rem;
           }
+        }
+        
+        /* Profile Image Fix */
+        .profile-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center top;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
       `}</style>
     </section>

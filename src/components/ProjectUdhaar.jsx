@@ -159,109 +159,104 @@ const ProjectUdhaar = ({ onBack }) => {
                             We cannot offer offline credit to everyone. The "Pay Offline" button is only triggered if the user passes these real-time local checks:
                         </p>
 
-                        <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-                            <table className="w-full text-left border-collapse bg-white">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">Variable</th>
-                                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">Threshold</th>
-                                        <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">Rationale</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-100">
-                                    <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-6 font-medium text-gray-900">Merchant Affinity</td>
-                                        <td className="py-4 px-6">
-                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">&gt; 5 txns in last 60 days</span>
-                                        </td>
-                                        <td className="py-4 px-6 text-sm text-gray-600">Proves an existing relationship. We lend to "Regulars," not strangers.</td>
-                                    </tr>
-                                    <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-6 font-medium text-gray-900">Device Integrity</td>
-                                        <td className="py-4 px-6">
-                                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold">SafetyNet API = Pass</span>
-                                        </td>
-                                        <td className="py-4 px-6 text-sm text-gray-600">Ensures the device is not rooted/jailbroken to bypass security.</td>
-                                    </tr>
-                                    <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-6 font-medium text-gray-900">Geo-Fencing</td>
-                                        <td className="py-4 px-6">
-                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">GPS &lt; 50m of Merchant</span>
-                                        </td>
-                                        <td className="py-4 px-6 text-sm text-gray-600">Verifies physical presence at the registered Store ID location.</td>
-                                    </tr>
-                                    <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-6 font-medium text-gray-900">Spending Pattern</td>
-                                        <td className="py-4 px-6">
-                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">Amount &lt; Avg. Historical Txn</span>
-                                        </td>
-                                        <td className="py-4 px-6 text-sm text-gray-600">Anomaly detection: High-value spikes trigger a risk block.</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    {/* The Pivot Comparison */}
-                    <div>
-                        <h4 className="text-2xl font-bold text-gray-900 mb-6">The Pivot: Why I Scrapped the "Merchant Scan"</h4>
-                        <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                            My initial hypothesis relied on a standard digital handshake. However, field observation revealed a critical friction point that forced a complete redesign.
-                        </p>
-
-                        {/* Comparison Table */}
+                        {/* Trust Score Table */}
                         <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
-                            <div className="grid md:grid-cols-2">
-                                {/* Left Column: Failed Solution */}
-                                <div className="p-8 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/30">
-                                    <div className="flex items-start gap-3 mb-6">
-                                        <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm flex-shrink-0">✕</span>
-                                        <h4 className="text-lg font-bold text-gray-900 leading-tight">
-                                            The Initial Solution (Failed)
-                                        </h4>
+                            <div className="w-full overflow-x-auto pb-2" style={{ WebkitOverflowScrolling: 'touch' }}>
+                                <table className="w-full text-left border-collapse min-w-[350px]">
+                                    <thead>
+                                        <tr className="bg-gray-50 border-b border-gray-200">
+                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Signal</th>
+                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Logic</th>
+                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Why?</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-100">
+                                        <tr className="hover:bg-gray-50/50 transition-colors">
+                                            <td className="py-4 px-6 font-medium text-gray-900">Device Integrity</td>
+                                            <td className="py-4 px-6">
+                                                <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold">SafetyNet API = Pass</span>
+                                            </td>
+                                            <td className="py-4 px-6 text-sm text-gray-600">Ensures the device is not rooted/jailbroken to bypass security.</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50/50 transition-colors">
+                                            <td className="py-4 px-6 font-medium text-gray-900">Geo-Fencing</td>
+                                            <td className="py-4 px-6">
+                                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">GPS &lt; 50m of Merchant</span>
+                                            </td>
+                                            <td className="py-4 px-6 text-sm text-gray-600">Verifies physical presence at the registered Store ID location.</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50/50 transition-colors">
+                                            <td className="py-4 px-6 font-medium text-gray-900">Spending Pattern</td>
+                                            <td className="py-4 px-6">
+                                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">Amount &lt; Avg. Historical Txn</span>
+                                            </td>
+                                            <td className="py-4 px-6 text-sm text-gray-600">Anomaly detection: High-value spikes trigger a risk block.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        {/* The Pivot Comparison */}
+                        <div>
+                            <h4 className="text-2xl font-bold text-gray-900 mb-6">The Pivot: Why I Scrapped the "Merchant Scan"</h4>
+                            <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                                My initial hypothesis relied on a standard digital handshake. However, field observation revealed a critical friction point that forced a complete redesign.
+                            </p>
+
+                            {/* Comparison Table */}
+                            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
+                                <div className="grid md:grid-cols-2">
+                                    {/* Left Column: Failed Solution */}
+                                    <div className="p-8 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/30">
+                                        <div className="flex items-start gap-3 mb-6">
+                                            <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm flex-shrink-0">✕</span>
+                                            <h4 className="text-lg font-bold text-gray-900 leading-tight">
+                                                The Initial Solution (Failed)
+                                            </h4>
+                                        </div>
+
+                                        <div className="mb-6">
+                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
+                                            <p className="text-sm text-gray-700 leading-relaxed">
+                                                User generates Offline QR → <span className="font-semibold text-gray-900">Merchant unlocks their phone</span> → Merchant scans user's code.
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-2">The Friction</div>
+                                            <p className="text-sm text-gray-700 leading-relaxed">
+                                                Requires the shopkeeper to stop working, dry their hands, find their phone, and unlock it. Unusable during peak hours.
+                                            </p>
+                                        </div>
                                     </div>
 
-                                    <div className="mb-6">
-                                        <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
-                                            User generates Offline QR → <span className="font-semibold text-gray-900">Merchant unlocks their phone</span> → Merchant scans user's code.
-                                        </p>
-                                    </div>
+                                    {/* Right Column: Final Solution */}
+                                    <div className="p-8 bg-green-50/30">
+                                        <div className="flex items-start gap-3 mb-6">
+                                            <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm flex-shrink-0">✓</span>
+                                            <h4 className="text-lg font-bold text-gray-900 leading-tight">
+                                                The Pivot (Final Solution)
+                                            </h4>
+                                        </div>
 
-                                    <div>
-                                        <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-2">The Friction</div>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
-                                            Requires the shopkeeper to stop working, dry their hands, find their phone, and unlock it. Unusable during peak hours.
-                                        </p>
-                                    </div>
-                                </div>
+                                        <div className="mb-6">
+                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
+                                            <p className="text-sm text-gray-700 leading-relaxed">
+                                                User generates Offline Token → <span className="font-semibold text-orange-600">Phone plays unique Sound & turns Orange</span> → Merchant verifies via Sight/Sound.
+                                            </p>
+                                        </div>
 
-                                {/* Right Column: Final Solution */}
-                                <div className="p-8 bg-green-50/30">
-                                    <div className="flex items-start gap-3 mb-6">
-                                        <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm flex-shrink-0">✓</span>
-                                        <h4 className="text-lg font-bold text-gray-900 leading-tight">
-                                            The Pivot (Final Solution)
-                                        </h4>
-                                    </div>
-
-                                    <div className="mb-6">
-                                        <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
-                                            User generates Offline Token → <span className="font-semibold text-orange-600">Phone plays unique Sound & turns Orange</span> → Merchant verifies via Sight/Sound.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <div className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">The Fix</div>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
-                                            Zero merchant action required. Uses "Sensory Verification" (Ambient Cues) to mimic the speed of the Paytm Soundbox.
-                                        </p>
+                                        <div>
+                                            <div className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">The Fix</div>
+                                            <p className="text-sm text-gray-700 leading-relaxed">
+                                                Zero merchant action required. Uses "Sensory Verification" (Ambient Cues) to mimic the speed of the Paytm Soundbox.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </section>
             </div>
 
