@@ -65,6 +65,9 @@ const Hero = ({ onOpenProject }) => {
           cursor: pointer;
           transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
           text-decoration: none;
+          position: relative;
+          z-index: 10;
+          min-height: 56px;
         }
         .hero-cta:hover {
           background: #000;

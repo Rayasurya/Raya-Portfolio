@@ -7,7 +7,7 @@ export const BubbleText = ({ text = "INTERACTIVE", className = "" }) => {
         <h2
             onMouseLeave={() => setHoveredIndex(null)}
             className={`text-center text-black ${className}`}
-            style={{ fontSize: '3rem' }}
+            style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1 }}
         >
             {text.split("").map((char, idx) => {
                 const distance = hoveredIndex !== null ? Math.abs(hoveredIndex - idx) : null;

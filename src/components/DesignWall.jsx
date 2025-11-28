@@ -234,9 +234,14 @@ const DesignWall = ({ onViewProject }) => {
             width: 100%;
           }
           .design-item {
-            min-height: 200px;
-            padding: 1.25rem;
+            min-height: auto !important;
+            height: auto !important;
+            padding: 24px;
             width: 100%;
+            aspect-ratio: auto;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
           }
           .design-content h3 {
             font-size: 1.2rem;

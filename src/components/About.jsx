@@ -62,12 +62,12 @@ const About = () => {
                 </div>
                 <div>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '1.5rem', color: '#000' }}>Languages</h3>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                        <span className="skill-pill">English</span>
-                        <span className="skill-pill">हिंदी Hindi</span>
-                        <span className="skill-pill">தமிழ் Tamil</span>
-                        <span className="skill-pill">తెలుగు Telugu</span>
-                        <span className="skill-pill">ಕನ್ನಡ Kannada</span>
+                    <div className="languages-container">
+                        <span className="skill-pill language-pill">English</span>
+                        <span className="skill-pill language-pill">हिंदी Hindi</span>
+                        <span className="skill-pill language-pill">தமிழ் Tamil</span>
+                        <span className="skill-pill language-pill">తెలుగు Telugu</span>
+                        <span className="skill-pill language-pill">ಕನ್ನಡ Kannada</span>
                     </div>
                 </div>
             </div>
@@ -85,6 +85,18 @@ const About = () => {
                     background: #000;
                     color: #fff;
                     transform: translateY(-2px);
+                }
+
+                .languages-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center; /* Center the cluster */
+                    gap: 10px; /* Consistent tight spacing */
+                }
+
+                .language-pill {
+                    margin: 0; /* Remove random margins */
+                    flex: 0 1 auto; /* Allow pills to size based on text */
                 }
 
                 @media (max-width: 768px) {

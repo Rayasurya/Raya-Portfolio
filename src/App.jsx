@@ -11,7 +11,7 @@ import About from './components/About';
 import Resume from './components/Resume';
 import BottomNav from './components/BottomNav';
 import Footer from './components/Footer';
-import AudioFab from './components/AudioFab';
+
 
 function App() {
   // Initialize view from URL hash or default to 'home'
@@ -138,8 +138,7 @@ function App() {
             </div>
           </nav>
 
-          {/* Audio FAB */}
-          <AudioFab />
+
 
           {/* Bottom Navigation - Mobile Only */}
           <BottomNav currentView={currentView} onNavigate={navigateTo} />

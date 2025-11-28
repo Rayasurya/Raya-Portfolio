@@ -352,7 +352,7 @@ const ProjectUdhaar = ({ onBack }) => {
                     <div className="max-w-3xl mx-auto mt-24 px-6">
                         <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
                             <div className="flex items-start gap-3">
-                                <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                                <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm mt-1">
                                     💡
                                 </div>
                                 <div>
