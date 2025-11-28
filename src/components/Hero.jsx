@@ -85,8 +85,8 @@ const Hero = ({ onOpenProject }) => {
             min-height: 70vh !important;
           }
           h1 {
-            font-size: 2.5rem !important;
-            line-height: 1.2 !important;
+            font-size: clamp(2rem, 5vw, 4rem) !important;
+            line-height: 1.1 !important;
             letter-spacing: -0.5px !important;
           }
           p {
@@ -96,6 +96,8 @@ const Hero = ({ onOpenProject }) => {
           .hero-cta {
             font-size: 1rem;
             padding: 14px 28px;
+            width: 100%;
+            justify-content: center;
           }
         }
 
@@ -104,7 +106,7 @@ const Hero = ({ onOpenProject }) => {
             padding: 2rem 1rem !important;
           }
           h1 {
-            font-size: 2rem !important;
+            font-size: clamp(2rem, 8vw, 3rem) !important;
             letter-spacing: 0 !important;
           }
           p {
