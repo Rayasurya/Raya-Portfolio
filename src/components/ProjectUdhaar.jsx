@@ -598,6 +598,153 @@ const ProjectUdhaar = ({ onBack }) => {
                     </p>
                 </section>
             </div>
+
+            {/* Mobile Responsive Styles */}
+            <style>{`
+                /* Mobile: 320px - 640px */
+                @media (max-width: 640px) {
+                    /* Hero Section */
+                    header {
+                        padding-top: 6rem !important;
+                        padding-bottom: 3rem !important;
+                        padding-left: 1.5rem !important;
+                        padding-right: 1.5rem !important;
+                    }
+
+                    header h1 {
+                        font-size: 2rem !important;
+                        margin-bottom: 1.5rem !important;
+                    }
+
+                    header p {
+                        font-size: 1.1rem !important;
+                        margin-bottom: 2rem !important;
+                    }
+
+                    /* Metadata Grid - Stack to 2 columns on mobile */
+                    header .grid {
+                        gap: 1rem !important;
+                        padding: 1.5rem 0 !important;
+                    }
+
+                    /* Tables - Make scrollable */
+                    table {
+                        display: block;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                    }
+
+                    table th,
+                    table td {
+                        white-space: nowrap;
+                        padding: 0.75rem 1rem !important;
+                        font-size: 0.875rem !important;
+                    }
+
+                    /* Phone Mockup Grid - Stack vertically */
+                    .grid.md\\:grid-cols-3 {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    /* Pivot Comparison Table - Already stacks, just adjust padding */
+                    .grid.md\\:grid-cols-2 > div {
+                        padding: 1.5rem !important;
+                    }
+
+                    /* Impact Banner */
+                    .bg-gray-900 .grid {
+                        gap: 2rem !important;
+                    }
+
+                    /* Technical Architecture - Code blocks */
+                    .bg-\\[\\#0F172A\\] {
+                        padding: 1.5rem !important;
+                        font-size: 0.75rem !important;
+                    }
+
+                    /* General Section Padding */
+                    section {
+                        padding-left: 1.5rem !important;
+                        padding-right: 1.5rem !important;
+                    }
+
+                    /* Reduce large text sizes */
+                    h2 {
+                        font-size: 1.75rem !important;
+                    }
+
+                    h3 {
+                        font-size: 1.5rem !important;
+                    }
+
+                    h4 {
+                        font-size: 1.25rem !important;
+                    }
+
+                    /* Back button - Make it more compact */
+                    .fixed button {
+                        padding: 0.5rem 1rem !important;
+                        font-size: 0.875rem !important;
+                    }
+                }
+
+                /* Very Small Screens: 320px - 375px */
+                @media (max-width: 375px) {
+                    header h1 {
+                        font-size: 1.75rem !important;
+                    }
+
+                    header p {
+                        font-size: 1rem !important;
+                    }
+
+                    /* Even smaller text for readability */
+                    table th,
+                    table td {
+                        font-size: 0.75rem !important;
+                        padding: 0.5rem 0.75rem !important;
+                    }
+
+                    h2 {
+                        font-size: 1.5rem !important;
+                    }
+
+                    h3 {
+                        font-size: 1.25rem !important;
+                    }
+                }
+
+                /* Tablet: 641px - 1024px */
+                @media (min-width: 641px) and (max-width: 1024px) {
+                    header h1 {
+                        font-size: 3rem !important;
+                    }
+
+                    header p {
+                        font-size: 1.25rem !important;
+                    }
+
+                    /* Tables remain scrollable for safety */
+                    table {
+                        display: block;
+                        overflow-x: auto;
+                    }
+                }
+
+                /* Ensure no horizontal scroll */
+                * {
+                    max-width: 100%;
+                }
+
+                /* Touch-friendly targets */
+                @media (max-width: 1024px) {
+                    button,
+                    a {
+                        min-height: 44px;
+                        min-width: 44px;
+                    }
+                }
+            `}</style>
         </div >
     );
 };

@@ -179,6 +179,54 @@ const AudioPlayer = ({ src, caption, title = "Audio Recording", variant }) => {
                         </div>
                     )}
                 </div>
+
+                {/* Mobile Responsive Styles */}
+                <style>{`
+                    @media (max-width: 640px) {
+                        .w-full.my-8 .bg-black\\/40 {
+                            padding: 1rem !important;
+                        }
+
+                        .w-full.my-8 .flex.gap-5 {
+                            gap: 0.75rem !important;
+                        }
+
+                        .w-full.my-8 .w-14 {
+                            width: 3rem !important;
+                            height: 3rem !important;
+                        }
+
+                        .w-full.my-8 .text-xs {
+                            font-size: 0.65rem !important;
+                        }
+
+                        .w-full.my-8 .text-lg {
+                            font-size: 0.9rem !important;
+                        }
+
+                        /* Stack meta tags if needed */
+                        .w-full.my-8 .flex.gap-2 {
+                            flex-wrap: wrap;
+                        }
+
+                        /* Reduce waveform count on very small screens */
+                        .w-full.my-8 .h-10 .flex-1:nth-child(n+16) {
+                            display: none;
+                        }
+                    }
+
+                    @media (max-width: 375px) {
+                        .w-full.my-8 .flex.justify-between {
+                            flex-direction: column;
+                            align-items: flex-start !important;
+                            gap: 0.25rem;
+                        }
+
+                        .w-full.my-8 .text-\\[10px\\] {
+                            font-size: 0.6rem !important;
+                        }
+                    }
+                `}</style>
             </div>
         );
     }

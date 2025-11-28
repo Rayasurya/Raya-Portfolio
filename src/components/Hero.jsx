@@ -81,12 +81,13 @@ const Hero = ({ onOpenProject }) => {
 
         @media (max-width: 768px) {
           section {
-            padding: 4rem 1.5rem !important;
+            padding: 3rem 1.5rem !important;
             min-height: 70vh !important;
           }
           h1 {
             font-size: 2.5rem !important;
             line-height: 1.2 !important;
+            letter-spacing: -0.5px !important;
           }
           p {
             font-size: 1.1rem !important;
@@ -99,11 +100,31 @@ const Hero = ({ onOpenProject }) => {
         }
 
         @media (max-width: 480px) {
+          section {
+            padding: 2rem 1rem !important;
+          }
           h1 {
             font-size: 2rem !important;
+            letter-spacing: 0 !important;
           }
           p {
             font-size: 1rem !important;
+          }
+          .hero-cta {
+            width: 100%;
+            justify-content: center;
+            padding: 16px 24px;
+            min-height: 48px;
+          }
+        }
+
+        @media (max-width: 375px) {
+          h1 {
+            font-size: 1.75rem !important;
+          }
+          div:first-child {
+            font-size: 0.8rem !important;
+            letter-spacing: 1.5px !important;
           }
         }
       `}</style>

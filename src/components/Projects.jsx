@@ -39,11 +39,7 @@ const Projects = () => {
                 textAlign: 'left',
                 color: '#000000',
             }}>Selected Works</h2>
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                gap: '2rem',
-            }}>
+            <div className="projects-grid">
                 {projects.map((project, index) => (
                     <div key={index} className="project-card" style={{
                         background: project.color,
@@ -73,9 +69,36 @@ const Projects = () => {
             </div>
             <style>
                 {`
+          .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          @media (min-width: 640px) {
+            .projects-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .projects-grid {
+              grid-template-columns: repeat(3, 1fr);
+            }
+          }
+
           .project-card:hover {
             transform: translate(-5px, -5px);
             box-shadow: 8px 8px 0px #000000;
+          }
+
+          @media (max-width: 640px) {
+            .projects-section {
+              padding: 2rem 1rem !important;
+            }
+            .projects-section h2 {
+              fontSize: 1.75rem !important;
+            }
           }
         `}
             </style>
