@@ -158,9 +158,9 @@ const ProjectUdhaar = ({ onBack }) => {
                                 <ShieldCheck size={24} />
                             </div>
                             <div>
-                                <h4 className="text-xl font-bold text-gray-900 mb-3">The "Relationship Score"</h4>
+                                <h4 className="text-xl font-bold text-gray-900 mb-3">The "Trust Score"</h4>
                                 <p className="text-gray-600 leading-relaxed mb-4">
-                                    We cannot offer offline credit to everyone. I designed an eligibility algorithm that runs locally on the device to prevent fraud.
+                                    We cannot offer offline credit to everyone. I designed a Trust Score algorithm that runs locally on the device to prevent fraud.
                                 </p>
                                 <div className="flex flex-wrap gap-3">
                                     <span className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600">Recency &gt; 5 txns</span>
@@ -186,9 +186,9 @@ const ProjectUdhaar = ({ onBack }) => {
                 {/* 3.1 The Trust Logic (New Section) */}
                 <section className="mb-32">
                     <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">02.1 — The Trust Logic</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">The "Trust Index" Algorithm</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">The "Trust Score" Algorithm</h3>
                     <p className="text-lg text-gray-600 leading-relaxed mb-12">
-                        To balance user convenience with fraud risk, I defined a weighted scoring model. The "Pay Offline" button is only triggered if the user passes the following real-time checks locally on the device:
+                        To balance user convenience with fraud risk, I defined a Trust Score algorithm. The "Pay Offline" button is only triggered if the user passes the following real-time checks locally on the device:
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
@@ -295,19 +295,28 @@ const ProjectUdhaar = ({ onBack }) => {
                         </div>
 
                         {/* Step 3 */}
-                        <div className="group relative mb-8">
+                        <div
+                            className="group relative mb-8"
+                            onMouseMove={(e) => {
+                                const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
+                                if (tooltip) {
+                                    // Use clientX/Y for fixed positioning relative to viewport
+                                    tooltip.style.left = `${e.clientX + 15}px`;
+                                    tooltip.style.top = `${e.clientY + 15}px`;
+                                }
+                            }}
+                        >
                             <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
+                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center p-4">
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
                                         className="w-full h-full object-contain drop-shadow-lg"
                                     />
-                                    {/* Color Theory Hover Tooltip */}
-                                    <div className="absolute -right-4 top-1/4 bg-gray-900 text-white p-3 rounded-lg shadow-xl max-w-[140px] z-20 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                                        <div className="absolute -left-2 top-4 w-4 h-4 bg-gray-900 transform rotate-45"></div>
+                                    {/* Color Theory Cursor-Following Tooltip */}
+                                    <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
                                         <div className="relative z-10">
-                                            <div className="text-[10px] font-mono text-gray-400 uppercase tracking-wider mb-1">Color Theory</div>
+                                            <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
                                             <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
                                         </div>
                                     </div>
@@ -487,14 +496,14 @@ const ProjectUdhaar = ({ onBack }) => {
                 </section>
 
                 {/* 6. Impact Banner (New Section) */}
-                <section className="bg-gray-900 text-white py-20 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
+                <section className="bg-gray-900 text-white py-12 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                         <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
                         <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
                     </div>
 
-                    <div className="max-w-5xl mx-auto px-6 relative z-10">
-                        <div className="mb-12">
+                    <div className="max-w-5xl mx-auto px-12 relative z-10">
+                        <div className="mb-16">
                             <h2 className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-4">06 — The Results</h2>
                             <h3 className="text-3xl md:text-5xl font-bold mb-6">Projected Impact</h3>
                             <p className="text-gray-400 max-w-2xl text-lg">
