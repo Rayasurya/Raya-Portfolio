@@ -756,12 +756,16 @@ const ProjectUdhaar = ({ onBack }) => {
                     overflow: visible !important;
                     flex-shrink: 0;
                     border-radius: 2.5rem !important;
+                    padding: 0 !important;
+                    display: inline-block !important;
+                    line-height: 0 !important;
                 }
 
                 .journey-step-image {
                     object-fit: contain !important;
                     width: 100%;
                     height: auto;
+                    display: block !important;
                 }
             `}</style>
         </div>
