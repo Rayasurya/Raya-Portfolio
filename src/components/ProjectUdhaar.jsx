@@ -167,278 +167,283 @@ const ProjectUdhaar = ({ onBack }) => {
 
                         {/* Trust Score Table */}
                         <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white" style={{ WebkitOverflowScrolling: 'touch' }}>
-                            <table className="w-full text-left border-collapse">
+                            <table className="w-full text-left border-collapse" style={{ tableLayout: 'fixed' }}>
+                                <colgroup>
+                                    <col style={{ width: '25%' }} />
+                                    <col style={{ width: '35%' }} />
+                                    <col style={{ width: '40%' }} />
+                                </colgroup>
                                 <thead>
                                     <tr className="bg-gray-50 border-b border-gray-200">
-                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Signal</th>
-                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Logic</th>
-                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Why?</th>
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Signal</th>
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Logic</th>
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Why?</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Device Integrity</td>
-                                        <td className="py-4 px-4 whitespace-nowrap">
-                                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold">SafetyNet API = Pass</span>
+                                        <td className="py-4 px-4 font-medium text-gray-900">Device Integrity</td>
+                                        <td className="py-4 px-4">
+                                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold inline-block">SafetyNet API = Pass</span>
                                         </td>
                                         <td className="py-4 px-4 text-sm text-gray-600">Ensures the device is not rooted/jailbroken to bypass security.</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Geo-Fencing</td>
-                                        <td className="py-4 px-4 whitespace-nowrap">
-                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">GPS &lt; 50m of Merchant</span>
+                                        <td className="py-4 px-4 font-medium text-gray-900">Geo-Fencing</td>
+                                        <td className="py-4 px-4">
+                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold inline-block">GPS &lt; 50m of Merchant</span>
                                         </td>
                                         <td className="py-4 px-4 text-sm text-gray-600">Verifies physical presence at the registered Store ID location.</td>
                                     </tr>
                                     <tr className="hover:bg-gray-50/50 transition-colors">
-                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Spending Pattern</td>
-                                        <td className="py-4 px-4 whitespace-nowrap">
-                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">Amount &lt; Avg. Historical Txn</span>
+                                        <td className="py-4 px-4 font-medium text-gray-900">Spending Pattern</td>
+                                        <td className="py-4 px-4">
+                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold inline-block">Amount &lt; Avg. Historical Txn</span>
                                         </td>
                                         <td className="py-4 px-4 text-sm text-gray-600">Anomaly detection: High-value spikes trigger a risk block.</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    {/* The Pivot Comparison */}
+                    <div>
+                        <h4 className="text-2xl font-bold text-gray-900 mb-6">The Pivot: Why I Scrapped the "Merchant Scan"</h4>
+                        <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                            My initial hypothesis relied on a standard digital handshake. However, field observation revealed a critical friction point that forced a complete redesign.
+                        </p>
 
-                        {/* The Pivot Comparison */}
-                        <div>
-                            <h4 className="text-2xl font-bold text-gray-900 mb-6">The Pivot: Why I Scrapped the "Merchant Scan"</h4>
-                            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                                My initial hypothesis relied on a standard digital handshake. However, field observation revealed a critical friction point that forced a complete redesign.
-                            </p>
-
-                            {/* Comparison Table */}
-                            <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
-                                <div className="grid md:grid-cols-2">
-                                    {/* Left Column: Failed Solution */}
-                                    <div className="p-8 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/30">
-                                        <div className="flex items-start gap-3 mb-6">
-                                            <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm flex-shrink-0">✕</span>
-                                            <h4 className="text-lg font-bold text-gray-900 leading-tight">
-                                                The Initial Solution (Failed)
-                                            </h4>
-                                        </div>
-
-                                        <div className="mb-6">
-                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
-                                            <p className="text-sm text-gray-700 leading-relaxed">
-                                                User generates Offline QR → <span className="font-semibold text-gray-900">Merchant unlocks their phone</span> → Merchant scans user's code.
-                                            </p>
-                                        </div>
-
-                                        <div>
-                                            <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-2">The Friction</div>
-                                            <p className="text-sm text-gray-700 leading-relaxed">
-                                                Requires the shopkeeper to stop working, dry their hands, find their phone, and unlock it. Unusable during peak hours.
-                                            </p>
-                                        </div>
+                        {/* Comparison Table */}
+                        <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
+                            <div className="grid md:grid-cols-2">
+                                {/* Left Column: Failed Solution */}
+                                <div className="p-8 border-b md:border-b-0 md:border-r border-gray-200 bg-red-50/30">
+                                    <div className="flex items-start gap-3 mb-6">
+                                        <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm flex-shrink-0">✕</span>
+                                        <h4 className="text-lg font-bold text-gray-900 leading-tight">
+                                            The Initial Solution (Failed)
+                                        </h4>
                                     </div>
 
-                                    {/* Right Column: Final Solution */}
-                                    <div className="p-8 bg-green-50/30">
-                                        <div className="flex items-start gap-3 mb-6">
-                                            <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm flex-shrink-0">✓</span>
-                                            <h4 className="text-lg font-bold text-gray-900 leading-tight">
-                                                The Pivot (Final Solution)
-                                            </h4>
-                                        </div>
+                                    <div className="mb-6">
+                                        <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                            User generates Offline QR → <span className="font-semibold text-gray-900">Merchant unlocks their phone</span> → Merchant scans user's code.
+                                        </p>
+                                    </div>
 
-                                        <div className="mb-6">
-                                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
-                                            <p className="text-sm text-gray-700 leading-relaxed">
-                                                User generates Offline Token → <span className="font-semibold text-orange-600">Phone plays unique Sound & turns Orange</span> → Merchant verifies via Sight/Sound.
-                                            </p>
-                                        </div>
+                                    <div>
+                                        <div className="text-xs font-bold text-red-600 uppercase tracking-wider mb-2">The Friction</div>
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                            Requires the shopkeeper to stop working, dry their hands, find their phone, and unlock it. Unusable during peak hours.
+                                        </p>
+                                    </div>
+                                </div>
 
-                                        <div>
-                                            <div className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">The Fix</div>
-                                            <p className="text-sm text-gray-700 leading-relaxed">
-                                                Zero merchant action required. Uses "Sensory Verification" (Ambient Cues) to mimic the speed of the Paytm Soundbox.
-                                            </p>
-                                        </div>
+                                {/* Right Column: Final Solution */}
+                                <div className="p-8 bg-green-50/30">
+                                    <div className="flex items-start gap-3 mb-6">
+                                        <span className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm flex-shrink-0">✓</span>
+                                        <h4 className="text-lg font-bold text-gray-900 leading-tight">
+                                            The Pivot (Final Solution)
+                                        </h4>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Mechanism</div>
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                            User generates Offline Token → <span className="font-semibold text-orange-600">Phone plays unique Sound & turns Orange</span> → Merchant verifies via Sight/Sound.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <div className="text-xs font-bold text-green-600 uppercase tracking-wider mb-2">The Fix</div>
+                                        <p className="text-sm text-gray-700 leading-relaxed">
+                                            Zero merchant action required. Uses "Sensory Verification" (Ambient Cues) to mimic the speed of the Paytm Soundbox.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+            </div>
+        </section>
+            </div >
+
+    {/* 4. The Solution - Wide Section */ }
+    < section className = "bg-gray-50 py-32 mb-32" >
+        <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center mb-20">
+                <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Solution</h2>
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
             </div>
 
-            {/* 4. The Solution - Wide Section */}
-            <section className="bg-gray-50 py-32 mb-32">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="max-w-3xl mx-auto text-center mb-20">
-                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Solution</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
+            <div className="grid md:grid-cols-3 gap-12">
+                {/* Step 1 */}
+                <div className="group">
+                    <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                        <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
+                            <img
+                                src={udhaarPaying}
+                                alt="Paying Screen"
+                                className="w-full h-full object-contain drop-shadow-lg"
+                            />
+                        </div>
                     </div>
+                    <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
+                </div>
 
-                    <div className="grid md:grid-cols-3 gap-12">
-                        {/* Step 1 */}
-                        <div className="group">
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
-                                    <img
-                                        src={udhaarPaying}
-                                        alt="Paying Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
-                                    />
+                {/* Step 2 */}
+                <div className="group">
+                    <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                        <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
+                            <img
+                                src={udhaarNoInternet}
+                                alt="No Internet Screen"
+                                className="w-full h-full object-contain drop-shadow-lg"
+                            />
+                        </div>
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
+                    <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
+                </div>
+
+                {/* Step 3 */}
+                <div
+                    className="group relative mb-8"
+                    onMouseMove={(e) => {
+                        const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
+                        if (tooltip) {
+                            // Use clientX/Y for fixed positioning relative to viewport
+                            tooltip.style.left = `${e.clientX + 15}px`;
+                            tooltip.style.top = `${e.clientY + 15}px`;
+                        }
+                    }}
+                >
+                    <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                        <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center p-4">
+                            <img
+                                src={udhaarSuccess}
+                                alt="Success Screen"
+                                className="w-full h-full object-contain drop-shadow-lg"
+                            />
+                            {/* Color Theory Cursor-Following Tooltip */}
+                            <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
+                                <div className="relative z-10">
+                                    <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
+                                    <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
                                 </div>
                             </div>
-                            <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
-                            <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
                         </div>
-
-                        {/* Step 2 */}
-                        <div className="group">
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
-                                    <img
-                                        src={udhaarNoInternet}
-                                        alt="No Internet Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
-                                    />
-                                </div>
-                            </div>
-                            <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
-                            <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
-                        </div>
-
-                        {/* Step 3 */}
-                        <div
-                            className="group relative mb-8"
-                            onMouseMove={(e) => {
-                                const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
-                                if (tooltip) {
-                                    // Use clientX/Y for fixed positioning relative to viewport
-                                    tooltip.style.left = `${e.clientX + 15}px`;
-                                    tooltip.style.top = `${e.clientY + 15}px`;
-                                }
+                    </div>
+                    <div className="flex flex-col gap-3 mb-2">
+                        <h4 className="text-lg font-bold">3. The Proof</h4>
+                        <button
+                            onClick={() => {
+                                const audio = new Audio('/src/assets/success_sound.mp3');
+                                audio.play().catch(e => alert("Please upload 'success_sound.mp3' to assets folder first!"));
                             }}
+                            className="w-full py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all shadow-md flex items-center justify-center gap-2 group-hover:scale-105"
+                            title="Play Success Sound"
                         >
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center p-4">
-                                    <img
-                                        src={udhaarSuccess}
-                                        alt="Success Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
-                                    />
-                                    {/* Color Theory Cursor-Following Tooltip */}
-                                    <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
-                                        <div className="relative z-10">
-                                            <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
-                                            <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
                             </div>
-                            <div className="flex flex-col gap-3 mb-2">
-                                <h4 className="text-lg font-bold">3. The Proof</h4>
-                                <button
-                                    onClick={() => {
-                                        const audio = new Audio('/src/assets/success_sound.mp3');
-                                        audio.play().catch(e => alert("Please upload 'success_sound.mp3' to assets folder first!"));
-                                    }}
-                                    className="w-full py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all shadow-md flex items-center justify-center gap-2 group-hover:scale-105"
-                                    title="Play Success Sound"
-                                >
-                                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                        <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
-                                    </div>
-                                    <span className="font-bold text-sm uppercase tracking-wider">Play Success Chime</span>
-                                </button>
-                            </div>
-                            <p className="text-gray-500 text-sm leading-relaxed mt-4">High-contrast Orange screen + Audio cue signals "Conditional Success".</p>
-                        </div>
+                            <span className="font-bold text-sm uppercase tracking-wider">Play Success Chime</span>
+                        </button>
                     </div>
+                    <p className="text-gray-500 text-sm leading-relaxed mt-4">High-contrast Orange screen + Audio cue signals "Conditional Success".</p>
+                </div>
+            </div>
 
-                    {/* Design Note - Mobile Optimized */}
-                    <div className="max-w-3xl mx-auto mt-24 px-6">
-                        <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
-                            <div className="flex items-start gap-3">
-                                <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm mt-1">
-                                    💡
-                                </div>
-                                <div>
-                                    <h5 className="text-sm font-bold text-orange-900 uppercase tracking-wider mb-2">Design Note</h5>
-                                    <p className="text-sm text-gray-700 leading-relaxed">
-                                        I chose Amber/Orange to signal "Pending but Safe," visually distinguishing it from the immediate "Settlement Success" (Green) standard in UPI apps.
-                                    </p>
-                                </div>
-                            </div>
+            {/* Design Note - Mobile Optimized */}
+            <div className="max-w-3xl mx-auto mt-24 px-6">
+                <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
+                    <div className="flex items-start gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm mt-1">
+                            💡
                         </div>
-
-                        {/* Accessibility Audit */}
-                        <div className="mt-6 flex items-center gap-2 flex-wrap">
-                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-medium border border-green-200">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                                Tested for Deuteranopia
-                            </span>
-                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium border border-blue-200">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                </svg>
-                                Contrast Ratio 4.5:1
-                            </span>
+                        <div>
+                            <h5 className="text-sm font-bold text-orange-900 uppercase tracking-wider mb-2">Design Note</h5>
+                            <p className="text-sm text-gray-700 leading-relaxed">
+                                I chose Amber/Orange to signal "Pending but Safe," visually distinguishing it from the immediate "Settlement Success" (Green) standard in UPI apps.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                {/* 4.1 Unhappy Paths (Edge Cases) */}
-                <div className="max-w-5xl mx-auto px-6 mt-20 mb-32">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b border-gray-200 pb-4">Designing for Failure (Edge Cases)</h3>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {/* Edge Case 1 */}
-                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-                            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
-                                {/* Mockup of Bottom Sheet */}
-                                <div className="bg-gray-100 aspect-[9/16] rounded-lg relative overflow-hidden flex items-end">
-                                    <div className="w-full bg-white p-3 rounded-t-xl shadow-lg">
-                                        <div className="w-8 h-1 bg-gray-300 rounded-full mx-auto mb-2"></div>
-                                        <div className="text-[10px] font-bold text-gray-900 mb-1">Offline Pay Unavailable</div>
-                                        <div className="text-[8px] text-gray-500 leading-tight">You need 2 more successful transactions with this merchant to unlock Trust Token.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900 mb-2">1. The "Rejection" State</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                                    Shows strict adherence to the Trust Score. We don't just fail; we explain <em>why</em> to build long-term behavior.
-                                </p>
-                                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Non-intrusive Bottom Sheet</span>
-                            </div>
-                        </div>
+                {/* Accessibility Audit */}
+                <div className="mt-6 flex items-center gap-2 flex-wrap">
+                    <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-medium border border-green-200">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Tested for Deuteranopia
+                    </span>
+                    <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium border border-blue-200">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                        Contrast Ratio 4.5:1
+                    </span>
+                </div>
+            </div>
+        </div>
 
-                        {/* Edge Case 2 */}
-                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-                            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
-                                {/* Mockup of Notification */}
-                                <div className="bg-gray-900 aspect-[9/16] rounded-lg relative overflow-hidden flex items-center justify-center">
-                                    <div className="w-[90%] bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/20">
-                                        <div className="flex gap-2 items-center mb-1">
-                                            <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-                                            <div className="text-[8px] text-white font-bold">Payment Synced</div>
-                                        </div>
-                                        <div className="text-[8px] text-gray-300 leading-tight">₹200 paid to Sharma General Store. Trust Score increased +5.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900 mb-2">2. "Sync Complete" Notification</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                                    Closes the feedback loop when internet returns. Gamifies the experience by showing Trust Score increase.
-                                </p>
-                                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Lock Screen Notification</span>
-                            </div>
-                        </div>
+{/* 4.1 Unhappy Paths (Edge Cases) */ }
+<div className="max-w-5xl mx-auto px-6 mt-20 mb-32">
+    <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b border-gray-200 pb-4">Designing for Failure (Edge Cases)</h3>
+    <div className="grid md:grid-cols-2 gap-8">
+        {/* Edge Case 1 */}
+        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
+                {/* Mockup of Bottom Sheet */}
+                <div className="bg-gray-100 aspect-[9/16] rounded-lg relative overflow-hidden flex items-end">
+                    <div className="w-full bg-white p-3 rounded-t-xl shadow-lg">
+                        <div className="w-8 h-1 bg-gray-300 rounded-full mx-auto mb-2"></div>
+                        <div className="text-[10px] font-bold text-gray-900 mb-1">Offline Pay Unavailable</div>
+                        <div className="text-[8px] text-gray-500 leading-tight">You need 2 more successful transactions with this merchant to unlock Trust Token.</div>
                     </div>
                 </div>
-            </section>
+            </div>
+            <div>
+                <h4 className="font-bold text-gray-900 mb-2">1. The "Rejection" State</h4>
+                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                    Shows strict adherence to the Trust Score. We don't just fail; we explain <em>why</em> to build long-term behavior.
+                </p>
+                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Non-intrusive Bottom Sheet</span>
+            </div>
+        </div>
 
-            {/* 5. Validation & Conclusion */}
-            <div className="max-w-3xl mx-auto px-6">
+        {/* Edge Case 2 */}
+        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
+                {/* Mockup of Notification */}
+                <div className="bg-gray-900 aspect-[9/16] rounded-lg relative overflow-hidden flex items-center justify-center">
+                    <div className="w-[90%] bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/20">
+                        <div className="flex gap-2 items-center mb-1">
+                            <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
+                            <div className="text-[8px] text-white font-bold">Payment Synced</div>
+                        </div>
+                        <div className="text-[8px] text-gray-300 leading-tight">₹200 paid to Sharma General Store. Trust Score increased +5.</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4 className="font-bold text-gray-900 mb-2">2. "Sync Complete" Notification</h4>
+                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                    Closes the feedback loop when internet returns. Gamifies the experience by showing Trust Score increase.
+                </p>
+                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Lock Screen Notification</span>
+            </div>
+        </div>
+    </div>
+</div>
+            </section >
+
+    {/* 5. Validation & Conclusion */ }
+    < div className = "max-w-3xl mx-auto px-6" >
                 <section className="mb-32">
                     <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — Validation</h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Did it work?</h3>
@@ -552,7 +557,7 @@ const ProjectUdhaar = ({ onBack }) => {
                     </div>
                 </section>
 
-                {/* 6. Impact Banner (Updated) */}
+{/* 6. Impact Banner (Updated) */ }
                 <section className="bg-gray-900 text-white py-16 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                         <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
@@ -597,10 +602,10 @@ const ProjectUdhaar = ({ onBack }) => {
                         Designing for "The Next Billion Users" isn't just about translating apps into Hindi—it's about building resilience against chaos. This project taught me that <span className="text-gray-900 font-semibold">Trust</span> is a design element just as important as Color or Typography.
                     </p>
                 </section>
-            </div>
+            </div >
 
-            {/* Mobile Responsive Styles */}
-            <style>{`
+    {/* Mobile Responsive Styles */ }
+    < style > {`
                 /* Mobile: 320px - 640px */
                 @media (max-width: 640px) {
                     /* Hero Section */
@@ -744,7 +749,7 @@ const ProjectUdhaar = ({ onBack }) => {
                         min-width: 44px;
                     }
                 }
-            `}</style>
+            `}</style >
         </div >
     );
 };
