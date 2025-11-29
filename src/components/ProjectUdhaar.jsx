@@ -310,7 +310,7 @@ const ProjectUdhaar = ({ onBack }) => {
 
                         {/* Step 3 */}
                         <div
-                            className="group relative mb-8"
+                            className="group relative"
                             onMouseMove={(e) => {
                                 const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
                                 if (tooltip) {
@@ -320,8 +320,8 @@ const ProjectUdhaar = ({ onBack }) => {
                                 }
                             }}
                         >
-                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center">
+                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
