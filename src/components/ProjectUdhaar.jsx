@@ -280,30 +280,22 @@ const ProjectUdhaar = ({ onBack }) => {
                     <div className="grid md:grid-cols-3 gap-12 items-start">
                         {/* Step 1 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem]">
-                                    <img
-                                        src={udhaarPaying}
-                                        alt="Paying Screen"
-                                        className="journey-step-image w-full h-full drop-shadow-lg"
-                                    />
-                                </div>
-                            </div>
+                            <img
+                                src={udhaarPaying}
+                                alt="Paying Screen"
+                                className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8"
+                            />
                             <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
                         </div>
 
                         {/* Step 2 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem]">
-                                    <img
-                                        src={udhaarNoInternet}
-                                        alt="No Internet Screen"
-                                        className="journey-step-image w-full h-full drop-shadow-lg"
-                                    />
-                                </div>
-                            </div>
+                            <img
+                                src={udhaarNoInternet}
+                                alt="No Internet Screen"
+                                className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8"
+                            />
                             <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
                         </div>
@@ -320,19 +312,17 @@ const ProjectUdhaar = ({ onBack }) => {
                                 }
                             }}
                         >
-                            <div className="bg-white rounded-3xl px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem]">
-                                    <img
-                                        src={udhaarSuccess}
-                                        alt="Success Screen"
-                                        className="journey-step-image w-full h-full drop-shadow-lg"
-                                    />
-                                    {/* Color Theory Cursor-Following Tooltip */}
-                                    <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
-                                        <div className="relative z-10">
-                                            <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
-                                            <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
-                                        </div>
+                            <div className="relative mb-8">
+                                <img
+                                    src={udhaarSuccess}
+                                    alt="Success Screen"
+                                    className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300"
+                                />
+                                {/* Color Theory Cursor-Following Tooltip */}
+                                <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
+                                    <div className="relative z-10">
+                                        <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
+                                        <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
                                     </div>
                                 </div>
                             </div>
