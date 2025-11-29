@@ -285,7 +285,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                     <img
                                         src={udhaarPaying}
                                         alt="Paying Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
+                                        className="w-full h-full object-cover drop-shadow-lg"
                                     />
                                 </div>
                             </div>
@@ -300,7 +300,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                     <img
                                         src={udhaarNoInternet}
                                         alt="No Internet Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
+                                        className="w-full h-full object-cover drop-shadow-lg"
                                     />
                                 </div>
                             </div>
@@ -325,7 +325,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
-                                        className="w-full h-full object-contain drop-shadow-lg"
+                                        className="w-full h-full object-cover drop-shadow-lg"
                                     />
                                     {/* Color Theory Cursor-Following Tooltip */}
                                     <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
