@@ -756,13 +756,14 @@ const ProjectUdhaar = ({ onBack }) => {
                     overflow: hidden !important;
                     padding-bottom: 40px !important;
                     flex-shrink: 0;
+                    border-radius: 2.5rem !important; /* Tighter radius to match phone's device frame */
                 }
 
                 .journey-step-image {
                     object-fit: contain !important;
                     width: 100%;
                     height: auto;
-                    border-radius: 3.5rem !important;
+                    /* No border-radius - let the phone's natural curve show */
                 }
             `}</style>
         </div>
