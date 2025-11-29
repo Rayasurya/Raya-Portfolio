@@ -281,7 +281,7 @@ const ProjectUdhaar = ({ onBack }) => {
                         {/* Step 1 */}
                         <div className="group">
                             <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
+                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarPaying}
                                         alt="Paying Screen"
@@ -296,7 +296,7 @@ const ProjectUdhaar = ({ onBack }) => {
                         {/* Step 2 */}
                         <div className="group">
                             <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
+                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarNoInternet}
                                         alt="No Internet Screen"
@@ -321,7 +321,7 @@ const ProjectUdhaar = ({ onBack }) => {
                             }}
                         >
                             <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
+                                <div className="journey-step-image-container bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
@@ -753,17 +753,16 @@ const ProjectUdhaar = ({ onBack }) => {
                 .journey-step-image-container {
                     height: auto !important;
                     min-height: 0 !important;
-                    overflow: hidden !important;
-                    padding-bottom: 40px !important;
+                    overflow: visible !important;
+                    padding-bottom: 20px !important;
                     flex-shrink: 0;
-                    border-radius: 2.5rem !important; /* Tighter radius to match phone's device frame */
+                    border-radius: 2.5rem !important;
                 }
 
                 .journey-step-image {
                     object-fit: contain !important;
                     width: 100%;
                     height: auto;
-                    /* No border-radius - let the phone's natural curve show */
                 }
             `}</style>
         </div>
