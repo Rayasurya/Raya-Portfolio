@@ -753,7 +753,7 @@ const ProjectUdhaar = ({ onBack }) => {
                 .journey-step-image-container {
                     height: auto !important;
                     min-height: 0 !important;
-                    overflow: visible !important;
+                    overflow: hidden !important;
                     padding-bottom: 40px !important;
                     flex-shrink: 0;
                 }
@@ -762,6 +762,7 @@ const ProjectUdhaar = ({ onBack }) => {
                     object-fit: contain !important;
                     width: 100%;
                     height: auto;
+                    border-radius: 3.5rem !important;
                 }
             `}</style>
         </div>
