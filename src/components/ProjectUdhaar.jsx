@@ -279,30 +279,33 @@ const ProjectUdhaar = ({ onBack }) => {
 
                     <div className="grid md:grid-cols-3 gap-12 items-start">
                         {/* Step 1 */}
-                        <div className="group">
-                            <img
-                                src={udhaarPaying}
-                                alt="Paying Screen"
-                                className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8"
-                            />
+                        <div>
+                            <div className="group mb-8">
+                                <img
+                                    src={udhaarPaying}
+                                    alt="Paying Screen"
+                                    className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300"
+                                />
+                            </div>
                             <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
                         </div>
 
                         {/* Step 2 */}
-                        <div className="group">
-                            <img
-                                src={udhaarNoInternet}
-                                alt="No Internet Screen"
-                                className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8"
-                            />
+                        <div>
+                            <div className="group mb-8">
+                                <img
+                                    src={udhaarNoInternet}
+                                    alt="No Internet Screen"
+                                    className="w-full h-auto rounded-[3.5rem] shadow-sm hover:shadow-xl transition-shadow duration-300"
+                                />
+                            </div>
                             <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
                             <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
                         </div>
 
                         {/* Step 3 */}
                         <div
-                            className="group relative"
                             onMouseMove={(e) => {
                                 const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
                                 if (tooltip) {
@@ -312,7 +315,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                 }
                             }}
                         >
-                            <div className="relative mb-8">
+                            <div className="group relative mb-8">
                                 <img
                                     src={udhaarSuccess}
                                     alt="Success Screen"
