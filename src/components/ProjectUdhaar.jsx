@@ -557,7 +557,7 @@ const ProjectUdhaar = ({ onBack }) => {
                 </section>
 
                 {/* 6. Impact Banner (Updated) */}
-                <section className="bg-gray-900 text-white py-16 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
+                <section className="bg-gray-900 text-white py-12 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                         <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
                         <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
