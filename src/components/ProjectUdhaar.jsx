@@ -277,15 +277,15 @@ const ProjectUdhaar = ({ onBack }) => {
                         <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-12">
+                    <div className="grid md:grid-cols-3 gap-12 items-start">
                         {/* Step 1 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
+                            <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarPaying}
                                         alt="Paying Screen"
-                                        className="w-full h-full object-cover drop-shadow-lg"
+                                        className="journey-step-image w-full h-full drop-shadow-lg"
                                     />
                                 </div>
                             </div>
@@ -295,12 +295,12 @@ const ProjectUdhaar = ({ onBack }) => {
 
                         {/* Step 2 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
+                            <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarNoInternet}
                                         alt="No Internet Screen"
-                                        className="w-full h-full object-cover drop-shadow-lg"
+                                        className="journey-step-image w-full h-full drop-shadow-lg"
                                     />
                                 </div>
                             </div>
@@ -320,12 +320,12 @@ const ProjectUdhaar = ({ onBack }) => {
                                 }
                             }}
                         >
-                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
+                            <div className="bg-white rounded-3xl py-5 px-0 pb-8 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="journey-step-image-container aspect-[9/16] bg-gray-100 rounded-[3.5rem] relative flex items-center justify-center">
                                     <img
                                         src={udhaarSuccess}
                                         alt="Success Screen"
-                                        className="w-full h-full object-cover drop-shadow-lg"
+                                        className="journey-step-image w-full h-full drop-shadow-lg"
                                     />
                                     {/* Color Theory Cursor-Following Tooltip */}
                                     <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
@@ -343,13 +343,13 @@ const ProjectUdhaar = ({ onBack }) => {
                                         const audio = new Audio('/src/assets/success_sound.mp3');
                                         audio.play().catch(e => alert("Please upload 'success_sound.mp3' to assets folder first!"));
                                     }}
-                                    className="w-full py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all shadow-md flex items-center justify-center gap-2 group-hover:scale-105"
+                                    className="inline-flex items-center gap-2 bg-transparent border border-gray-200 text-orange-500 px-4 py-2 rounded-full text-sm font-semibold hover:bg-orange-50 transition-colors mt-3 w-fit cursor-pointer"
                                     title="Play Success Sound"
                                 >
-                                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                        <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
+                                    <div className="w-4 h-4 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
+                                        <div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[6px] border-l-orange-500 border-b-[3px] border-b-transparent ml-0.5"></div>
                                     </div>
-                                    <span className="font-bold text-sm uppercase tracking-wider">Play Success Chime</span>
+                                    <span>Play Success Chime</span>
                                 </button>
                             </div>
                             <p className="text-gray-500 text-sm leading-relaxed mt-4">High-contrast Orange screen + Audio cue signals "Conditional Success".</p>
@@ -747,6 +747,21 @@ const ProjectUdhaar = ({ onBack }) => {
                         min-height: 44px;
                         min-width: 44px;
                     }
+                }
+
+                /* Fix for Amputated Phone Image */
+                .journey-step-image-container {
+                    height: auto !important;
+                    min-height: 0 !important;
+                    overflow: visible !important;
+                    padding-bottom: 40px !important;
+                    flex-shrink: 0;
+                }
+
+                .journey-step-image {
+                    object-fit: contain !important;
+                    width: 100%;
+                    height: auto;
                 }
             `}</style>
         </div>
