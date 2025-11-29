@@ -280,7 +280,7 @@ const ProjectUdhaar = ({ onBack }) => {
                     <div className="grid md:grid-cols-3 gap-12">
                         {/* Step 1 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
                                 <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
                                     <img
                                         src={udhaarPaying}
@@ -295,7 +295,7 @@ const ProjectUdhaar = ({ onBack }) => {
 
                         {/* Step 2 */}
                         <div className="group">
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
                                 <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center">
                                     <img
                                         src={udhaarNoInternet}
@@ -320,7 +320,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                 }
                             }}
                         >
-                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                            <div className="bg-white rounded-3xl py-5 px-0 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                                 <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center">
                                     <img
                                         src={udhaarSuccess}
