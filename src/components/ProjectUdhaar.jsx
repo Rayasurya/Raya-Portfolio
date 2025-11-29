@@ -267,343 +267,344 @@ const ProjectUdhaar = ({ onBack }) => {
                         </div>
                     </div>
                 </section>
+            </div>
 
-                {/* 4. The Solution - Wide Section */}
-                <section className="bg-gray-50 py-32 mb-32">
-                    <div className="max-w-7xl mx-auto px-6">
-                        <div className="max-w-3xl mx-auto text-center mb-20">
-                            <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Solution</h2>
-                            <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
+            {/* 4. The Solution - Wide Section */}
+            <section className="bg-gray-50 py-32 mb-32">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="max-w-3xl mx-auto text-center mb-20">
+                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Solution</h2>
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-12">
+                        {/* Step 1 */}
+                        <div className="group">
+                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
+                                    <img
+                                        src={udhaarPaying}
+                                        alt="Paying Screen"
+                                        className="w-full h-full object-contain drop-shadow-lg"
+                                    />
+                                </div>
+                            </div>
+                            <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
+                            <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-12">
-                            {/* Step 1 */}
-                            <div className="group">
-                                <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                    <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
-                                        <img
-                                            src={udhaarPaying}
-                                            alt="Paying Screen"
-                                            className="w-full h-full object-contain drop-shadow-lg"
-                                        />
-                                    </div>
+                        {/* Step 2 */}
+                        <div className="group">
+                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
+                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
+                                    <img
+                                        src={udhaarNoInternet}
+                                        alt="No Internet Screen"
+                                        className="w-full h-full object-contain drop-shadow-lg"
+                                    />
                                 </div>
-                                <h4 className="text-lg font-bold mb-2">1. The Initiation</h4>
-                                <p className="text-gray-500 text-sm leading-relaxed">User initiates the payment of ₹200 normally, but the network is unstable.</p>
                             </div>
+                            <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
+                            <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
+                        </div>
 
-                            {/* Step 2 */}
-                            <div className="group">
-                                <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 mb-8 border border-gray-100">
-                                    <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-hidden relative flex items-center justify-center p-4">
-                                        <img
-                                            src={udhaarNoInternet}
-                                            alt="No Internet Screen"
-                                            className="w-full h-full object-contain drop-shadow-lg"
-                                        />
-                                    </div>
-                                </div>
-                                <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
-                                <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
-                            </div>
-
-                            {/* Step 3 */}
-                            <div
-                                className="group relative mb-8"
-                                onMouseMove={(e) => {
-                                    const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
-                                    if (tooltip) {
-                                        // Use clientX/Y for fixed positioning relative to viewport
-                                        tooltip.style.left = `${e.clientX + 15}px`;
-                                        tooltip.style.top = `${e.clientY + 15}px`;
-                                    }
-                                }}
-                            >
-                                <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
-                                    <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center p-4">
-                                        <img
-                                            src={udhaarSuccess}
-                                            alt="Success Screen"
-                                            className="w-full h-full object-contain drop-shadow-lg"
-                                        />
-                                        {/* Color Theory Cursor-Following Tooltip */}
-                                        <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
-                                            <div className="relative z-10">
-                                                <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
-                                                <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
-                                            </div>
+                        {/* Step 3 */}
+                        <div
+                            className="group relative mb-8"
+                            onMouseMove={(e) => {
+                                const tooltip = e.currentTarget.querySelector('.tooltip-cursor');
+                                if (tooltip) {
+                                    // Use clientX/Y for fixed positioning relative to viewport
+                                    tooltip.style.left = `${e.clientX + 15}px`;
+                                    tooltip.style.top = `${e.clientY + 15}px`;
+                                }
+                            }}
+                        >
+                            <div className="bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+                                <div className="aspect-[9/16] bg-gray-100 rounded-[3.5rem] overflow-visible relative flex items-center justify-center p-4">
+                                    <img
+                                        src={udhaarSuccess}
+                                        alt="Success Screen"
+                                        className="w-full h-full object-contain drop-shadow-lg"
+                                    />
+                                    {/* Color Theory Cursor-Following Tooltip */}
+                                    <div className="tooltip-cursor fixed z-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none bg-gray-900 text-white p-3 rounded-lg shadow-2xl max-w-[180px] border border-gray-700">
+                                        <div className="relative z-10">
+                                            <div className="text-[10px] font-mono text-orange-400 uppercase tracking-wider mb-1">Color Theory</div>
+                                            <p className="text-xs leading-tight">Amber indicates 'Pending but Safe', distinguishing it from immediate Bank Settlement (Green).</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex flex-col gap-3 mb-2">
-                                    <h4 className="text-lg font-bold">3. The Proof</h4>
-                                    <button
-                                        onClick={() => {
-                                            const audio = new Audio('/src/assets/success_sound.mp3');
-                                            audio.play().catch(e => alert("Please upload 'success_sound.mp3' to assets folder first!"));
-                                        }}
-                                        className="w-full py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all shadow-md flex items-center justify-center gap-2 group-hover:scale-105"
-                                        title="Play Success Sound"
-                                    >
-                                        <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                                            <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
-                                        </div>
-                                        <span className="font-bold text-sm uppercase tracking-wider">Play Success Chime</span>
-                                    </button>
-                                </div>
-                                <p className="text-gray-500 text-sm leading-relaxed mt-4">High-contrast Orange screen + Audio cue signals "Conditional Success".</p>
                             </div>
-                        </div>
-
-                        {/* Design Note - Mobile Optimized */}
-                        <div className="max-w-3xl mx-auto mt-24 px-6">
-                            <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
-                                <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm mt-1">
-                                        💡
+                            <div className="flex flex-col gap-3 mb-2">
+                                <h4 className="text-lg font-bold">3. The Proof</h4>
+                                <button
+                                    onClick={() => {
+                                        const audio = new Audio('/src/assets/success_sound.mp3');
+                                        audio.play().catch(e => alert("Please upload 'success_sound.mp3' to assets folder first!"));
+                                    }}
+                                    className="w-full py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-all shadow-md flex items-center justify-center gap-2 group-hover:scale-105"
+                                    title="Play Success Sound"
+                                >
+                                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                                        <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1"></div>
                                     </div>
-                                    <div>
-                                        <h5 className="text-sm font-bold text-orange-900 uppercase tracking-wider mb-2">Design Note</h5>
-                                        <p className="text-sm text-gray-700 leading-relaxed">
-                                            I chose Amber/Orange to signal "Pending but Safe," visually distinguishing it from the immediate "Settlement Success" (Green) standard in UPI apps.
-                                        </p>
-                                    </div>
-                                </div>
+                                    <span className="font-bold text-sm uppercase tracking-wider">Play Success Chime</span>
+                                </button>
                             </div>
-
-                            {/* Accessibility Audit */}
-                            <div className="mt-6 flex items-center gap-2 flex-wrap">
-                                <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-medium border border-green-200">
-                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                    Tested for Deuteranopia
-                                </span>
-                                <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium border border-blue-200">
-                                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                    </svg>
-                                    Contrast Ratio 4.5:1
-                                </span>
-                            </div>
+                            <p className="text-gray-500 text-sm leading-relaxed mt-4">High-contrast Orange screen + Audio cue signals "Conditional Success".</p>
                         </div>
                     </div>
 
-                    {/* 4.1 Unhappy Paths (Edge Cases) */}
-                    <div className="max-w-5xl mx-auto px-6 mt-20 mb-32">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b border-gray-200 pb-4">Designing for Failure (Edge Cases)</h3>
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {/* Edge Case 1 */}
-                            <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-                                <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
-                                    {/* Mockup of Bottom Sheet */}
-                                    <div className="bg-gray-100 aspect-[9/16] rounded-lg relative overflow-hidden flex items-end">
-                                        <div className="w-full bg-white p-3 rounded-t-xl shadow-lg">
-                                            <div className="w-8 h-1 bg-gray-300 rounded-full mx-auto mb-2"></div>
-                                            <div className="text-[10px] font-bold text-gray-900 mb-1">Offline Pay Unavailable</div>
-                                            <div className="text-[8px] text-gray-500 leading-tight">You need 2 more successful transactions with this merchant to unlock Trust Token.</div>
-                                        </div>
-                                    </div>
+                    {/* Design Note - Mobile Optimized */}
+                    <div className="max-w-3xl mx-auto mt-24 px-6">
+                        <div className="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-lg">
+                            <div className="flex items-start gap-3">
+                                <div className="flex-shrink-0 w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-sm mt-1">
+                                    💡
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-gray-900 mb-2">1. The "Rejection" State</h4>
-                                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                                        Shows strict adherence to the Trust Score. We don't just fail; we explain <em>why</em> to build long-term behavior.
+                                    <h5 className="text-sm font-bold text-orange-900 uppercase tracking-wider mb-2">Design Note</h5>
+                                    <p className="text-sm text-gray-700 leading-relaxed">
+                                        I chose Amber/Orange to signal "Pending but Safe," visually distinguishing it from the immediate "Settlement Success" (Green) standard in UPI apps.
                                     </p>
-                                    <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Non-intrusive Bottom Sheet</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Accessibility Audit */}
+                        <div className="mt-6 flex items-center gap-2 flex-wrap">
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 text-green-800 rounded-full text-xs font-medium border border-green-200">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                                Tested for Deuteranopia
+                            </span>
+                            <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-100 text-blue-800 rounded-full text-xs font-medium border border-blue-200">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                </svg>
+                                Contrast Ratio 4.5:1
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 4.1 Unhappy Paths (Edge Cases) */}
+                <div className="max-w-5xl mx-auto px-6 mt-20 mb-32">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-8 border-b border-gray-200 pb-4">Designing for Failure (Edge Cases)</h3>
+                    <div className="grid md:grid-cols-2 gap-8">
+                        {/* Edge Case 1 */}
+                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+                            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
+                                {/* Mockup of Bottom Sheet */}
+                                <div className="bg-gray-100 aspect-[9/16] rounded-lg relative overflow-hidden flex items-end">
+                                    <div className="w-full bg-white p-3 rounded-t-xl shadow-lg">
+                                        <div className="w-8 h-1 bg-gray-300 rounded-full mx-auto mb-2"></div>
+                                        <div className="text-[10px] font-bold text-gray-900 mb-1">Offline Pay Unavailable</div>
+                                        <div className="text-[8px] text-gray-500 leading-tight">You need 2 more successful transactions with this merchant to unlock Trust Token.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-gray-900 mb-2">1. The "Rejection" State</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                                    Shows strict adherence to the Trust Score. We don't just fail; we explain <em>why</em> to build long-term behavior.
+                                </p>
+                                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Non-intrusive Bottom Sheet</span>
+                            </div>
+                        </div>
+
+                        {/* Edge Case 2 */}
+                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+                            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
+                                {/* Mockup of Notification */}
+                                <div className="bg-gray-900 aspect-[9/16] rounded-lg relative overflow-hidden flex items-center justify-center">
+                                    <div className="w-[90%] bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/20">
+                                        <div className="flex gap-2 items-center mb-1">
+                                            <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
+                                            <div className="text-[8px] text-white font-bold">Payment Synced</div>
+                                        </div>
+                                        <div className="text-[8px] text-gray-300 leading-tight">₹200 paid to Sharma General Store. Trust Score increased +5.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-gray-900 mb-2">2. "Sync Complete" Notification</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                                    Closes the feedback loop when internet returns. Gamifies the experience by showing Trust Score increase.
+                                </p>
+                                <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Lock Screen Notification</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section >
+
+            {/* 5. Validation & Conclusion */}
+            < div className="max-w-3xl mx-auto px-6" >
+                <section className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — Validation</h2>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Did it work?</h3>
+
+                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                        I took the "Orange Screen" prototype back to the shopkeepers I interviewed to test their reaction to the new sensory cues. The feedback was overwhelmingly positive regarding the visual confirmation.
+                    </p>
+
+                    <div className="border-l-4 border-orange-500 pl-8 py-2 mb-12">
+                        <p className="text-xl italic text-gray-800 mb-4">
+                            "Yes, if the screen turns Orange and makes a 'Tring' sound, that works. I just need the assurance that money will come."
+                        </p>
+                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
+                            <span>Merchant Feedback</span>
+                        </div>
+                        <AudioPlayer
+                            title="Feedback • Shopkeeper 2"
+                            src="/src/assets/merchant_feedback.mp3"
+                        />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8 mt-16">
+                        <div className="bg-green-50 p-6 rounded-2xl">
+                            <div className="text-4xl font-bold text-green-600 mb-2">15%</div>
+                            <div className="text-sm font-medium text-green-900">Reduction in Drop-offs</div>
+                            <div className="text-xs text-green-700 mt-1">Targeted impact during peak hours</div>
+                        </div>
+                        <div className="bg-blue-50 p-6 rounded-2xl">
+                            <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
+                            <div className="text-sm font-medium text-blue-900">Digital Ledger</div>
+                            <div className="text-xs text-blue-700 mt-1">Migration from manual "Khata"</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">05 — Engineering</h2>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Technical Architecture (Under the Hood)</h3>
+                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                        I collaborated with engineering constraints to define how this system remains secure without a live server connection.
+                    </p>
+
+                    <div className="bg-[#0F172A] rounded-3xl p-8 md:p-12 text-gray-300 font-mono text-sm shadow-2xl overflow-hidden relative border border-gray-800">
+                        {/* Decorative header */}
+                        <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
+                            <div className="flex gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div className="text-gray-500 text-xs">secure_protocol_v2.json</div>
+                        </div>
+
+                        <div className="space-y-12">
+                            {/* 1. Secure Enclave */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">01.</span> The Secure Enclave
+                                </h4>
+                                <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-800">
+                                    Transaction payloads are cryptographically signed and stored in the <span className="text-yellow-300">Android Keystore System</span> (Hardware-backed security), making them immutable.
+                                </p>
+                            </div>
+
+                            {/* 2. Payload Structure */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">02.</span> The Payload
+                                </h4>
+                                <div className="pl-8 border-l border-gray-800">
+                                    <div className="bg-black/50 p-6 rounded-xl border border-gray-800 overflow-x-auto">
+                                        <code className="text-blue-300 block">
+                                            {`{`}
+                                            <br />&nbsp;&nbsp;{`"Amount": "₹200",`}
+                                            <br />&nbsp;&nbsp;{`"Timestamp": "14:02",`}
+                                            <br />&nbsp;&nbsp;{`"DeviceID": "X99",`}
+                                            <br />&nbsp;&nbsp;{`"Nonce": "8821"`}
+                                            <br />{`}`}
+                                        </code>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Edge Case 2 */}
-                            <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-                                <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
-                                    {/* Mockup of Notification */}
-                                    <div className="bg-gray-900 aspect-[9/16] rounded-lg relative overflow-hidden flex items-center justify-center">
-                                        <div className="w-[90%] bg-white/10 backdrop-blur-md p-2 rounded-lg border border-white/20">
-                                            <div className="flex gap-2 items-center mb-1">
-                                                <div className="w-3 h-3 bg-green-500 rounded-sm"></div>
-                                                <div className="text-[8px] text-white font-bold">Payment Synced</div>
-                                            </div>
-                                            <div className="text-[8px] text-gray-300 leading-tight">₹200 paid to Sharma General Store. Trust Score increased +5.</div>
-                                        </div>
+                            {/* 3. Sync Mechanism */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
+                                    <span className="text-green-400">03.</span> The Sync (WorkManager)
+                                </h4>
+                                <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-800">
+                                    We use Android's <span className="text-yellow-300">WorkManager API</span>. It passively listens for <span className="text-purple-300">CONNECTIVITY_CHANGE</span> and silently pushes the signed payload to the server as soon as a stable packet is detected.
+                                </p>
+                            </div>
+
+                            {/* 4. Failure Logic */}
+                            <div>
+                                <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
+                                    <span className="text-green-400">04.</span> Failure Logic
+                                </h4>
+                                <div className="pl-8 grid gap-4">
+                                    <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
+                                        <div className="text-red-400 font-bold mb-1">Zero Balance at Sync</div>
+                                        <div className="text-gray-400 text-xs">Bank authorizes <span className="text-white">Micro-Overdraft</span> (up to ₹500).</div>
                                     </div>
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900 mb-2">2. "Sync Complete" Notification</h4>
-                                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                                        Closes the feedback loop when internet returns. Gamifies the experience by showing Trust Score increase.
-                                    </p>
-                                    <span className="text-xs font-mono bg-gray-200 text-gray-700 px-2 py-1 rounded">UI: Lock Screen Notification</span>
+                                    <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
+                                        <div className="text-red-400 font-bold mb-1">App Uninstall</div>
+                                        <div className="text-gray-400 text-xs">Token linked to IMEI. Debt recorded server-side; user <span className="text-white">blacklisted</span>.</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section >
+                </section>
 
-                {/* 5. Validation & Conclusion */}
-                < div className="max-w-3xl mx-auto px-6" >
-                    <section className="mb-32">
-                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — Validation</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Did it work?</h3>
+                {/* 6. Impact Banner (Updated) */}
+                <section className="bg-gray-900 text-white py-16 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                        <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+                    </div>
 
-                        <p className="text-lg text-gray-600 leading-relaxed mb-12">
-                            I took the "Orange Screen" prototype back to the shopkeepers I interviewed to test their reaction to the new sensory cues. The feedback was overwhelmingly positive regarding the visual confirmation.
-                        </p>
-
-                        <div className="border-l-4 border-orange-500 pl-8 py-2 mb-12">
-                            <p className="text-xl italic text-gray-800 mb-4">
-                                "Yes, if the screen turns Orange and makes a 'Tring' sound, that works. I just need the assurance that money will come."
-                            </p>
-                            <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
-                                <span>Merchant Feedback</span>
-                            </div>
-                            <AudioPlayer
-                                title="Feedback • Shopkeeper 2"
-                                src="/src/assets/merchant_feedback.mp3"
-                            />
+                    <div className="max-w-5xl mx-auto px-8 md:px-12 relative z-10">
+                        <div className="mb-16">
+                            <h2 className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-4">06 — The Results</h2>
+                            <h3 className="text-3xl md:text-5xl font-bold mb-6">Projected Impact</h3>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8 mt-16">
-                            <div className="bg-green-50 p-6 rounded-2xl">
-                                <div className="text-4xl font-bold text-green-600 mb-2">15%</div>
-                                <div className="text-sm font-medium text-green-900">Reduction in Drop-offs</div>
-                                <div className="text-xs text-green-700 mt-1">Targeted impact during peak hours</div>
+                        <div className="grid md:grid-cols-3 gap-12 border-t border-gray-800 pt-12">
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">15%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Reduction in Drop-offs</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Targeted decrease in checkout abandonment during peak congestion.
+                                </p>
                             </div>
-                            <div className="bg-blue-50 p-6 rounded-2xl">
-                                <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-                                <div className="text-sm font-medium text-blue-900">Digital Ledger</div>
-                                <div className="text-xs text-blue-700 mt-1">Migration from manual "Khata"</div>
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">&lt; 10%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Merchant Rejection Rate</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Expected pushback from merchants due to "Sensory Verification" cues.
+                                </p>
                             </div>
-                        </div>
-                    </section>
-
-                    <section className="mb-32">
-                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">05 — Engineering</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Technical Architecture (Under the Hood)</h3>
-                        <p className="text-lg text-gray-600 leading-relaxed mb-12">
-                            I collaborated with engineering constraints to define how this system remains secure without a live server connection.
-                        </p>
-
-                        <div className="bg-[#0F172A] rounded-3xl p-8 md:p-12 text-gray-300 font-mono text-sm shadow-2xl overflow-hidden relative border border-gray-800">
-                            {/* Decorative header */}
-                            <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4">
-                                <div className="flex gap-2">
-                                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                </div>
-                                <div className="text-gray-500 text-xs">secure_protocol_v2.json</div>
-                            </div>
-
-                            <div className="space-y-12">
-                                {/* 1. Secure Enclave */}
-                                <div>
-                                    <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
-                                        <span className="text-green-400">01.</span> The Secure Enclave
-                                    </h4>
-                                    <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-800">
-                                        Transaction payloads are cryptographically signed and stored in the <span className="text-yellow-300">Android Keystore System</span> (Hardware-backed security), making them immutable.
-                                    </p>
-                                </div>
-
-                                {/* 2. Payload Structure */}
-                                <div>
-                                    <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
-                                        <span className="text-green-400">02.</span> The Payload
-                                    </h4>
-                                    <div className="pl-8 border-l border-gray-800">
-                                        <div className="bg-black/50 p-6 rounded-xl border border-gray-800 overflow-x-auto">
-                                            <code className="text-blue-300 block">
-                                                {`{`}
-                                                <br />&nbsp;&nbsp;{`"Amount": "₹200",`}
-                                                <br />&nbsp;&nbsp;{`"Timestamp": "14:02",`}
-                                                <br />&nbsp;&nbsp;{`"DeviceID": "X99",`}
-                                                <br />&nbsp;&nbsp;{`"Nonce": "8821"`}
-                                                <br />{`}`}
-                                            </code>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 3. Sync Mechanism */}
-                                <div>
-                                    <h4 className="text-white font-bold text-lg mb-3 flex items-center gap-2">
-                                        <span className="text-green-400">03.</span> The Sync (WorkManager)
-                                    </h4>
-                                    <p className="leading-relaxed opacity-80 pl-8 border-l border-gray-800">
-                                        We use Android's <span className="text-yellow-300">WorkManager API</span>. It passively listens for <span className="text-purple-300">CONNECTIVITY_CHANGE</span> and silently pushes the signed payload to the server as soon as a stable packet is detected.
-                                    </p>
-                                </div>
-
-                                {/* 4. Failure Logic */}
-                                <div>
-                                    <h4 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                                        <span className="text-green-400">04.</span> Failure Logic
-                                    </h4>
-                                    <div className="pl-8 grid gap-4">
-                                        <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
-                                            <div className="text-red-400 font-bold mb-1">Zero Balance at Sync</div>
-                                            <div className="text-gray-400 text-xs">Bank authorizes <span className="text-white">Micro-Overdraft</span> (up to ₹500).</div>
-                                        </div>
-                                        <div className="bg-red-500/10 border border-red-500/20 p-4 rounded-lg">
-                                            <div className="text-red-400 font-bold mb-1">App Uninstall</div>
-                                            <div className="text-gray-400 text-xs">Token linked to IMEI. Debt recorded server-side; user <span className="text-white">blacklisted</span>.</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div>
+                                <div className="text-5xl font-bold text-white mb-2">0.5%</div>
+                                <div className="text-lg font-medium text-gray-300 mb-2">Default Risk (Fraud)</div>
+                                <p className="text-sm text-gray-500 leading-relaxed">
+                                    Estimated loss rate due to strict "Trust Score" eligibility criteria.
+                                </p>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                    {/* 6. Impact Banner (Updated) */}
-                    <section className="bg-gray-900 text-white py-16 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                            <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-                            <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
-                        </div>
+                <section className="border-t border-gray-200 pt-20">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-6">Reflection</h2>
+                    <p className="text-lg text-gray-600 leading-relaxed">
+                        Designing for "The Next Billion Users" isn't just about translating apps into Hindi—it's about building resilience against chaos. This project taught me that <span className="text-gray-900 font-semibold">Trust</span> is a design element just as important as Color or Typography.
+                    </p>
+                </section>
+            </div >
 
-                        <div className="max-w-5xl mx-auto px-8 md:px-12 relative z-10">
-                            <div className="mb-16">
-                                <h2 className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-4">06 — The Results</h2>
-                                <h3 className="text-3xl md:text-5xl font-bold mb-6">Projected Impact</h3>
-                            </div>
-
-                            <div className="grid md:grid-cols-3 gap-12 border-t border-gray-800 pt-12">
-                                <div>
-                                    <div className="text-5xl font-bold text-white mb-2">15%</div>
-                                    <div className="text-lg font-medium text-gray-300 mb-2">Reduction in Drop-offs</div>
-                                    <p className="text-sm text-gray-500 leading-relaxed">
-                                        Targeted decrease in checkout abandonment during peak congestion.
-                                    </p>
-                                </div>
-                                <div>
-                                    <div className="text-5xl font-bold text-white mb-2">&lt; 10%</div>
-                                    <div className="text-lg font-medium text-gray-300 mb-2">Merchant Rejection Rate</div>
-                                    <p className="text-sm text-gray-500 leading-relaxed">
-                                        Expected pushback from merchants due to "Sensory Verification" cues.
-                                    </p>
-                                </div>
-                                <div>
-                                    <div className="text-5xl font-bold text-white mb-2">0.5%</div>
-                                    <div className="text-lg font-medium text-gray-300 mb-2">Default Risk (Fraud)</div>
-                                    <p className="text-sm text-gray-500 leading-relaxed">
-                                        Estimated loss rate due to strict "Trust Score" eligibility criteria.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section className="border-t border-gray-200 pt-20">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-6">Reflection</h2>
-                        <p className="text-lg text-gray-600 leading-relaxed">
-                            Designing for "The Next Billion Users" isn't just about translating apps into Hindi—it's about building resilience against chaos. This project taught me that <span className="text-gray-900 font-semibold">Trust</span> is a design element just as important as Color or Typography.
-                        </p>
-                    </section>
-                </div >
-
-                {/* Mobile Responsive Styles */}
-                < style > {`
+            {/* Mobile Responsive Styles */}
+            < style > {`
                 /* Mobile: 320px - 640px */
                 @media (max-width: 640px) {
                     /* Hero Section */
@@ -748,8 +749,8 @@ const ProjectUdhaar = ({ onBack }) => {
                     }
                 }
             `}</style>
-            </div>
-            );
+        </div>
+    );
 };
 
-            export default ProjectUdhaar;
+export default ProjectUdhaar;

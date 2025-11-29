@@ -18,8 +18,6 @@ const About = () => {
             }}>About Me</h2>
 
             <p style={{
-                fontSize: '1.5rem',
-                lineHeight: '1.6',
                 color: '#333',
                 marginBottom: '5rem',
                 fontWeight: '400',
