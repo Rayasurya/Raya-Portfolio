@@ -166,41 +166,39 @@ const ProjectUdhaar = ({ onBack }) => {
                         </p>
 
                         {/* Trust Score Table */}
-                        <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm bg-white">
-                            <div className="w-full overflow-x-auto pb-2" style={{ WebkitOverflowScrolling: 'touch' }}>
-                                <table className="w-full text-left border-collapse min-w-[350px]">
-                                    <thead>
-                                        <tr className="bg-gray-50 border-b border-gray-200">
-                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Signal</th>
-                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Logic</th>
-                                            <th className="py-4 px-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Why?</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-gray-100">
-                                        <tr className="hover:bg-gray-50/50 transition-colors">
-                                            <td className="py-4 px-6 font-medium text-gray-900">Device Integrity</td>
-                                            <td className="py-4 px-6">
-                                                <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold">SafetyNet API = Pass</span>
-                                            </td>
-                                            <td className="py-4 px-6 text-sm text-gray-600">Ensures the device is not rooted/jailbroken to bypass security.</td>
-                                        </tr>
-                                        <tr className="hover:bg-gray-50/50 transition-colors">
-                                            <td className="py-4 px-6 font-medium text-gray-900">Geo-Fencing</td>
-                                            <td className="py-4 px-6">
-                                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">GPS &lt; 50m of Merchant</span>
-                                            </td>
-                                            <td className="py-4 px-6 text-sm text-gray-600">Verifies physical presence at the registered Store ID location.</td>
-                                        </tr>
-                                        <tr className="hover:bg-gray-50/50 transition-colors">
-                                            <td className="py-4 px-6 font-medium text-gray-900">Spending Pattern</td>
-                                            <td className="py-4 px-6">
-                                                <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">Amount &lt; Avg. Historical Txn</span>
-                                            </td>
-                                            <td className="py-4 px-6 text-sm text-gray-600">Anomaly detection: High-value spikes trigger a risk block.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm bg-white" style={{ WebkitOverflowScrolling: 'touch' }}>
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-gray-50 border-b border-gray-200">
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Signal</th>
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Logic</th>
+                                        <th className="py-4 px-4 text-xs font-bold text-gray-500 uppercase tracking-wider whitespace-nowrap">Why?</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100">
+                                    <tr className="hover:bg-gray-50/50 transition-colors">
+                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Device Integrity</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">
+                                            <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded font-mono text-xs font-bold">SafetyNet API = Pass</span>
+                                        </td>
+                                        <td className="py-4 px-4 text-sm text-gray-600">Ensures the device is not rooted/jailbroken to bypass security.</td>
+                                    </tr>
+                                    <tr className="hover:bg-gray-50/50 transition-colors">
+                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Geo-Fencing</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">
+                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">GPS &lt; 50m of Merchant</span>
+                                        </td>
+                                        <td className="py-4 px-4 text-sm text-gray-600">Verifies physical presence at the registered Store ID location.</td>
+                                    </tr>
+                                    <tr className="hover:bg-gray-50/50 transition-colors">
+                                        <td className="py-4 px-4 font-medium text-gray-900 whitespace-nowrap">Spending Pattern</td>
+                                        <td className="py-4 px-4 whitespace-nowrap">
+                                            <span className="bg-green-100 text-green-700 px-2 py-1 rounded font-mono text-xs font-bold">Amount &lt; Avg. Historical Txn</span>
+                                        </td>
+                                        <td className="py-4 px-4 text-sm text-gray-600">Anomaly detection: High-value spikes trigger a risk block.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                         {/* The Pivot Comparison */}
