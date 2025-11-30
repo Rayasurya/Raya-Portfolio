@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Briefcase, User, FileText } from 'lucide-react';
+import { Home, Briefcase, User, FileText, Lightbulb } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
@@ -8,9 +8,12 @@ import ProjectUdhaar from './components/ProjectUdhaar';
 import CustomCursor from './components/CustomCursor';
 import ComponentsGrid from './components/ComponentsGrid';
 import About from './components/About';
+
+
 import Resume from './components/Resume';
-import BottomNav from './components/BottomNav';
-import Footer from './components/Footer';
+import AnimatedSocialLinks from './components/ui/social-links';
+import { TubelightNavbar } from './components/ui/TubelightNavbar';
+import { StaggerTestimonials } from './components/ui/stagger-testimonials';
 
 
 function App() {
@@ -53,6 +56,7 @@ function App() {
             <DesignWall onViewProject={(id) => {
               if (id === 51) navigateTo('project-udhaar');
             }} />
+            <StaggerTestimonials />
           </>
         );
       case 'components':
@@ -140,8 +144,19 @@ function App() {
 
 
 
-          {/* Bottom Navigation - Mobile Only */}
-          <BottomNav currentView={currentView} onNavigate={navigateTo} />
+          {/* Tubelight Navigation - Mobile Only */}
+          <div className="md:hidden">
+            <TubelightNavbar
+              items={[
+                { name: 'Home', url: 'home', icon: Home },
+                { name: 'Components', url: 'components', icon: Lightbulb },
+                { name: 'About', url: 'about', icon: User },
+                { name: 'Resume', url: 'resume', icon: FileText }
+              ]}
+              currentView={currentView}
+              onNavigate={navigateTo}
+            />
+          </div>
         </>
       )}
 
@@ -155,8 +170,35 @@ function App() {
         {renderView()}
       </main>
 
-      {/* Footer - Only show on main pages */}
-      {currentView !== 'project-udhaar' && <Footer />}
+      {/* Animated Social Links - Desktop Only */}
+      {currentView !== 'project-udhaar' && (
+        <div className="hidden md:flex fixed bottom-8 right-8 z-50 bg-white rounded-full px-4 py-2 shadow-lg border border-gray-200">
+          <AnimatedSocialLinks
+            socials={[
+              {
+                name: 'Instagram',
+                url: 'https://instagram.com/rayasurya',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png',
+              },
+              {
+                name: 'LinkedIn',
+                url: 'https://linkedin.com/in/rayasurya',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
+              },
+              {
+                name: 'Email',
+                url: 'mailto:hello@rayasurya.com',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png',
+              },
+              {
+                name: 'WhatsApp',
+                url: 'https://wa.me/1234567890',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg',
+              },
+            ]}
+          />
+        </div>
+      )}
     </div>
   );
 }

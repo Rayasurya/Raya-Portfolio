@@ -6,8 +6,103 @@ import udhaarPaying from '../assets/udhaar_paying.png';
 import udhaarNoInternet from '../assets/udhaar_no_internet.png';
 import udhaarSuccess from '../assets/udhaar_success.png';
 import udhaarPivotComparison from '../assets/udhaar_pivot_comparison.png';
+import diagramUserJourney from '../assets/diagram_user_journey.svg';
+import diagramTechArch from '../assets/diagram_tech_arch.svg';
+import { X, ZoomIn } from 'lucide-react';
 
 const ProjectUdhaar = ({ onBack }) => {
+
+    const [selectedImage, setSelectedImage] = React.useState(null);
+    const [zoom, setZoom] = React.useState(1);
+    const [pan, setPan] = React.useState({ x: 0, y: 0 });
+    const [isDragging, setIsDragging] = React.useState(false);
+    const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 });
+    const modalRef = React.useRef(null);
+
+    // Reset zoom and pan when image opens/closes
+    useEffect(() => {
+        if (selectedImage) {
+            setZoom(1);
+            setPan({ x: 0, y: 0 });
+            // Prevent body scroll when modal is open
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [selectedImage]);
+
+    // Handle wheel event with non-passive listener to prevent default scrolling
+    useEffect(() => {
+        const modal = modalRef.current;
+        if (!selectedImage || !modal) return;
+
+        const handleWheel = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const delta = e.deltaY * -0.002;
+            setZoom(prevZoom => {
+                const newZoom = Math.min(Math.max(prevZoom + delta, 0.5), 5);
+                // Reset pan when zooming back to 1 or below
+                if (newZoom <= 1) {
+                    setPan({ x: 0, y: 0 });
+                }
+                return newZoom;
+            });
+        };
+
+        modal.addEventListener('wheel', handleWheel, { passive: false });
+
+        return () => {
+            modal.removeEventListener('wheel', handleWheel);
+        };
+    }, [selectedImage]);
+
+    // Handle pan/drag functionality
+    const handleMouseDown = (e) => {
+        if (zoom > 1) {
+            setIsDragging(true);
+            setDragStart({ x: e.clientX - pan.x, y: e.clientY - pan.y });
+            e.preventDefault();
+        }
+    };
+
+    const handleMouseMove = (e) => {
+        if (isDragging && zoom > 1) {
+            setPan({
+                x: e.clientX - dragStart.x,
+                y: e.clientY - dragStart.y
+            });
+        }
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    // Touch support for mobile
+    const handleTouchStart = (e) => {
+        if (zoom > 1 && e.touches.length === 1) {
+            const touch = e.touches[0];
+            setIsDragging(true);
+            setDragStart({ x: touch.clientX - pan.x, y: touch.clientY - pan.y });
+            e.preventDefault();
+        }
+    };
+
+    const handleTouchMove = (e) => {
+        if (isDragging && zoom > 1 && e.touches.length === 1) {
+            const touch = e.touches[0];
+            setPan({
+                x: touch.clientX - dragStart.x,
+                y: touch.clientY - dragStart.y
+            });
+        }
+    };
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -32,9 +127,9 @@ const ProjectUdhaar = ({ onBack }) => {
                     FINTECH • UX STRATEGY
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-[1.1] mb-8 tracking-tight">
+                <h1 className="text-4xl md:text-7xl font-bold text-gray-900 leading-[1.1] mb-8 tracking-tight">
                     Designing Trust When the <br className="hidden md:block" />
-                    <span className="text-[#E67E22]">Internet Fails.</span>
+                    <span className="text-[#E67E22]">Internet Fails</span>
                 </h1>
 
                 <p className="text-xl md:text-2xl text-gray-500 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -108,7 +203,7 @@ const ProjectUdhaar = ({ onBack }) => {
                 {/* 2. The Context */}
                 <section className="mb-32">
                     <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">01 — The Context</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">The "Bharat" Problem</h3>
+                    <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">The "Bharat" Problem</h3>
 
                     <div className="prose prose-lg prose-gray text-gray-600 leading-relaxed mb-12">
                         <p className="mb-6">
@@ -128,6 +223,8 @@ const ProjectUdhaar = ({ onBack }) => {
                             title="Merchant Interview • Ramesh, Bangalore"
                             src="/src/assets/merchant_interview.m4a"
                             variant="ambient-card"
+                            caption="Are madam, sham ke 7 baje bheed hoti hai... (Ma'am, at 7 PM it's crowded...)"
+                            metaTags="📍 Location: Indiranagar | 🔊 Noise Level: 85dB (High)"
                         />
 
                         <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
@@ -267,14 +364,62 @@ const ProjectUdhaar = ({ onBack }) => {
                         </div>
                     </div>
                 </section>
+
+                {/* 3. Visual Diagrams - New Section */}
+                <section className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">03 — Visualizing the Protocol</h2>
+                    <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-12">The Architecture of Trust</h3>
+
+                    {/* Diagram A: User Journey */}
+                    <div className="mb-16">
+                        <h4 className="text-xl font-bold text-gray-900 mb-6">A. The User Journey (Front Stage)</h4>
+                        <div
+                            className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm overflow-hidden cursor-zoom-in hover:shadow-md transition-all group relative"
+                            onClick={() => setSelectedImage(diagramUserJourney)}
+                        >
+                            <div className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                <ZoomIn size={20} />
+                            </div>
+                            <img
+                                src={diagramUserJourney}
+                                alt="User Journey Flowchart"
+                                className="w-full h-auto rounded-lg group-hover:scale-[1.01] transition-transform duration-500"
+                            />
+                        </div>
+                        <p className="text-sm text-gray-500 mt-4 italic">
+                            The "Store & Forward" mechanism ensures the user never sees a failure screen, even when offline.
+                        </p>
+                    </div>
+
+                    {/* Diagram B: Tech Architecture */}
+                    <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-6">B. Technical Architecture (Back Stage)</h4>
+                        <div
+                            className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm overflow-hidden cursor-zoom-in hover:shadow-md transition-all group relative"
+                            onClick={() => setSelectedImage(diagramTechArch)}
+                        >
+                            <div className="absolute top-4 right-4 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                                <ZoomIn size={20} />
+                            </div>
+                            <img
+                                src={diagramTechArch}
+                                alt="Technical Architecture Diagram"
+                                className="w-full h-auto rounded-lg group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-500"
+                            />
+                        </div>
+                        <p className="text-sm text-gray-500 mt-4 italic">
+                            Local cryptographic signing (Secure Enclave) ensures transaction integrity before syncing.
+                        </p>
+                    </div>
+                </section>
             </div>
 
             {/* 4. The Solution - Wide Section */}
             <section className="bg-gray-50 py-32 mb-32">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="max-w-3xl mx-auto text-center mb-20">
-                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Solution</h2>
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
+                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — The Solution</h2>
+                        <h3 className="text-2xl md:text-4xl font-bold text-gray-900">The User Journey</h3>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-12 items-start">
@@ -301,7 +446,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                 />
                             </div>
                             <h4 className="text-lg font-bold mb-2">2. The Intervention</h4>
-                            <p className="text-gray-500 text-sm leading-relaxed">System detects failure and instantly prompts the "Pay Offline" option.</p>
+                            <p className="text-gray-500 text-sm leading-relaxed">Network unstable. As a regular customer, you can pay offline now. We'll automatically sync the payment when connection returns.</p>
                         </div>
 
                         {/* Step 3 */}
@@ -408,7 +553,30 @@ const ProjectUdhaar = ({ onBack }) => {
                             </div>
                         </div>
 
-                        {/* Edge Case 2 */}
+                        {/* Edge Case 2: Limit Reached */}
+                        <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
+                            <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
+                                {/* Mockup of Limit Alert */}
+                                <div className="bg-gray-100 aspect-[9/16] rounded-lg relative overflow-hidden flex items-center justify-center p-4">
+                                    <div className="w-full bg-white p-4 rounded-xl shadow-lg border-l-4 border-red-500">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-4 h-4 bg-red-100 rounded-full flex items-center justify-center text-[10px]">⚠️</div>
+                                            <div className="text-[10px] font-bold text-gray-900">Limit Reached</div>
+                                        </div>
+                                        <div className="text-[8px] text-gray-500 leading-tight">Offline balance is ₹1,900. Please connect to clear dues before adding more.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-gray-900 mb-2">2. The "Overdraft" State</h4>
+                                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                                    Prevents debt spirals. Hard stop at ₹2,000 pending balance to ensure financial discipline.
+                                </p>
+                                <span className="text-xs font-mono bg-red-50 text-red-600 px-2 py-1 rounded border border-red-100">UI: Critical Alert Card</span>
+                            </div>
+                        </div>
+
+                        {/* Edge Case 3 */}
                         <div className="bg-gray-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
                             <div className="w-48 flex-shrink-0 bg-white rounded-xl shadow-sm p-2 border border-gray-200">
                                 {/* Mockup of Notification */}
@@ -423,7 +591,7 @@ const ProjectUdhaar = ({ onBack }) => {
                                 </div>
                             </div>
                             <div>
-                                <h4 className="font-bold text-gray-900 mb-2">2. "Sync Complete" Notification</h4>
+                                <h4 className="font-bold text-gray-900 mb-2">3. "Sync Complete" Notification</h4>
                                 <p className="text-sm text-gray-600 leading-relaxed mb-3">
                                     Closes the feedback loop when internet returns. Gamifies the experience by showing Trust Score increase.
                                 </p>
@@ -761,7 +929,55 @@ const ProjectUdhaar = ({ onBack }) => {
                     display: block !important;
                 }
             `}</style>
-        </div>
+
+            {/* Image Modal */}
+            {selectedImage && (
+                <div
+                    ref={modalRef}
+                    className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-200 overflow-hidden overscroll-contain"
+                    onClick={() => setSelectedImage(null)}
+                >
+                    <button
+                        className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors z-50"
+                        onClick={() => setSelectedImage(null)}
+                    >
+                        <X size={24} />
+                    </button>
+
+                    <div
+                        className="relative w-full h-full flex items-center justify-center overflow-hidden"
+                        onMouseDown={handleMouseDown}
+                        onMouseMove={handleMouseMove}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleMouseUp}
+                    >
+                        <img
+                            src={selectedImage}
+                            alt="Zoomed Diagram"
+                            className="max-w-full max-h-full rounded-lg shadow-2xl object-contain transition-transform duration-75 ease-out"
+                            style={{
+                                transform: `scale(${zoom}) translate(${pan.x / zoom}px, ${pan.y / zoom}px)`,
+                                cursor: zoom > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default'
+                            }}
+                            draggable={false}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+
+                    {/* Zoom Indicator */}
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white/10 text-white/90 px-4 py-2 rounded-full text-sm backdrop-blur-md pointer-events-none border border-white/10 font-medium tabular-nums">
+                        <div className="flex items-center gap-3">
+                            <span>Zoom: {(zoom * 100).toFixed(0)}%</span>
+                            {zoom > 1 && <span className="text-white/60">|</span>}
+                            {zoom > 1 && <span className="text-xs text-white/70">Drag to pan</span>}
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div >
     );
 };
 

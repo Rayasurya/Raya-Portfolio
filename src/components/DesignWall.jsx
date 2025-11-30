@@ -1,5 +1,7 @@
 import React from 'react';
 import centerImg from '../assets/center_image.png';
+import udhaarThumbnail from '../assets/udhaar_thumbnail.svg';
+import { ArrowRight } from 'lucide-react';
 
 // Organized by columns for masonry layout
 // Total Height Target: ~1350px (including offsets and gaps)
@@ -44,7 +46,7 @@ const columns = [
     id: 'col-5',
     offset: '0px',
     items: [
-      { id: 51, title: 'Case Study', type: 'Strategy', color: '#f3f0e8', height: '320px' },
+      { id: 51, title: 'Project Udhaar', type: 'Case Study', color: '#f3f0e8', height: '320px', thumbnail: udhaarThumbnail },
       { id: 52, title: 'Brand Identity', type: 'Branding', color: '#e8e3d8', height: '480px' },
       { id: 53, title: 'Social Media', type: 'Content', color: '#e0d9cf', height: '502px' },
     ]
@@ -76,16 +78,50 @@ const DesignWall = ({ onViewProject }) => {
               >
                 {!design.isImage && (
                   <>
-                    <div className="design-content">
-                      <h3>{design.title}</h3>
-                      <span>{design.type}</span>
-                    </div>
-                    <div className="design-overlay">
-                      <button onClick={(e) => {
-                        e.stopPropagation();
-                        onViewProject && onViewProject(design.id);
-                      }}>View Project</button>
-                    </div>
+                    {/* Special handling for Project Udhaar card with dynamic effects */}
+                    {design.id === 51 && design.thumbnail ? (
+                      <>
+                        {/* Background Image with Parallax Zoom */}
+                        <div
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110"
+                          style={{ backgroundImage: `url(${design.thumbnail})` }}
+                        />
+
+                        {/* Content */}
+                        <div className="relative flex flex-col justify-end h-full" style={{ position: 'relative', zIndex: 2 }}>
+                          <span style={{
+                            color: '#fff',
+                            fontSize: '1.5rem',
+                            fontWeight: 600,
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase'
+                          }}>
+                            {design.type}
+                          </span>
+                        </div>
+
+                        {/* Hover Overlay with Black Button */}
+                        <div className="design-overlay">
+                          <button onClick={(e) => {
+                            e.stopPropagation();
+                            onViewProject && onViewProject(design.id);
+                          }}>View Project</button>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="design-content" style={{ position: 'relative', zIndex: 2 }}>
+                          <h3>{design.title}</h3>
+                          <span>{design.type}</span>
+                        </div>
+                        <div className="design-overlay">
+                          <button onClick={(e) => {
+                            e.stopPropagation();
+                            onViewProject && onViewProject(design.id);
+                          }}>View Project</button>
+                        </div>
+                      </>
+                    )}
                   </>
                 )}
                 {design.isImage && (
@@ -132,9 +168,14 @@ const DesignWall = ({ onViewProject }) => {
         }
 
         .design-item:hover {
-          transform: scale(1.02);
+          transform: scale(1.05);
           z-index: 10;
           box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        /* Special glow effect for Project Udhaar card */
+        .design-item:hover:has([style*="linear-gradient"]) {
+          box-shadow: 0 0 60px -15px hsl(28 80% 55% / 0.6);
         }
 
         .design-content {
@@ -149,13 +190,13 @@ const DesignWall = ({ onViewProject }) => {
         .design-content h3 {
           font-size: 1.4rem;
           margin-bottom: 0.25rem;
-          color: #222;
+          color: #fff;
           font-weight: 700;
         }
 
         .design-content span {
           font-size: 0.9rem;
-          color: #666;
+          color: rgba(255, 255, 255, 0.8);
           text-transform: uppercase;
           letter-spacing: 1px;
           font-weight: 500;
@@ -167,7 +208,7 @@ const DesignWall = ({ onViewProject }) => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(255,255,255,0.9);
+          background: rgba(255,255,255,0.15);
           display: flex;
           justify-content: center;
           align-items: center;

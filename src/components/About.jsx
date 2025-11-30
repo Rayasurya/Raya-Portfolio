@@ -1,4 +1,5 @@
 import React from 'react';
+import { Connect } from './Connect';
 
 const About = () => {
     return (
@@ -131,6 +132,8 @@ const About = () => {
                     }
                 }
             `}</style>
+
+            <Connect />
         </section>
     );
 };
