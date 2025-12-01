@@ -3,6 +3,11 @@ import { Connect } from './Connect';
 import { HoverPreview } from './ui/hover-preview';
 
 const About = () => {
+    const skills = ['User Research', 'Interaction Design', 'Visual Design', 'Leveraging AI for work', 'User Testing', 'Content Management', 'Continuous Learning', 'Content strategy', 'Prompt Engineering'];
+    const tools = ['Figma', 'Figjam', 'DaVinci Resolve', 'Illustrator', 'Blender', 'Midjourney', 'Stable diffusion', 'UX', 'UI', 'Kling AI', 'Elevenlabs', 'Helper AI', 'Comfy UI', 'Foocus AI'];
+    const education = ['B.Sc. Psychology', 'Google UX Design Professional', 'Associate Certified in Microsoft'];
+    const languages = ['English', 'हिंदी Hindi', 'தமிழ் Tamil', 'తెలుగు Telugu', 'ಕನ್ನಡ Kannada'];
+
     return (
         <section id="about" style={{
             maxWidth: '900px',
@@ -55,35 +60,33 @@ const About = () => {
                 <div>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '1.5rem', color: '#000' }}>Skills</h3>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                        {['User Research', 'Interaction Design', 'Visual Design', 'Leveraging AI for work', 'User Testing', 'Content Management', 'Continuous Learning', 'Content strategy', 'Prompt Engineering'].map(skill => (
-                            <span key={skill} className="skill-pill">{skill}</span>
+                        {skills.map((skill, index) => (
+                            <span key={`skill-${index}`} className="skill-pill">{skill}</span>
                         ))}
                     </div>
                 </div>
                 <div>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '1.5rem', color: '#000' }}>Tools</h3>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                        {['Figma', 'Figjam', 'DaVinci Resolve', 'Illustrator', 'Blender', 'Midjourney', 'Stable diffusion', 'UX', 'UI', 'Kling AI', 'Elevenlabs', 'Helper AI', 'Comfy UI', 'Foocus AI'].map(skill => (
-                            <span key={skill} className="skill-pill">{skill}</span>
+                        {tools.map((tool, index) => (
+                            <span key={`tool-${index}`} className="skill-pill">{tool}</span>
                         ))}
                     </div>
                 </div>
                 <div>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '1.5rem', color: '#000' }}>Education</h3>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                        <span className="skill-pill">B.Sc. Psychology</span>
-                        <span className="skill-pill">Google UX Design Professional</span>
-                        <span className="skill-pill">Associate Certified in Microsoft</span>
+                        {education.map((edu, index) => (
+                            <span key={`edu-${index}`} className="skill-pill">{edu}</span>
+                        ))}
                     </div>
                 </div>
                 <div>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '1.5rem', color: '#000' }}>Languages</h3>
                     <div className="languages-container">
-                        <span className="skill-pill language-pill">English</span>
-                        <span className="skill-pill language-pill">हिंदी Hindi</span>
-                        <span className="skill-pill language-pill">தமிழ் Tamil</span>
-                        <span className="skill-pill language-pill">తెలుగు Telugu</span>
-                        <span className="skill-pill language-pill">ಕನ್ನಡ Kannada</span>
+                        {languages.map((lang, index) => (
+                            <span key={`lang-${index}`} className="skill-pill language-pill">{lang}</span>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -106,7 +109,7 @@ const About = () => {
                 .languages-container {
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: flex-start; /* Left align to match others */
+                    justify-content: flex-start;
                     gap: 10px;
                 }
 
@@ -116,32 +119,21 @@ const About = () => {
                 }
 
                 @media (max-width: 768px) {
-                    section {
+                    #about {
                         padding: 4rem 1.5rem !important;
                     }
-                    h2 {
+                    #about h2 {
                         font-size: 2.5rem !important;
                         margin-bottom: 2rem !important;
                     }
-                    p {
-                        font-size: 1.2rem !important;
-                        margin-bottom: 2rem !important;
-                    }
-                    div[style*="grid"] {
-                        grid-template-columns: 1fr !important;
-                        gap: 2.5rem !important;
+                    #about h3 {
+                        font-size: 1.1rem !important;
                     }
                 }
 
                 @media (max-width: 480px) {
-                    h2 {
+                    #about h2 {
                         font-size: 2rem !important;
-                    }
-                    p {
-                        font-size: 1.1rem !important;
-                    }
-                    h3 {
-                        font-size: 1.1rem !important;
                     }
                 }
             `}</style>
