@@ -10,9 +10,9 @@ import { SvgOptimizer } from './tools/SvgOptimizer';
 // Image Cropper Tool Component
 const ImageCropperTool = () => {
     const aspectRatios = [
-        { name: 'Passport', value: 3.5 / 4.5 },
-        { name: 'Square', value: 1 / 1 },
-        { name: 'ID', value: 3 / 4 },
+        { name: 'Passport', value: 3.5 / 4.5, size: '1.4" x 1.8"' },
+        { name: 'Square', value: 1 / 1, size: '1:1' },
+        { name: 'ID', value: 3 / 4, size: '3" x 4"' },
     ];
 
     const [originalImage, setOriginalImage] = useState(null);
@@ -107,17 +107,20 @@ const ImageCropperTool = () => {
             </div>
 
             {/* Aspect Ratio Pills */}
-            <div className="flex gap-2 mb-6">
+            <div className="flex gap-2 mb-6 flex-wrap">
                 {aspectRatios.map((ratio) => (
                     <button
                         key={ratio.name}
                         onClick={() => setSelectedRatio(ratio)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedRatio.name === ratio.name
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${selectedRatio.name === ratio.name
                             ? 'bg-black text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                     >
-                        {ratio.name}
+                        <span>{ratio.name}</span>
+                        <span className={`text-xs ${selectedRatio.name === ratio.name ? 'text-gray-300' : 'text-gray-500'}`}>
+                            {ratio.size}
+                        </span>
                     </button>
                 ))}
             </div>
