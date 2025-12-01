@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Briefcase, User, FileText, Lightbulb, Wrench } from 'lucide-react';
+import { Home, Briefcase, User, FileText, Layers, Settings } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
@@ -152,8 +152,8 @@ function App() {
             <TubelightNavbar
               items={[
                 { name: 'home', url: 'home', icon: Home },
-                { name: 'components', url: 'components', icon: Lightbulb },
-                { name: 'tools', url: 'tools', icon: Wrench },
+                { name: 'components', url: 'components', icon: Layers },
+                { name: 'tools', url: 'tools', icon: Settings },
                 { name: 'about', url: 'about', icon: User },
                 { name: 'resume', url: 'resume', icon: FileText }
               ]}
