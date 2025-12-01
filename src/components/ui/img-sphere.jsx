@@ -67,12 +67,13 @@ const SphereImageGrid = ({
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePositions, setImagePositions] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [zoom, setZoom] = useState(1);
 
     const containerRef = useRef(null);
     const lastMousePos = useRef({ x: 0, y: 0 });
     const animationFrame = useRef(null);
     const lastTouchDistance = useRef(0);
+    const targetZoom = useRef(1);
+    const currentZoom = useRef(1);
 
     // ==========================================
     // COMPUTED VALUES
@@ -280,6 +281,14 @@ const SphereImageGrid = ({
                 z: prev.z
             };
         });
+
+        // Smooth zoom interpolation
+        const zoomDiff = targetZoom.current - currentZoom.current;
+        if (Math.abs(zoomDiff) > 0.001) {
+            currentZoom.current += zoomDiff * 0.15; // Smooth interpolation factor
+        } else {
+            currentZoom.current = targetZoom.current;
+        }
     }, [isDragging, momentumDecay, velocity, clampRotationSpeed, autoRotate, autoRotateSpeed]);
 
     // ==========================================
@@ -345,7 +354,7 @@ const SphereImageGrid = ({
             const currentDistance = getTouchDistance(e.touches);
             if (lastTouchDistance.current > 0) {
                 const delta = (currentDistance - lastTouchDistance.current) * 0.01;
-                setZoom(prevZoom => Math.max(0.5, Math.min(3, prevZoom + delta)));
+                targetZoom.current = Math.max(0.5, Math.min(3, targetZoom.current + delta));
             }
             lastTouchDistance.current = currentDistance;
             return;
@@ -384,7 +393,7 @@ const SphereImageGrid = ({
     const handleWheel = useCallback((e) => {
         e.preventDefault();
         const delta = e.deltaY * -0.001;
-        setZoom(prevZoom => Math.max(0.5, Math.min(3, prevZoom + delta)));
+        targetZoom.current = Math.max(0.5, Math.min(3, targetZoom.current + delta));
     }, []);
 
     const getTouchDistance = (touches) => {
@@ -600,10 +609,10 @@ const SphereImageGrid = ({
                 onTouchStart={handleTouchStart}
             >
                 <div
-                    className="relative w-full h-full transition-transform duration-200"
+                    className="relative w-full h-full"
                     style={{
                         zIndex: 10,
-                        transform: `scale(${zoom})`,
+                        transform: `scale(${currentZoom.current})`,
                         transformOrigin: 'center center'
                     }}
                 >
