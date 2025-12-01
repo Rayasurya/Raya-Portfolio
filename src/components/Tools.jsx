@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AvatarUploader } from './ui/avatar-uploader';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/Avatar';
 import { Button } from './ui/button';
 import { Download, Upload, Image as ImageIcon, Scissors, ArrowRight } from 'lucide-react';
 import { PxToRemConverter } from './tools/PxToRemConverter';
