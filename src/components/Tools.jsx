@@ -15,36 +15,42 @@ const ImageCropperTool = () => {
         { name: 'ID', value: 3 / 4 },
     ];
 
-    const [photo, setPhoto] = useState('https://avatar.vercel.sh/tools');
-    const [selectedRatio, setSelectedRatio] = useState(aspectRatios[0]);
-    const [croppedFile, setCroppedFile] = useState(null);
+    const [originalImage, setOriginalImage] = useState(null);
+    const [croppedImageUrl, setCroppedImageUrl] = useState(null);
+    const [selectedRatio, setSelectedRatio] = useState(aspectRatios[2]); // Default to ID
 
-    const handleUpload = async (file) => {
-        setPhoto(URL.createObjectURL(file));
-        setCroppedFile(file);
+    const handleFileSelect = (e) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setOriginalImage(URL.createObjectURL(file));
+        }
+    };
+
+    const handleUploadComplete = async (file) => {
+        if (file) {
+            setCroppedImageUrl(URL.createObjectURL(file));
+        }
         return { success: true };
     };
 
     const handleDownload = () => {
-        if (!croppedFile) {
-            alert('Please upload and crop an image first');
+        if (!croppedImageUrl) {
+            alert('Please upload an image first');
             return;
         }
 
-        const url = URL.createObjectURL(croppedFile);
         const link = document.createElement('a');
-        link.href = url;
-        link.download = `cropped-${selectedRatio.name.toLowerCase()}-${Date.now()}.${croppedFile.type.split('/')[1]}`;
+        link.href = croppedImageUrl;
+        link.download = `cropped-${selectedRatio.name.toLowerCase()}-${Date.now()}.jpg`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(url);
     };
 
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
             {/* Tool Header */}
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-6">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-blue-50 rounded-lg">
                         <Scissors className="text-blue-600" size={24} />
@@ -57,12 +63,12 @@ const ImageCropperTool = () => {
             </div>
 
             {/* Aspect Ratio Pills */}
-            <div className="flex gap-2 mb-4">
+            <div className="flex gap-2 mb-6">
                 {aspectRatios.map((ratio) => (
                     <button
                         key={ratio.name}
                         onClick={() => setSelectedRatio(ratio)}
-                        className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${selectedRatio.name === ratio.name
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedRatio.name === ratio.name
                             ? 'bg-black text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
@@ -72,41 +78,68 @@ const ImageCropperTool = () => {
                 ))}
             </div>
 
-            {/* Upload and Preview */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
-                {/* Upload */}
-                <div className="flex flex-col items-center">
-                    <AvatarUploader onUpload={handleUpload} aspect={selectedRatio.value}>
-                        <button className="group relative">
-                            <Avatar className="size-24 cursor-pointer transition-opacity hover:opacity-80 border-2 border-gray-200">
-                                <AvatarImage src={photo} />
-                                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                                    <Upload size={24} />
-                                </AvatarFallback>
-                            </Avatar>
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="bg-black/50 rounded-full p-2">
-                                    <Upload className="text-white" size={16} />
+            {/* Main Content Area - Upload and Preview Side by Side */}
+            <div className="grid grid-cols-2 gap-6 mb-6">
+                {/* Upload Section */}
+                <div className="flex flex-col">
+                    <p className="text-sm font-medium text-gray-700 mb-3">Upload</p>
+                    <AvatarUploader
+                        onUpload={handleUploadComplete}
+                        aspect={selectedRatio.value}
+                    >
+                        <div className="relative group cursor-pointer">
+                            <div
+                                className="border-2 border-dashed border-gray-300 rounded-xl hover:border-blue-500 transition-colors bg-gray-50 flex items-center justify-center"
+                                style={{
+                                    aspectRatio: selectedRatio.value,
+                                    minHeight: '160px'
+                                }}
+                            >
+                                {originalImage || croppedImageUrl ? (
+                                    <img
+                                        src={originalImage || croppedImageUrl}
+                                        alt="Upload"
+                                        className="w-full h-full object-cover rounded-xl"
+                                    />
+                                ) : (
+                                    <div className="text-center">
+                                        <Upload className="mx-auto text-gray-400 mb-2" size={32} />
+                                        <p className="text-sm text-gray-500">Click to upload</p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 rounded-xl">
+                                <div className="bg-white rounded-full p-3">
+                                    <Upload className="text-blue-600" size={20} />
                                 </div>
                             </div>
-                        </button>
+                        </div>
                     </AvatarUploader>
-                    <p className="text-xs text-gray-500 mt-2 text-center">Upload</p>
                 </div>
 
-                {/* Preview */}
-                <div className="flex flex-col items-center">
+                {/* Preview Section */}
+                <div className="flex flex-col">
+                    <p className="text-sm font-medium text-gray-700 mb-3">Preview</p>
                     <div
-                        className="border-2 border-gray-200 rounded-lg overflow-hidden bg-gray-50"
+                        className="border-2 border-gray-200 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center"
                         style={{
-                            width: '96px',
                             aspectRatio: selectedRatio.value,
-                            maxHeight: '96px',
+                            minHeight: '160px'
                         }}
                     >
-                        <img src={photo} alt="Preview" className="w-full h-full object-cover" />
+                        {croppedImageUrl ? (
+                            <img
+                                src={croppedImageUrl}
+                                alt="Preview"
+                                className="w-full h-full object-cover"
+                            />
+                        ) : (
+                            <div className="text-center text-gray-400">
+                                <ImageIcon size={32} className="mx-auto mb-2" />
+                                <p className="text-xs">Preview appears here</p>
+                            </div>
+                        )}
                     </div>
-                    <p className="text-xs text-gray-500 mt-2 text-center">Preview</p>
                 </div>
             </div>
 
@@ -114,11 +147,11 @@ const ImageCropperTool = () => {
             <Button
                 onClick={handleDownload}
                 variant="default"
-                size="sm"
-                className="w-full"
-                disabled={!croppedFile}
+                size="default"
+                className="w-full bg-blue-600 hover:bg-blue-700"
+                disabled={!croppedImageUrl}
             >
-                <Download size={14} className="mr-2" />
+                <Download size={16} className="mr-2" />
                 Download
             </Button>
         </div>
