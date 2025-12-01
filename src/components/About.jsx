@@ -28,16 +28,17 @@ const About = () => {
                 marginBottom: '4rem',
                 textAlign: 'left',
             }}>
-                <div className="text-gray-800 text-xl leading-relaxed font-medium" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                    I'm a Product Designer blending psychology, AI, and storytelling to create human-centered experiences. My work spans healthcare and data platforms, turning complex ideas into intuitive interfaces. I enjoy solving messy problems, designing micro-interactions, and making technology feel effortless. I also run a <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="font-bold hover:opacity-80 transition-opacity relative inline-block" style={{
-                        background: 'linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        paddingBottom: '2px',
-                        borderBottom: '2px solid',
-                        borderImage: 'linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722) 1'
-                    }}>YouTube</a> channel exploring AI & Design.
-                </div>
+                <HoverPreview linkData={{
+                    YouTube: {
+                        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=560&h=320&fit=crop",
+                        title: "YouTube Channel",
+                        subtitle: "100K+ Subscribers • AI & Design",
+                    }
+                }}>
+                    <div className="text-gray-800 text-xl leading-relaxed font-medium" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                        I'm a Product Designer blending psychology, AI, and storytelling to create human-centered experiences. My work spans healthcare and data platforms, turning complex ideas into intuitive interfaces. I enjoy solving messy problems, designing micro-interactions, and making technology feel effortless. I also run a {YouTube} channel exploring AI & Design.
+                    </div>
+                </HoverPreview>
             </div>
 
             <div style={{

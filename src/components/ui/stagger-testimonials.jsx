@@ -9,33 +9,27 @@ const SQRT_5000 = Math.sqrt(5000);
 const testimonials = [
     {
         tempId: 0,
-        testimonial: "Raya's design work transformed our user experience completely. The attention to detail is remarkable.",
-        by: "Sarah Chen, CEO at TechCorp",
+        testimonial: "Surya is always the first person who comes to mind when I think about great design. After working with him for almost a year, I’ve seen how much passion he puts into quality and creative thinking. He doesn’t just deliver work — he helps us grow by pointing out areas of improvement and offering meaningful suggestions. Grateful to have worked with him.",
+        by: "Bharathi M., Corporate Trainer",
         imgSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
     },
     {
         tempId: 1,
-        testimonial: "Working with Raya was a game-changer. The creative solutions brought our vision to life.",
-        by: "Michael Rodriguez, CTO at InnovateCo",
+        testimonial: "Surya, is working with Talentpepz as a Creative Specialist, I'm highly impressed with his eagerness towards Learning and Personal Development. His curiosity to present everything is commendable.",
+        by: "Dr Fazalur Rahman, Talentpepz",
         imgSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     },
     {
         tempId: 2,
-        testimonial: "The design process was seamless and the results exceeded our expectations. Highly recommend!",
-        by: "Emily Watson, Product Manager at DesignHub",
-        imgSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+        testimonial: "Surya is always the first person who comes to mind when I think about great design. After working with him for almost a year, I’ve seen how much passion he puts into quality and creative thinking. He doesn’t just deliver work — he helps us grow by pointing out areas of improvement and offering meaningful suggestions. Grateful to have worked with him.",
+        by: "Bharathi M., Corporate Trainer",
+        imgSrc: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face"
     },
     {
         tempId: 3,
-        testimonial: "Raya's ability to translate complex ideas into intuitive designs is exceptional.",
-        by: "David Kim, UX Lead at CreativeSolutions",
-        imgSrc: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
-    },
-    {
-        tempId: 4,
-        testimonial: "If I could give 11 stars, I'd give 12. Outstanding work!",
-        by: "Alex Thompson, Founder at StartupXYZ",
-        imgSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
+        testimonial: "Surya, is working with Talentpepz as a Creative Specialist, I'm highly impressed with his eagerness towards Learning and Personal Development. His curiosity to present everything is commendable.",
+        by: "Dr Fazalur Rahman, Talentpepz",
+        imgSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     }
 ];
 

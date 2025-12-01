@@ -21,12 +21,15 @@ const previewData = {
 const HoverLink = ({ previewKey, children, onHoverStart, onHoverMove, onHoverEnd }) => {
     return (
         <span
-            className="text-white font-bold cursor-pointer relative inline-block transition-colors duration-300 hover-link"
+            className="text-gray-800 font-bold cursor-pointer relative inline-block transition-colors duration-300 hover-link"
             onMouseEnter={(e) => onHoverStart(previewKey, e)}
             onMouseMove={onHoverMove}
             onMouseLeave={onHoverEnd}
             style={{
                 fontFamily: "'Syne', sans-serif",
+                paddingBottom: '2px',
+                borderBottom: '2px solid',
+                borderImage: 'linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722) 1'
             }}
         >
             {children}
@@ -86,6 +89,8 @@ export function HoverPreview({ children, linkData = previewData }) {
     }, [linkData]);
 
     const updatePosition = useCallback((e) => {
+        if (typeof window === 'undefined') return;
+
         const cardWidth = 300;
         const cardHeight = 250;
         const offsetY = 20;

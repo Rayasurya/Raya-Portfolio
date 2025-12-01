@@ -68,6 +68,8 @@ function App() {
         return <Resume />;
       case 'tools':
         return <Tools />;
+      case 'designs':
+        return <DesignSpace />;
       case 'project-udhaar':
         return <ProjectUdhaar onBack={() => navigateTo('home')} />;
       default:
@@ -113,7 +115,7 @@ function App() {
 
             {/* Desktop Menu Items - Hidden on Mobile */}
             <div className="hidden md:flex gap-8">
-              {['home', 'components', 'tools', 'about', 'resume'].map((view) => (
+              {['home', 'components', 'designs', 'tools', 'about', 'resume'].map((view) => (
                 <button
                   key={view}
                   onClick={() => navigateTo(view)}
@@ -151,13 +153,13 @@ function App() {
           <div className="md:hidden">
             <TubelightNavbar
               items={[
-                { name: 'home', url: 'home', icon: Home },
-                { name: 'components', url: 'components', icon: Layers },
-                { name: 'tools', url: 'tools', icon: Settings },
-                { name: 'about', url: 'about', icon: User },
-                { name: 'resume', url: 'resume', icon: FileText }
+                { name: 'Home', url: 'home', icon: Home },
+                { name: 'Designs', url: 'designs', icon: Palette },
+                { name: 'Projects', url: 'components', icon: Layers },
+                { name: 'About', url: 'about', icon: User },
+                { name: 'Resume', url: 'resume', icon: FileText }
               ]}
-              activeTab={currentView}
+              activeTab={currentView === 'home' ? 'Home' : currentView === 'designs' ? 'Designs' : currentView === 'components' ? 'Projects' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
               onTabChange={navigateTo}
             />
           </div>
