@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { AvatarUploader } from './ui/avatar-uploader';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/Avatar';
 import { Button } from './ui/button';
