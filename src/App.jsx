@@ -27,6 +27,7 @@ function App() {
   };
 
   const [currentView, setCurrentView] = useState(getInitialView());
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Display name mapping for navigation
   const getDisplayName = (view) => {
@@ -42,11 +43,22 @@ function App() {
     return displayNames[view] || view;
   };
 
-  // Navigate and update browser history
+  // Navigate and update browser history with smooth transition
   const navigateTo = (view) => {
-    setCurrentView(view);
-    window.history.pushState({ view }, '', `#${view}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Trigger fade out
+    setIsTransitioning(true);
+
+    // After fade out, change view and fade in
+    setTimeout(() => {
+      setCurrentView(view);
+      window.history.pushState({ view }, '', `#${view}`);
+      window.scrollTo({ top: 0, behavior: 'auto' });
+
+      // Fade back in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 10);
+    }, 150);
   };
 
   // Listen to browser back/forward buttons
@@ -200,6 +212,8 @@ function App() {
         position: 'relative',
         zIndex: 1,
         paddingBottom: currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' ? '0' : '0',
+        opacity: isTransitioning ? 0 : 1,
+        transition: 'opacity 150ms ease-in-out'
       }}>
         {renderView()}
       </main>
