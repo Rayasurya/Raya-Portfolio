@@ -67,10 +67,12 @@ const SphereImageGrid = ({
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePositions, setImagePositions] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [zoom, setZoom] = useState(1);
 
     const containerRef = useRef(null);
     const lastMousePos = useRef({ x: 0, y: 0 });
     const animationFrame = useRef(null);
+    const lastTouchDistance = useRef(0);
 
     // ==========================================
     // COMPUTED VALUES
@@ -323,15 +325,33 @@ const SphereImageGrid = ({
 
     const handleTouchStart = useCallback((e) => {
         e.preventDefault();
-        const touch = e.touches[0];
-        setIsDragging(true);
-        setVelocity({ x: 0, y: 0 });
-        lastMousePos.current = { x: touch.clientX, y: touch.clientY };
+        if (e.touches.length === 2) {
+            // Pinch zoom start
+            lastTouchDistance.current = getTouchDistance(e.touches);
+            setIsDragging(false);
+        } else {
+            const touch = e.touches[0];
+            setIsDragging(true);
+            setVelocity({ x: 0, y: 0 });
+            lastMousePos.current = { x: touch.clientX, y: touch.clientY };
+        }
     }, []);
 
     const handleTouchMove = useCallback((e) => {
-        if (!isDragging) return;
         e.preventDefault();
+
+        if (e.touches.length === 2) {
+            // Pinch zoom
+            const currentDistance = getTouchDistance(e.touches);
+            if (lastTouchDistance.current > 0) {
+                const delta = (currentDistance - lastTouchDistance.current) * 0.01;
+                setZoom(prevZoom => Math.max(0.5, Math.min(3, prevZoom + delta)));
+            }
+            lastTouchDistance.current = currentDistance;
+            return;
+        }
+
+        if (!isDragging) return;
 
         const touch = e.touches[0];
         const deltaX = touch.clientX - lastMousePos.current.x;
@@ -358,7 +378,21 @@ const SphereImageGrid = ({
 
     const handleTouchEnd = useCallback(() => {
         setIsDragging(false);
+        lastTouchDistance.current = 0;
     }, []);
+
+    const handleWheel = useCallback((e) => {
+        e.preventDefault();
+        const delta = e.deltaY * -0.001;
+        setZoom(prevZoom => Math.max(0.5, Math.min(3, prevZoom + delta)));
+    }, []);
+
+    const getTouchDistance = (touches) => {
+        if (touches.length < 2) return 0;
+        const dx = touches[0].clientX - touches[1].clientX;
+        const dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+    };
 
     // ==========================================
     // EFFECTS & LIFECYCLE
@@ -403,13 +437,17 @@ const SphereImageGrid = ({
         document.addEventListener('touchmove', handleTouchMove, { passive: false });
         document.addEventListener('touchend', handleTouchEnd);
 
+        // Wheel event for zoom
+        container.addEventListener('wheel', handleWheel, { passive: false });
+
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
             document.removeEventListener('touchmove', handleTouchMove);
             document.removeEventListener('touchend', handleTouchEnd);
+            container.removeEventListener('wheel', handleWheel);
         };
-    }, [isMounted, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
+    }, [isMounted, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd, handleWheel]);
 
     // ==========================================
     // RENDER HELPERS
@@ -561,7 +599,14 @@ const SphereImageGrid = ({
                 onMouseDown={handleMouseDown}
                 onTouchStart={handleTouchStart}
             >
-                <div className="relative w-full h-full" style={{ zIndex: 10 }}>
+                <div
+                    className="relative w-full h-full transition-transform duration-200"
+                    style={{
+                        zIndex: 10,
+                        transform: `scale(${zoom})`,
+                        transformOrigin: 'center center'
+                    }}
+                >
                     {images.map((image, index) => renderImageNode(image, index))}
                 </div>
             </div>

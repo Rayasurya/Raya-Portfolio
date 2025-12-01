@@ -27,6 +27,19 @@ function App() {
 
   const [currentView, setCurrentView] = useState(getInitialView());
 
+  // Display name mapping for navigation
+  const getDisplayName = (view) => {
+    const displayNames = {
+      'designs': 'Design Space',
+      'components': 'Components',
+      'tools': 'Tools',
+      'about': 'About',
+      'resume': 'Resume',
+      'home': 'Home'
+    };
+    return displayNames[view] || view;
+  };
+
   // Navigate and update browser history
   const navigateTo = (view) => {
     setCurrentView(view);
@@ -126,13 +139,12 @@ function App() {
                     border: 'none',
                     padding: '0.5rem 0',
                     cursor: 'pointer',
-                    textTransform: 'capitalize',
                     fontWeight: currentView === view ? '600' : '400',
                     fontSize: '1rem',
                     position: 'relative',
                   }}
                 >
-                  {view}
+                  {getDisplayName(view)}
                   {currentView === view && (
                     <span style={{
                       position: 'absolute',
