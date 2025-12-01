@@ -67,7 +67,7 @@ const TestimonialCard = ({ position, testimonial, handleMove, cardSize }) => {
                 }}
             />
             <h3 className={cn(
-                "text-base sm:text-xl font-medium",
+                "text-sm sm:text-lg font-medium line-clamp-6",
                 isCenter ? "text-white" : "text-gray-900"
             )}>
                 "{testimonial.testimonial}"
