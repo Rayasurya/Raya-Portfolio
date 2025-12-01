@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
 import ProjectUdhaar from './components/ProjectUdhaar';
+import ProjectUdhaarV2 from './components/ProjectUdhaarV2';
 import DesignSpace from './components/DesignSpace';
 
 import CustomCursor from './components/CustomCursor';
@@ -35,7 +36,8 @@ function App() {
       'tools': 'Tools',
       'about': 'About',
       'resume': 'Resume',
-      'home': 'Home'
+      'home': 'Home',
+      'home2': 'Home 2'
     };
     return displayNames[view] || view;
   };
@@ -74,6 +76,16 @@ function App() {
             <StaggerTestimonials />
           </>
         );
+      case 'home2':
+        return (
+          <>
+            <Hero onOpenProject={() => navigateTo('project-udhaar-v2')} />
+            <DesignWall onViewProject={(id) => {
+              if (id === 51) navigateTo('project-udhaar-v2');
+            }} />
+            <StaggerTestimonials />
+          </>
+        );
       case 'components':
         return <ComponentsGrid />;
       case 'about':
@@ -86,6 +98,8 @@ function App() {
         return <DesignSpace />;
       case 'project-udhaar':
         return <ProjectUdhaar onBack={() => navigateTo('home')} />;
+      case 'project-udhaar-v2':
+        return <ProjectUdhaarV2 onBack={() => navigateTo('home2')} />;
       default:
         return <DesignWall onViewProject={(id) => {
           if (id === 51) navigateTo('project-udhaar');
@@ -129,7 +143,7 @@ function App() {
 
             {/* Desktop Menu Items - Hidden on Mobile */}
             <div className="hidden md:flex gap-8">
-              {['home', 'components', 'designs', 'tools', 'about', 'resume'].map((view) => (
+              {['home', 'home2', 'components', 'designs', 'tools', 'about', 'resume'].map((view) => (
                 <button
                   key={view}
                   onClick={() => navigateTo(view)}
@@ -167,12 +181,13 @@ function App() {
             <TubelightNavbar
               items={[
                 { name: 'Home', url: 'home', icon: Home },
+                { name: 'Home 2', url: 'home2', icon: Home },
                 { name: 'Designs', url: 'designs', icon: Palette },
                 { name: 'Projects', url: 'components', icon: Layers },
                 { name: 'About', url: 'about', icon: User },
                 { name: 'Resume', url: 'resume', icon: FileText }
               ]}
-              activeTab={currentView === 'home' ? 'Home' : currentView === 'designs' ? 'Designs' : currentView === 'components' ? 'Projects' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
+              activeTab={currentView === 'home' ? 'Home' : currentView === 'home2' ? 'Home 2' : currentView === 'designs' ? 'Designs' : currentView === 'components' ? 'Projects' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
               onTabChange={navigateTo}
             />
           </div>
@@ -180,17 +195,17 @@ function App() {
       )}
 
       <main style={{
-        paddingTop: currentView === 'project-udhaar' ? '0' : '80px',
+        paddingTop: currentView === 'project-udhaar' || currentView === 'project-udhaar-v2' ? '0' : '80px',
         minHeight: '100vh',
         position: 'relative',
         zIndex: 1,
-        paddingBottom: currentView !== 'project-udhaar' ? '0' : '0',
+        paddingBottom: currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' ? '0' : '0',
       }}>
         {renderView()}
       </main>
 
       {/* Animated Social Links - Desktop Only */}
-      {currentView !== 'project-udhaar' && (
+      {currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' && (
         <div className="hidden md:flex fixed bottom-8 right-8 z-50 bg-white rounded-full px-4 py-2 shadow-lg border border-gray-200">
           <AnimatedSocialLinks
             socials={[
