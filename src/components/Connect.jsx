@@ -19,14 +19,14 @@ export function Connect() {
                 ["#web-dev", { opacity: 1 }, { duration: 0.3 }],
                 [
                     "#pointer",
-                    { left: 240, top: 200 }, // Product Design: right-1 (4px) -> 300-4=296, bottom-20 (80px) -> 270-80=190
+                    { left: 240, top: 180 }, // Product Design: Adjusted up from 200 to 180
                     { at: "+0.5", duration: 0.5, ease: "easeInOut" },
                 ],
                 ["#web-dev", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],
                 ["#product-design", { opacity: 1 }, { duration: 0.3 }],
                 [
                     "#pointer",
-                    { left: 90, top: 230 }, // Branding: left-14 (56px), bottom-12 (48px) -> 270-48=222
+                    { left: 90, top: 210 }, // Branding: Adjusted up from 230 to 210
                     { at: "+0.5", duration: 0.5, ease: "easeInOut" },
                 ],
                 ["#product-design", { opacity: 0.4 }, { at: "-0.3", duration: 0.1 }],

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Briefcase, User, FileText, Lightbulb } from 'lucide-react';
+import { Home, Briefcase, User, FileText, Lightbulb, Wrench } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
@@ -11,6 +11,7 @@ import About from './components/About';
 
 
 import Resume from './components/Resume';
+import Tools from './components/Tools';
 import AnimatedSocialLinks from './components/ui/social-links';
 import { TubelightNavbar } from './components/ui/TubelightNavbar';
 import { StaggerTestimonials } from './components/ui/stagger-testimonials';
@@ -65,6 +66,8 @@ function App() {
         return <About />;
       case 'resume':
         return <Resume />;
+      case 'tools':
+        return <Tools />;
       case 'project-udhaar':
         return <ProjectUdhaar onBack={() => navigateTo('home')} />;
       default:
@@ -110,7 +113,7 @@ function App() {
 
             {/* Desktop Menu Items - Hidden on Mobile */}
             <div className="hidden md:flex gap-8">
-              {['home', 'components', 'about', 'resume'].map((view) => (
+              {['home', 'components', 'tools', 'about', 'resume'].map((view) => (
                 <button
                   key={view}
                   onClick={() => navigateTo(view)}
@@ -150,11 +153,12 @@ function App() {
               items={[
                 { name: 'Home', url: 'home', icon: Home },
                 { name: 'Components', url: 'components', icon: Lightbulb },
+                { name: 'Tools', url: 'tools', icon: Wrench },
                 { name: 'About', url: 'about', icon: User },
                 { name: 'Resume', url: 'resume', icon: FileText }
               ]}
-              currentView={currentView}
-              onNavigate={navigateTo}
+              activeTab={currentView}
+              onTabChange={navigateTo}
             />
           </div>
         </>
@@ -177,23 +181,28 @@ function App() {
             socials={[
               {
                 name: 'Instagram',
-                url: 'https://instagram.com/rayasurya',
+                url: 'https://www.instagram.com/corporate__tarzan?igsh=MWQ4YjBkd3JwZmxwag==',
                 image: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png',
               },
               {
                 name: 'LinkedIn',
-                url: 'https://linkedin.com/in/rayasurya',
+                url: 'https://www.linkedin.com/in/raya-surya/',
                 image: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
               },
               {
                 name: 'Email',
-                url: 'mailto:hello@rayasurya.com',
+                url: 'mailto:raya.work.ux@gmail.com',
                 image: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png',
               },
               {
                 name: 'WhatsApp',
-                url: 'https://wa.me/1234567890',
+                url: 'https://wa.me/916382127165',
                 image: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg',
+              },
+              {
+                name: 'Medium',
+                url: 'https://medium.com/@rayasurya292001',
+                image: '/src/assets/Medium Icon.svg',
               },
             ]}
           />

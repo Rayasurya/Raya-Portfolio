@@ -117,10 +117,7 @@ const Resume = () => {
         }
         .job-item:hover {
           background-color: rgba(0,0,0,0.02);
-          padding: 2.5rem 1.5rem;
           border-radius: 16px;
-          margin-left: -1.5rem;
-          margin-right: -1.5rem;
         }
         @media (max-width: 768px) {
           section {

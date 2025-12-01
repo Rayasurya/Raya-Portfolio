@@ -1,5 +1,6 @@
 import React from 'react';
 import { Connect } from './Connect';
+import { HoverPreview } from './ui/hover-preview';
 
 const About = () => {
     return (
@@ -18,20 +19,24 @@ const About = () => {
                 lineHeight: '1.1'
             }}>About Me</h2>
 
-            <p style={{
-                color: '#333',
+            <div style={{
                 marginBottom: '5rem',
-                fontWeight: '400',
-                maxWidth: '700px',
+                maxWidth: '800px',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                textAlign: 'left',  /* Force left alignment */
-                fontSize: '16px',   /* Standard readable size */
-                lineHeight: '1.6',  /* Breathing room */
-                padding: '0 16px'   /* Safety gutters */
+                textAlign: 'left',
+                padding: '0 16px'
             }}>
-                Designed & launched key features at nference. Executed 15+ UX projects at Togepe. Grew an AI Youtube content to 100K+ audience. Proficient in Figma, Blender, AI tools. Skilled in user research, motion graphics & content strategy.
-            </p>
+                <HoverPreview linkData={{
+                    YouTube: {
+                        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=560&h=320&fit=crop",
+                        title: "YouTube Channel",
+                        subtitle: "100K+ Subscribers • AI & Design",
+                    }
+                }}>
+                    I’m a Product Designer who blends psychology, UX, UI, SaaS, AI, and storytelling to create simple and human-centered digital experiences. My work spans healthcare, data platforms, and content systems, where I focus on turning complex ideas into clear workflows, intuitive interfaces, and usable design systems. I enjoy solving messy problems, improving information architecture, designing micro-interactions, and creating experiences that make technology feel effortless. I also run a {YouTube} channel where I explore the intersection of AI and Design.
+                </HoverPreview>
+            </div>
 
             <div style={{
                 display: 'grid',
@@ -93,13 +98,13 @@ const About = () => {
                 .languages-container {
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: center; /* Center the cluster */
-                    gap: 10px; /* Consistent tight spacing */
+                    justify-content: flex-start; /* Left align to match others */
+                    gap: 10px;
                 }
 
                 .language-pill {
-                    margin: 0; /* Remove random margins */
-                    flex: 0 1 auto; /* Allow pills to size based on text */
+                    margin: 0;
+                    flex: 0 1 auto;
                 }
 
                 @media (max-width: 768px) {
@@ -112,7 +117,7 @@ const About = () => {
                     }
                     p {
                         font-size: 1.2rem !important;
-                        margin-bottom: 3rem !important;
+                        margin-bottom: 2rem !important;
                     }
                     div[style*="grid"] {
                         grid-template-columns: 1fr !important;

@@ -142,7 +142,7 @@ export const StaggerTestimonials = () => {
                 <button
                     onClick={() => handleMove(-1)}
                     className={cn(
-                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
+                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                     )}
@@ -153,7 +153,7 @@ export const StaggerTestimonials = () => {
                 <button
                     onClick={() => handleMove(1)}
                     className={cn(
-                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
+                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
                         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                     )}

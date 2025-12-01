@@ -6,8 +6,8 @@ import udhaarPaying from '../assets/udhaar_paying.png';
 import udhaarNoInternet from '../assets/udhaar_no_internet.png';
 import udhaarSuccess from '../assets/udhaar_success.png';
 import udhaarPivotComparison from '../assets/udhaar_pivot_comparison.png';
-import diagramUserJourney from '../assets/diagram_user_journey.svg';
-import diagramTechArch from '../assets/diagram_tech_arch.svg';
+import diagramUserJourney from '../assets/User Flow.svg';
+import diagramTechArch from '../assets/Process Map.svg';
 import { X, ZoomIn } from 'lucide-react';
 
 const ProjectUdhaar = ({ onBack }) => {
@@ -718,39 +718,42 @@ const ProjectUdhaar = ({ onBack }) => {
                 </section>
 
                 {/* 6. Impact Banner (Updated) */}
-                <section className="bg-gray-900 text-white py-12 mb-32 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                        <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-                        <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+                {/* 6. Impact Banner (Updated) */}
+                <section className="mb-32">
+                    <div className="max-w-5xl mx-auto px-6 mb-12">
+                        <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">06 — The Results</h2>
+                        <h3 className="text-3xl md:text-5xl font-bold text-gray-900">Projected Impact</h3>
                     </div>
 
-                    <div className="max-w-5xl mx-auto px-8 md:px-12 relative z-10">
-                        <div className="mb-16">
-                            <h2 className="text-sm font-bold text-orange-400 uppercase tracking-widest mb-4">06 — The Results</h2>
-                            <h3 className="text-3xl md:text-5xl font-bold mb-6">Projected Impact</h3>
+                    <div className="bg-gray-900 text-white py-12 -mx-6 md:-mx-0 md:rounded-3xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                            <div className="absolute right-0 top-0 w-64 h-64 bg-orange-500 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                            <div className="absolute left-0 bottom-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
                         </div>
 
-                        <div className="grid md:grid-cols-3 gap-12 border-t border-gray-800 pt-12">
-                            <div>
-                                <div className="text-5xl font-bold text-white mb-2">15%</div>
-                                <div className="text-lg font-medium text-gray-300 mb-2">Reduction in Drop-offs</div>
-                                <p className="text-sm text-gray-500 leading-relaxed">
-                                    Targeted decrease in checkout abandonment during peak congestion.
-                                </p>
-                            </div>
-                            <div>
-                                <div className="text-5xl font-bold text-white mb-2">&lt; 10%</div>
-                                <div className="text-lg font-medium text-gray-300 mb-2">Merchant Rejection Rate</div>
-                                <p className="text-sm text-gray-500 leading-relaxed">
-                                    Expected pushback from merchants due to "Sensory Verification" cues.
-                                </p>
-                            </div>
-                            <div>
-                                <div className="text-5xl font-bold text-white mb-2">0.5%</div>
-                                <div className="text-lg font-medium text-gray-300 mb-2">Default Risk (Fraud)</div>
-                                <p className="text-sm text-gray-500 leading-relaxed">
-                                    Estimated loss rate due to strict "Trust Score" eligibility criteria.
-                                </p>
+                        <div className="max-w-5xl mx-auto px-8 md:px-12 relative z-10">
+                            <div className="grid md:grid-cols-3 gap-12">
+                                <div>
+                                    <div className="text-5xl font-bold text-white mb-2">15%</div>
+                                    <div className="text-lg font-medium text-gray-300 mb-2">Reduction in Drop-offs</div>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Targeted decrease in checkout abandonment during peak congestion.
+                                    </p>
+                                </div>
+                                <div>
+                                    <div className="text-5xl font-bold text-white mb-2">&lt; 10%</div>
+                                    <div className="text-lg font-medium text-gray-300 mb-2">Merchant Rejection Rate</div>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Expected pushback from merchants due to "Sensory Verification" cues.
+                                    </p>
+                                </div>
+                                <div>
+                                    <div className="text-5xl font-bold text-white mb-2">0.5%</div>
+                                    <div className="text-lg font-medium text-gray-300 mb-2">Default Risk (Fraud)</div>
+                                    <p className="text-sm text-gray-500 leading-relaxed">
+                                        Estimated loss rate due to strict "Trust Score" eligibility criteria.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

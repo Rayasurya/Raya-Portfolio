@@ -1,6 +1,6 @@
 import React from 'react';
 import centerImg from '../assets/center_image.png';
-import udhaarThumbnail from '../assets/udhaar_thumbnail.svg';
+import udhaarThumbnail from '../assets/project_udhaar_thumbnail_v2.svg';
 import { ArrowRight } from 'lucide-react';
 
 // Organized by columns for masonry layout
@@ -81,24 +81,15 @@ const DesignWall = ({ onViewProject }) => {
                     {/* Special handling for Project Udhaar card with dynamic effects */}
                     {design.id === 51 && design.thumbnail ? (
                       <>
-                        {/* Background Image with Parallax Zoom */}
-                        <div
-                          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-in-out group-hover:scale-110"
-                          style={{ backgroundImage: `url(${design.thumbnail})` }}
+                        {/* Thumbnail Image */}
+                        <img
+                          src={design.thumbnail}
+                          alt="Project Udhaar thumbnail"
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
                         />
 
                         {/* Content */}
-                        <div className="relative flex flex-col justify-end h-full" style={{ position: 'relative', zIndex: 2 }}>
-                          <span style={{
-                            color: '#fff',
-                            fontSize: '1.5rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.05em',
-                            textTransform: 'uppercase'
-                          }}>
-                            {design.type}
-                          </span>
-                        </div>
+                        {/* Content Removed - Text is in thumbnail */}
 
                         {/* Hover Overlay with Black Button */}
                         <div className="design-overlay">
@@ -128,7 +119,14 @@ const DesignWall = ({ onViewProject }) => {
                   <>
                     <img src={centerImg} alt="Profile" className="profile-img" />
                     <div className="design-overlay image-overlay">
-                      <button>Know Me</button>
+                      <a
+                        href="https://bento.me/rayasurya"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <button>Know Me</button>
+                      </a>
                     </div>
                   </>
                 )}

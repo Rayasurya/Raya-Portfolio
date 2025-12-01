@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { DockDemo } from './DockDemo';
 import { BubbleText } from './ui/bubble-text';
+import { VoronoiDemo } from './ui/Voronoi';
+import { InteractiveCanvasDemo } from './ui/InteractiveCanvas';
+import { SpotlightText } from './ui/SpotlightText';
 
 const ComponentsGrid = () => {
   return (
@@ -16,7 +19,17 @@ const ComponentsGrid = () => {
       }}>Interactive Elements</h2>
       <div className="grid-container">
 
-        {/* 1. Magnetic Button */}
+        {/* 1. Voronoi Diagram (Moved to top) */}
+        <div className="component-box span-2">
+          <VoronoiDemo />
+        </div>
+
+        {/* 2. Interactive Canvas */}
+        <div className="component-box span-2">
+          <InteractiveCanvasDemo />
+        </div>
+
+        {/* 3. Magnetic Button */}
         <div className="component-box span-1">
           <MagneticButton>Hover Me</MagneticButton>
         </div>
@@ -31,9 +44,9 @@ const ComponentsGrid = () => {
           <InteractiveSlider />
         </div>
 
-        {/* 4. Card Hover Reveal */}
-        <div className="component-box span-1" style={{ padding: 0 }}>
-          <CardReveal />
+        {/* 4. Spotlight Text Reveal */}
+        <div className="component-box span-1" style={{ padding: 0, border: 'none' }}>
+          <SpotlightText text="REVEAL" />
         </div>
 
         {/* 5. Animated Toggle */}
@@ -60,6 +73,8 @@ const ComponentsGrid = () => {
         <div className="component-box span-2">
           <DockDemo />
         </div>
+
+
 
       </div>
       <style>{`
@@ -343,23 +358,7 @@ const InteractiveSlider = () => {
   );
 };
 
-const CardReveal = () => {
-  return (
-    <div className="reveal-card">
-      <div className="reveal-text-desktop" style={{ fontSize: '1.2rem', fontWeight: '600' }}>Hover Me</div>
-      <div className="reveal-text-mobile" style={{ fontSize: '1.2rem', fontWeight: '600', display: 'none' }}>Tap Me</div>
-      <div className="reveal-content">
-        <span style={{ fontWeight: 'bold', letterSpacing: '1px' }}>REVEALED</span>
-      </div>
-      <style>{`
-        @media (max-width: 768px) {
-            .reveal-text-desktop { display: none !important; }
-            .reveal-text-mobile { display: block !important; }
-        }
-      `}</style>
-    </div>
-  );
-};
+
 
 const AnimatedToggle = () => {
   return (

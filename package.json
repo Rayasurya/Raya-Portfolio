@@ -11,7 +11,16 @@
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@visx/clip-path": "^3.12.0",
+    "@visx/delaunay": "^3.12.0",
+    "@visx/event": "^3.12.0",
+    "@visx/gradient": "^3.12.0",
+    "@visx/group": "^3.12.0",
+    "@visx/mock-data": "^3.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.24",
@@ -19,7 +28,9 @@
     "matter-js": "^0.20.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwind-merge": "^3.4.0"
+    "react-easy-crop": "^5.5.6",
+    "tailwind-merge": "^3.4.0",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
