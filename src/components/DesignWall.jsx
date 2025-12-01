@@ -1,6 +1,6 @@
 import React from 'react';
 import centerImg from '../assets/center_image.png';
-import udhaarThumbnail from '../assets/project_udhaar_thumbnail_v3.png';
+import udhaarThumbnail from '../assets/Gemini_Generated_Image_433ktf433ktf433k.png';
 import { ArrowRight } from 'lucide-react';
 
 // Organized by columns for masonry layout

@@ -27,15 +27,23 @@ const About = () => {
                 textAlign: 'left',
                 padding: '0 16px'
             }}>
-                <HoverPreview linkData={{
-                    YouTube: {
-                        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=560&h=320&fit=crop",
-                        title: "YouTube Channel",
-                        subtitle: "100K+ Subscribers • AI & Design",
-                    }
-                }}>
-                    I’m a Product Designer who blends psychology, UX, UI, SaaS, AI, and storytelling to create simple and human-centered digital experiences. My work spans healthcare, data platforms, and content systems, where I focus on turning complex ideas into clear workflows, intuitive interfaces, and usable design systems. I enjoy solving messy problems, improving information architecture, designing micro-interactions, and creating experiences that make technology feel effortless. I also run a {YouTube} channel where I explore the intersection of AI and Design.
-                </HoverPreview>
+                {/* Desktop: Show HoverPreview */}
+                <div className="hidden md:block">
+                    <HoverPreview linkData={{
+                        YouTube: {
+                            image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=560&h=320&fit=crop",
+                            title: "YouTube Channel",
+                            subtitle: "100K+ Subscribers • AI & Design",
+                        }
+                    }}>
+                        I’m a Product Designer who blends psychology, UX, UI, SaaS, AI, and storytelling to create simple and human-centered digital experiences. My work spans healthcare, data platforms, and content systems, where I focus on turning complex ideas into clear workflows, intuitive interfaces, and usable design systems. I enjoy solving messy problems, improving information architecture, designing micro-interactions, and creating experiences that make technology feel effortless. I also run a {YouTube} channel where I explore the intersection of AI and Design.
+                    </HoverPreview>
+                </div>
+
+                {/* Mobile: Show simple text */}
+                <div className="md:hidden text-gray-400 text-xl leading-relaxed" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    I'm a Product Designer who blends psychology, UX, UI, SaaS, AI, and storytelling to create simple and human-centered digital experiences. My work spans healthcare, data platforms, and content systems, where I focus on turning complex ideas into clear workflows, intuitive interfaces, and usable design systems. I enjoy solving messy problems, improving information architecture, designing micro-interactions, and creating experiences that make technology feel effortless. I also run a <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:underline">YouTube</a> channel where I explore the intersection of AI and Design.
+                </div>
             </div>
 
             <div style={{
