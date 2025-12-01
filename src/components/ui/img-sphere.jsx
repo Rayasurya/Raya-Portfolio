@@ -67,14 +67,19 @@ const SphereImageGrid = ({
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePositions, setImagePositions] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    const [, setRenderTrigger] = useState(0);
+    // Removed renderTrigger as we'll use direct DOM manipulation
 
     const containerRef = useRef(null);
+    const sphereRef = useRef(null); // Ref for direct transform updates
     const lastMousePos = useRef({ x: 0, y: 0 });
     const animationFrame = useRef(null);
     const lastTouchDistance = useRef(0);
     const targetZoom = useRef(1);
     const currentZoom = useRef(1);
+
+    // ... (omitted code)
+
+
 
     // ==========================================
     // COMPUTED VALUES
@@ -283,13 +288,19 @@ const SphereImageGrid = ({
             };
         });
 
-        // Smooth zoom interpolation
+        // Smooth zoom interpolation with direct DOM update
         const zoomDiff = targetZoom.current - currentZoom.current;
         if (Math.abs(zoomDiff) > 0.001) {
-            currentZoom.current += zoomDiff * 0.08; // Reduced interpolation for ultra-smooth zoom
-            setRenderTrigger(prev => prev + 1); // Force re-render
+            currentZoom.current += zoomDiff * 0.08;
+            if (sphereRef.current) {
+                sphereRef.current.style.transform = `scale(${currentZoom.current})`;
+            }
         } else {
             currentZoom.current = targetZoom.current;
+            // Ensure final state is set
+            if (sphereRef.current && sphereRef.current.style.transform !== `scale(${targetZoom.current})`) {
+                sphereRef.current.style.transform = `scale(${targetZoom.current})`;
+            }
         }
     }, [isDragging, momentumDecay, velocity, clampRotationSpeed, autoRotate, autoRotateSpeed]);
 
@@ -394,7 +405,7 @@ const SphereImageGrid = ({
 
     const handleWheel = useCallback((e) => {
         e.preventDefault();
-        const delta = e.deltaY * -0.0005; // Reduced sensitivity for smoother zoom
+        const delta = e.deltaY * -0.002; // Increased sensitivity for trackpad
         targetZoom.current = Math.max(0.5, Math.min(3, targetZoom.current + delta));
     }, []);
 
@@ -611,11 +622,13 @@ const SphereImageGrid = ({
                 onTouchStart={handleTouchStart}
             >
                 <div
+                    ref={sphereRef}
                     className="relative w-full h-full"
                     style={{
                         zIndex: 10,
                         transform: `scale(${currentZoom.current})`,
-                        transformOrigin: 'center center'
+                        transformOrigin: 'center center',
+                        willChange: 'transform' // Hint for browser optimization
                     }}
                 >
                     {images.map((image, index) => renderImageNode(image, index))}
