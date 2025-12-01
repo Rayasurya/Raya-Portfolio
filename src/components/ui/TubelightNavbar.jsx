@@ -57,5 +57,3 @@ export function TubelightNavbar({ items, activeTab, onTabChange, className }) {
         </div>
     )
 }
-
-```
