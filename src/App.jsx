@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Briefcase, User, FileText, Layers, Settings } from 'lucide-react';
+import { Home, Briefcase, User, FileText, Layers, Settings, Palette } from 'lucide-react';
 import Hero from './components/Hero';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
 import ProjectUdhaar from './components/ProjectUdhaar';
+import DesignSpace from './components/DesignSpace';
 
 import CustomCursor from './components/CustomCursor';
 import ComponentsGrid from './components/ComponentsGrid';
