@@ -30,7 +30,7 @@ const ComponentsGrid = () => {
         </div>
 
         {/* 3. Magnetic Button */}
-        <div className="component-box span-1">
+        <div className="component-box span-1 hide-mobile">
           <MagneticButton>Hover Me</MagneticButton>
         </div>
 
@@ -45,7 +45,7 @@ const ComponentsGrid = () => {
         </div>
 
         {/* 4. Spotlight Text Reveal */}
-        <div className="component-box span-1" style={{ padding: 0, border: 'none' }}>
+        <div className="component-box span-1 hide-mobile" style={{ padding: 0, border: 'none' }}>
           <SpotlightText text="REVEAL" />
         </div>
 
@@ -121,6 +121,7 @@ const ComponentsGrid = () => {
             grid-template-columns: 1fr;
           }
           .span-1, .span-2, .span-3, .span-4 { grid-column: span 1; }
+          .hide-mobile { display: none !important; }
         }
 
         /* --- Magnetic Button --- */

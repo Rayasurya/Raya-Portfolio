@@ -22,7 +22,7 @@ export const SocialMediaPreviewer = () => {
             </div>
 
             {/* Horizontal Layout */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Left Side - Inputs */}
                 <div className="space-y-3">
                     <div>

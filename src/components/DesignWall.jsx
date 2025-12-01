@@ -10,8 +10,8 @@ const columns = [
     id: 'col-1',
     offset: '0px',
     items: [
-      { id: 11, title: 'Mobile App', type: 'UX Design', color: '#e8e3f3', height: '350px' },
-      { id: 12, title: 'Finance Dash', type: 'UI Kit', color: '#d4d0e3', height: '450px' },
+      { id: 51, title: 'Project Udhaar', type: 'Case Study', color: '#f3f0e8', height: '320px', thumbnail: udhaarThumbnail },
+      { id: 31, title: 'Center Piece', type: 'Focus', color: 'transparent', isImage: true, height: '400px' },
       { id: 13, title: 'Travel App', type: 'Concept', color: '#c9c4db', height: '502px' },
     ]
   },
@@ -28,7 +28,7 @@ const columns = [
     id: 'col-3',
     offset: '160px',
     items: [
-      { id: 31, title: 'Center Piece', type: 'Focus', color: 'transparent', isImage: true, height: '400px' },
+      { id: 11, title: 'Mobile App', type: 'UX Design', color: '#e8e3f3', height: '350px' },
       { id: 32, title: 'Design System', type: 'Library', color: '#f3e8e8', height: '350px' },
       { id: 33, title: 'Interaction', type: 'Prototype', color: '#e8d8d8', height: '392px' },
     ]
@@ -46,7 +46,7 @@ const columns = [
     id: 'col-5',
     offset: '0px',
     items: [
-      { id: 51, title: 'Project Udhaar', type: 'Case Study', color: '#f3f0e8', height: '320px', thumbnail: udhaarThumbnail },
+      { id: 12, title: 'Finance Dash', type: 'UI Kit', color: '#d4d0e3', height: '450px' },
       { id: 52, title: 'Brand Identity', type: 'Branding', color: '#e8e3d8', height: '480px' },
       { id: 53, title: 'Social Media', type: 'Content', color: '#e0d9cf', height: '502px' },
     ]

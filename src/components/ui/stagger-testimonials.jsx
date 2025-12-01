@@ -138,13 +138,14 @@ export const StaggerTestimonials = () => {
                     />
                 );
             })}
-            <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+            <div className="absolute w-full flex justify-between px-4 top-1/2 -translate-y-1/2 md:top-auto md:bottom-4 md:left-1/2 md:-translate-y-0 md:-translate-x-1/2 md:justify-center md:gap-2 md:w-auto pointer-events-none">
                 <button
                     onClick={() => handleMove(-1)}
                     className={cn(
-                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
+                        "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center text-2xl transition-colors rounded-full pointer-events-auto",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2",
+                        "shadow-lg md:shadow-none"
                     )}
                     aria-label="Previous testimonial"
                 >
@@ -153,9 +154,10 @@ export const StaggerTestimonials = () => {
                 <button
                     onClick={() => handleMove(1)}
                     className={cn(
-                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
+                        "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center text-2xl transition-colors rounded-full pointer-events-auto",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2",
+                        "shadow-lg md:shadow-none"
                     )}
                     aria-label="Next testimonial"
                 >
