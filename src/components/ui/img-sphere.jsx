@@ -67,6 +67,7 @@ const SphereImageGrid = ({
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePositions, setImagePositions] = useState([]);
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [, setRenderTrigger] = useState(0);
 
     const containerRef = useRef(null);
     const lastMousePos = useRef({ x: 0, y: 0 });
@@ -286,6 +287,7 @@ const SphereImageGrid = ({
         const zoomDiff = targetZoom.current - currentZoom.current;
         if (Math.abs(zoomDiff) > 0.001) {
             currentZoom.current += zoomDiff * 0.15; // Smooth interpolation factor
+            setRenderTrigger(prev => prev + 1); // Force re-render
         } else {
             currentZoom.current = targetZoom.current;
         }
