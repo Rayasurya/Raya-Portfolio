@@ -32,7 +32,7 @@ export function TubelightNavbar({ items, activeTab, onTabChange, className }) {
                             key={item.name}
                             onClick={() => onTabChange(item.url)}
                             className={cn(
-                                "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-colors",
+                                "relative cursor-pointer text-sm font-semibold px-3 md:px-6 py-3 rounded-full transition-colors",
                                 "text-gray-600 hover:text-black",
                                 isActive && "bg-gray-100 text-black",
                             )}
