@@ -106,6 +106,11 @@ const About = () => {
                 .language-pill {
                     margin: 0;
                     flex: 0 1 auto;
+                    font-family: 'Space Grotesk', 'Segoe UI', Arial, sans-serif;
+                    font-size: 0.85rem;
+                    font-weight: 500;
+                    background: linear-gradient(135deg, #f5f5f5 0%, #ececec 100%);
+                    position: relative;
                 }
 
                 @media (max-width: 768px) {
@@ -127,6 +132,202 @@ const About = () => {
                     }
                 }
             `}</style>
+
+            {/* Contact/ID Section */}
+            <div style={{
+                marginTop: '6rem',
+                padding: '3rem',
+                background: 'linear-gradient(135deg, #fff5f0 0%, #fff 100%)',
+                borderRadius: '24px',
+                border: '2px solid #E67E22',
+                textAlign: 'left'
+            }}>
+                <h3 style={{
+                    fontSize: '1.8rem',
+                    fontWeight: '800',
+                    marginBottom: '1.5rem',
+                    color: '#E67E22'
+                }}>
+                    Let's Connect
+                </h3>
+
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gap: '2rem',
+                    marginBottom: '2rem'
+                }}>
+                    <div>
+                        <div style={{
+                            fontSize: '0.75rem',
+                            fontWeight: '700',
+                            color: '#E67E22',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                            marginBottom: '0.5rem'
+                        }}>
+                            Email
+                        </div>
+                        <a
+                            href="mailto:your.email@example.com"
+                            style={{
+                                fontSize: '1.1rem',
+                                color: '#111',
+                                textDecoration: 'none',
+                                fontWeight: '600',
+                                transition: 'color 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = '#E67E22'}
+                            onMouseLeave={(e) => e.target.style.color = '#111'}
+                        >
+                            your.email@example.com
+                        </a>
+                    </div>
+
+                    <div>
+                        <div style={{
+                            fontSize: '0.75rem',
+                            fontWeight: '700',
+                            color: '#E67E22',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                            marginBottom: '0.5rem'
+                        }}>
+                            Location
+                        </div>
+                        <div style={{
+                            fontSize: '1.1rem',
+                            color: '#111',
+                            fontWeight: '600'
+                        }}>
+                            India
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style={{
+                            fontSize: '0.75rem',
+                            fontWeight: '700',
+                            color: '#E67E22',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.1em',
+                            marginBottom: '0.5rem'
+                        }}>
+                            Availability
+                        </div>
+                        <div style={{
+                            fontSize: '1.1rem',
+                            color: '#111',
+                            fontWeight: '600'
+                        }}>
+                            Open to opportunities
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{
+                    paddingTop: '2rem',
+                    borderTop: '1px solid rgba(230, 126, 34, 0.2)'
+                }}>
+                    <div style={{
+                        fontSize: '0.75rem',
+                        fontWeight: '700',
+                        color: '#E67E22',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.1em',
+                        marginBottom: '1rem'
+                    }}>
+                        Connect on
+                    </div>
+                    <div style={{
+                        display: 'flex',
+                        gap: '1rem',
+                        flexWrap: 'wrap'
+                    }}>
+                        <a
+                            href="https://linkedin.com/in/yourprofile"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '0.75rem 1.5rem',
+                                background: '#E67E22',
+                                color: '#fff',
+                                textDecoration: 'none',
+                                borderRadius: '100px',
+                                fontWeight: '600',
+                                fontSize: '0.9rem',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = '#D67020';
+                                e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = '#E67E22';
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            LinkedIn
+                        </a>
+                        <a
+                            href="https://twitter.com/yourprofile"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '0.75rem 1.5rem',
+                                background: 'transparent',
+                                color: '#E67E22',
+                                textDecoration: 'none',
+                                border: '2px solid #E67E22',
+                                borderRadius: '100px',
+                                fontWeight: '600',
+                                fontSize: '0.9rem',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = '#E67E22';
+                                e.target.style.color = '#fff';
+                                e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = 'transparent';
+                                e.target.style.color = '#E67E22';
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            Twitter/X
+                        </a>
+                        <a
+                            href="https://github.com/yourprofile"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '0.75rem 1.5rem',
+                                background: 'transparent',
+                                color: '#E67E22',
+                                textDecoration: 'none',
+                                border: '2px solid #E67E22',
+                                borderRadius: '100px',
+                                fontWeight: '600',
+                                fontSize: '0.9rem',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.target.style.background = '#E67E22';
+                                e.target.style.color = '#fff';
+                                e.target.style.transform = 'translateY(-2px)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.background = 'transparent';
+                                e.target.style.color = '#E67E22';
+                                e.target.style.transform = 'translateY(0)';
+                            }}
+                        >
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <Connect />
         </section>
