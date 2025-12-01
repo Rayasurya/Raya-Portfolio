@@ -151,11 +151,11 @@ function App() {
           <div className="md:hidden">
             <TubelightNavbar
               items={[
-                { name: 'Home', url: 'home', icon: Home },
-                { name: 'Components', url: 'components', icon: Lightbulb },
-                { name: 'Tools', url: 'tools', icon: Wrench },
-                { name: 'About', url: 'about', icon: User },
-                { name: 'Resume', url: 'resume', icon: FileText }
+                { name: 'home', url: 'home', icon: Home },
+                { name: 'components', url: 'components', icon: Lightbulb },
+                { name: 'tools', url: 'tools', icon: Wrench },
+                { name: 'about', url: 'about', icon: User },
+                { name: 'resume', url: 'resume', icon: FileText }
               ]}
               activeTab={currentView}
               onTabChange={navigateTo}
