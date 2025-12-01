@@ -39,7 +39,7 @@ export function TubelightNavbar({ items, activeTab, onTabChange, className }) {
                         >
                             <span className="hidden md:inline">{item.name}</span>
                             <span className="md:hidden">
-                                <Icon size={16} strokeWidth={2.5} />
+                                <Icon size={20} strokeWidth={2.5} />
                             </span>
                             {isActive && (
                                 <motion.div

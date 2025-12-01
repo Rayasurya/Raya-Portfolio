@@ -91,6 +91,8 @@ const TestimonialCard = ({ position, testimonial, handleMove, cardSize }) => {
 export const StaggerTestimonials = () => {
     const [cardSize, setCardSize] = useState(365);
     const [testimonialsList, setTestimonialsList] = useState(testimonials);
+    const [touchStart, setTouchStart] = useState(0);
+    const [touchEnd, setTouchEnd] = useState(0);
 
     const handleMove = (steps) => {
         const newList = [...testimonialsList];
@@ -110,6 +112,26 @@ export const StaggerTestimonials = () => {
         setTestimonialsList(newList);
     };
 
+    const handleTouchStart = (e) => {
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchMove = (e) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const handleTouchEnd = () => {
+        if (touchStart - touchEnd > 75) {
+            // Swipe left
+            handleMove(1);
+        }
+
+        if (touchStart - touchEnd < -75) {
+            // Swipe right
+            handleMove(-1);
+        }
+    };
+
     useEffect(() => {
         const updateSize = () => {
             const { matches } = window.matchMedia("(min-width: 640px)");
@@ -125,6 +147,9 @@ export const StaggerTestimonials = () => {
         <div
             className="relative w-full overflow-hidden bg-gray-50"
             style={{ height: 600 }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
         >
             {testimonialsList.map((testimonial, index) => {
                 const position = index - Math.floor(testimonialsList.length / 2);
@@ -138,14 +163,14 @@ export const StaggerTestimonials = () => {
                     />
                 );
             })}
-            <div className="absolute w-full flex justify-between px-4 top-1/2 -translate-y-1/2 md:top-auto md:bottom-4 md:left-1/2 md:-translate-y-0 md:-translate-x-1/2 md:justify-center md:gap-2 md:w-auto pointer-events-none">
+            {/* Desktop-only buttons */}
+            <div className="hidden md:flex absolute bottom-4 left-1/2 -translate-x-1/2 gap-2">
                 <button
                     onClick={() => handleMove(-1)}
                     className={cn(
-                        "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center text-2xl transition-colors rounded-full pointer-events-auto",
+                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2",
-                        "shadow-lg md:shadow-none"
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                     )}
                     aria-label="Previous testimonial"
                 >
@@ -154,10 +179,9 @@ export const StaggerTestimonials = () => {
                 <button
                     onClick={() => handleMove(1)}
                     className={cn(
-                        "flex h-12 w-12 md:h-14 md:w-14 items-center justify-center text-2xl transition-colors rounded-full pointer-events-auto",
+                        "flex h-14 w-14 items-center justify-center text-2xl transition-colors rounded-full",
                         "bg-white border-2 border-gray-200 hover:bg-black hover:text-white",
-                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2",
-                        "shadow-lg md:shadow-none"
+                        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                     )}
                     aria-label="Next testimonial"
                 >
