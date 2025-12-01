@@ -286,7 +286,7 @@ const SphereImageGrid = ({
         // Smooth zoom interpolation
         const zoomDiff = targetZoom.current - currentZoom.current;
         if (Math.abs(zoomDiff) > 0.001) {
-            currentZoom.current += zoomDiff * 0.15; // Smooth interpolation factor
+            currentZoom.current += zoomDiff * 0.08; // Reduced interpolation for ultra-smooth zoom
             setRenderTrigger(prev => prev + 1); // Force re-render
         } else {
             currentZoom.current = targetZoom.current;
@@ -355,7 +355,7 @@ const SphereImageGrid = ({
             // Pinch zoom
             const currentDistance = getTouchDistance(e.touches);
             if (lastTouchDistance.current > 0) {
-                const delta = (currentDistance - lastTouchDistance.current) * 0.01;
+                const delta = (currentDistance - lastTouchDistance.current) * 0.005; // Reduced pinch sensitivity
                 targetZoom.current = Math.max(0.5, Math.min(3, targetZoom.current + delta));
             }
             lastTouchDistance.current = currentDistance;
@@ -394,7 +394,7 @@ const SphereImageGrid = ({
 
     const handleWheel = useCallback((e) => {
         e.preventDefault();
-        const delta = e.deltaY * -0.001;
+        const delta = e.deltaY * -0.0005; // Reduced sensitivity for smoother zoom
         targetZoom.current = Math.max(0.5, Math.min(3, targetZoom.current + delta));
     }, []);
 
