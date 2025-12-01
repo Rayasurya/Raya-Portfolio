@@ -169,7 +169,7 @@ function rotateSize(width, height, rotation) {
     };
 }
 
-async function getCroppedImg(
+export async function getCroppedImg(
     imageSrc,
     pixelCrop,
     rotation = 0,
