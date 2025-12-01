@@ -122,6 +122,8 @@ export const Particles = ({
     const canvasSize = useRef({ w: 0, h: 0 });
     const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
 
+    const animationFrameId = useRef(null);
+
     useEffect(() => {
         if (canvasRef.current) {
             context.current = canvasRef.current.getContext("2d");
@@ -132,6 +134,9 @@ export const Particles = ({
 
         return () => {
             window.removeEventListener("resize", initCanvas);
+            if (animationFrameId.current) {
+                window.cancelAnimationFrame(animationFrameId.current);
+            }
         };
     }, []);
 
@@ -303,7 +308,7 @@ export const Particles = ({
                 );
             }
         });
-        window.requestAnimationFrame(animate);
+        animationFrameId.current = window.requestAnimationFrame(animate);
     };
 
     return (

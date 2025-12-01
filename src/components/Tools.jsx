@@ -78,69 +78,46 @@ const ImageCropperTool = () => {
                 ))}
             </div>
 
-            {/* Main Content Area - Upload and Preview Side by Side */}
-            <div className="grid grid-cols-2 gap-6 mb-6">
-                {/* Upload Section */}
-                <div className="flex flex-col">
-                    <p className="text-sm font-medium text-gray-700 mb-3">Upload</p>
-                    <AvatarUploader
-                        onUpload={handleUploadComplete}
-                        aspect={selectedRatio.value}
-                    >
-                        <div className="relative group cursor-pointer">
-                            <div
-                                className="border-2 border-dashed border-gray-300 rounded-xl hover:border-blue-500 transition-colors bg-gray-50 flex items-center justify-center"
-                                style={{
-                                    aspectRatio: selectedRatio.value,
-                                    minHeight: '160px'
-                                }}
-                            >
-                                {originalImage || croppedImageUrl ? (
-                                    <img
-                                        src={originalImage || croppedImageUrl}
-                                        alt="Upload"
-                                        className="w-full h-full object-cover rounded-xl"
-                                    />
-                                ) : (
-                                    <div className="text-center">
-                                        <Upload className="mx-auto text-gray-400 mb-2" size={32} />
-                                        <p className="text-sm text-gray-500">Click to upload</p>
-                                    </div>
-                                )}
-                            </div>
+            {/* Main Content Area - Preview Only with Fixed Height */}
+            <div className="mb-6">
+                <AvatarUploader
+                    onUpload={handleUploadComplete}
+                    aspect={selectedRatio.value}
+                >
+                    <div className="relative group cursor-pointer">
+                        <div
+                            className="border-2 border-dashed border-gray-300 rounded-xl hover:border-blue-500 transition-colors bg-gray-50 flex items-center justify-center overflow-hidden"
+                            style={{
+                                height: '280px', // Fixed height
+                                width: '100%'
+                            }}
+                        >
+                            {croppedImageUrl ? (
+                                <img
+                                    src={croppedImageUrl}
+                                    alt="Preview"
+                                    className="max-w-full max-h-full object-contain"
+                                    style={{
+                                        aspectRatio: selectedRatio.value
+                                    }}
+                                />
+                            ) : (
+                                <div className="text-center">
+                                    <Upload className="mx-auto text-gray-400 mb-2" size={40} />
+                                    <p className="text-sm text-gray-500 font-medium">Click to upload</p>
+                                    <p className="text-xs text-gray-400 mt-1">Image will be cropped to selected ratio</p>
+                                </div>
+                            )}
+                        </div>
+                        {croppedImageUrl && (
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 rounded-xl">
                                 <div className="bg-white rounded-full p-3">
                                     <Upload className="text-blue-600" size={20} />
                                 </div>
                             </div>
-                        </div>
-                    </AvatarUploader>
-                </div>
-
-                {/* Preview Section */}
-                <div className="flex flex-col">
-                    <p className="text-sm font-medium text-gray-700 mb-3">Preview</p>
-                    <div
-                        className="border-2 border-gray-200 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center"
-                        style={{
-                            aspectRatio: selectedRatio.value,
-                            minHeight: '160px'
-                        }}
-                    >
-                        {croppedImageUrl ? (
-                            <img
-                                src={croppedImageUrl}
-                                alt="Preview"
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            <div className="text-center text-gray-400">
-                                <ImageIcon size={32} className="mx-auto mb-2" />
-                                <p className="text-xs">Preview appears here</p>
-                            </div>
                         )}
                     </div>
-                </div>
+                </AvatarUploader>
             </div>
 
             {/* Download Button */}
