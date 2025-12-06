@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
  * ProgressBar - Shows scroll progress at top of page
  * Displays 0-100% based on scroll position
  */
-export function ProgressBar({ chapters = [] }) {
+export function ProgressBar({ chapters = [], className = "top-0" }) {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
@@ -16,15 +16,16 @@ export function ProgressBar({ chapters = [] }) {
         };
 
         updateProgress();
-        window.addEventListener('scroll', updateProgress);
+        // Use passive listener for better scroll performance
+        window.addEventListener('scroll', updateProgress, { passive: true });
 
         return () => window.removeEventListener('scroll', updateProgress);
     }, []);
 
     return (
-        <div className="fixed top-0 left-0 right-0 h-1 bg-gray-100 z-50">
+        <div className={`fixed left-0 right-0 h-1 bg-gray-100 z-50 ${className}`}>
             <div
-                className="h-full bg-gradient-to-r from-orange-500 to-orange-600 transition-all duration-200"
+                className="h-full bg-gradient-to-r from-orange-500 to-orange-600"
                 style={{ width: `${progress}%` }}
             />
 

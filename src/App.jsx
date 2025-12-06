@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Home, Briefcase, User, FileText, Layers, Settings, Palette } from 'lucide-react';
 import Hero from './components/Hero';
 import HeroV2 from './components/HeroV2';
@@ -7,6 +7,7 @@ import ReactiveBackground from './components/ReactiveBackground';
 import ProjectUdhaar from './components/ProjectUdhaar';
 import ProjectUdhaarV2 from './components/ProjectUdhaarV2';
 import DesignSpace from './components/DesignSpace';
+import Lenis from 'lenis'; // Import Lenis
 
 import CustomCursor from './components/CustomCursor';
 import ComponentsGrid from './components/ComponentsGrid';
@@ -24,11 +25,38 @@ function App() {
   // Initialize view from URL hash or default to 'home'
   const getInitialView = () => {
     const hash = window.location.hash.slice(1); // Remove '#'
-    return hash || 'home';
+    return hash || 'home2';
   };
 
   const [currentView, setCurrentView] = useState(getInitialView());
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const transitionDivRef = useRef(null); // Ref for transition div
+  const lenisRef = useRef(null);
+
+  // Initialize Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+    lenisRef.current = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // Display name mapping for navigation
   const getDisplayName = (view) => {
@@ -38,270 +66,187 @@ function App() {
       'tools': 'Tools',
       'about': 'About',
       'resume': 'Resume',
-      'home': 'Home',
-      'home2': 'Home 2'
+      'home': 'Old Home',
+      'home2': 'Home'
     };
     return displayNames[view] || view;
   };
 
   // Navigate and update browser history with smooth transition
   const navigateTo = (view) => {
-    // Trigger fade out
+    if (isTransitioning) return; // Prevent double click
+
+    // Determine direction: If going back to 'home' or 'home2' from a project -> Reverse
+    const isProjectView = currentView.includes('project-');
+    const isTargetHome = view.includes('home');
+    const isReverse = isProjectView && isTargetHome;
+
     setIsTransitioning(true);
+    const transitionDiv = transitionDivRef.current;
 
-    // After fade out, change view and fade in
-    setTimeout(() => {
-      setCurrentView(view);
-      window.history.pushState({ view }, '', `#${view}`);
-      window.scrollTo({ top: 0, behavior: 'auto' });
+    if (transitionDiv) {
+      // 1. SET START POSITION (Instant, no transition)
+      transitionDiv.style.transition = 'none';
+      // Normal: Start at Bottom (100%) -> Slide Up
+      // Reverse: Start at Top (-100%) -> Slide Down
+      const startPos = isReverse ? 'translateY(-100%)' : 'translateY(100%)';
+      const centerPos = 'translateY(0%)';
+      const endPos = isReverse ? 'translateY(100%)' : 'translateY(-100%)';
 
-      // Fade back in
+      transitionDiv.style.transform = startPos;
+
+      // Force Reflow
+      transitionDiv.offsetHeight;
+
+      // 2. ANIMATE IN (To Center)
+      transitionDiv.style.transition = 'transform 0.8s cubic-bezier(0.7, 0, 0.3, 1)';
+      transitionDiv.style.transform = centerPos;
+
+      // Wait for cover
       setTimeout(() => {
-        setIsTransitioning(false);
-      }, 10);
-    }, 150);
+        // 3. CHANGE VIEW
+        setCurrentView(view);
+        window.location.hash = view;
+        window.scrollTo(0, 0);
+
+        // 4. ANIMATE OUT (To End)
+        transitionDiv.style.transform = endPos;
+
+        // 5. CLEANUP
+        setTimeout(() => {
+          transitionDiv.style.transition = 'none';
+          // Move to bottom (hidden) by default for next time
+          transitionDiv.style.transform = 'translateY(100%)';
+          setIsTransitioning(false);
+        }, 800);
+
+      }, 800);
+    } else {
+      // Fallback if transition div missing
+      setCurrentView(view);
+      window.location.hash = view;
+      window.scrollTo(0, 0);
+      setIsTransitioning(false);
+    }
   };
 
   // Listen to browser back/forward buttons
   useEffect(() => {
     const handlePopState = (event) => {
-      const view = event.state?.view || getInitialView();
+      const view = window.location.hash.slice(1) || 'home2'; // Default to home2
       setCurrentView(view);
     };
 
     window.addEventListener('popstate', handlePopState);
 
-    // Set initial state
-    window.history.replaceState({ view: currentView }, '', `#${currentView}`);
+    // Set initial hash if not present
+    if (!window.location.hash) {
+      window.location.hash = currentView;
+    }
 
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [currentView]);
 
+  // --- VIEW RENDERING ---
   const renderView = () => {
     switch (currentView) {
       case 'home':
-        return (
-          <>
-            <Hero onOpenProject={() => navigateTo('project-udhaar')} />
-            <DesignWall onViewProject={(id) => {
-              if (id === 51) navigateTo('project-udhaar');
-            }} />
-            <StaggerTestimonials />
-          </>
-        );
+        return <Hero onOpenProject={(id) => {
+          // Special handling for Project Udhaar card click
+          if (id === 51) navigateTo('project-udhaar');
+        }} />;
       case 'home2':
-        return (
-          <>
-            <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />
-          </>
-        );
-      case 'components':
+        return <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />;
+      case 'designs':
+        return <DesignWall />; // Simply render DesignWall
+      case 'components': // Keep route for logic, though hidden
         return <ComponentsGrid />;
+      case 'project-udhaar':
+        return <ProjectUdhaar onBack={() => navigateTo('home')} />;
+      case 'project-udhaar-v2':
+        return <ProjectUdhaarV2 onBack={() => navigateTo('home2')} />;
       case 'about':
         return <About />;
       case 'resume':
         return <Resume />;
       case 'tools':
         return <Tools />;
-      case 'designs':
-        return <DesignSpace />;
-      case 'project-udhaar':
-        return <ProjectUdhaar onBack={() => navigateTo('home')} />;
-      case 'project-udhaar-v2':
-        return <ProjectUdhaarV2 onBack={() => navigateTo('home2')} />;
       default:
-        return <DesignWall onViewProject={(id) => {
-          if (id === 51) navigateTo('project-udhaar');
-        }} />;
+        // Changed default to home2 as requested
+        return <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />;
     }
   };
 
+
   return (
-    <div className="app-container">
+    <>
       <CustomCursor />
-      <ReactiveBackground />
 
-      {currentView !== 'project-udhaar' && (
-        <>
-          {/* Top Navigation - Hidden links on mobile */}
-          <nav style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            padding: '1.5rem 2rem',
-            zIndex: 100,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            background: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderBottom: '1px solid rgba(0,0,0,0.05)',
-          }}>
-            <div
-              onClick={() => navigateTo('home')}
-              style={{
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                letterSpacing: '-0.5px',
-                cursor: 'pointer'
-              }}
-            >
-              Raya.
-            </div>
+      {/* 
+        Container for the entire app. 
+        Only apply Layout padding if NOT in Project Views or specific fullscreen views.
+      */}
+      <div
+        className="min-h-screen bg-[#F4F4F4] transition-colors duration-500"
+        style={{
+          color: '#111',
+          paddingTop: currentView === 'project-udhaar' || currentView === 'project-udhaar-v2' ? '0' : '80px',
+          paddingBottom: '80px', // Space for bottom nav
+        }}
+      >
 
+        {/* Render the Active View */}
+        <main
+          style={{
+            minHeight: 'calc(100vh - 160px)',
+            paddingBottom: currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' ? '0' : '0',
+          }}
+        >
+          {renderView()}
+        </main>
+
+
+        {/* Navigation Bar (Floating/Tubelight) */}
+        {/* HIDE NAV on Project Pages */}
+        {currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' && (
+          <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
             {/* Desktop Menu Items - Hidden on Mobile */}
             <div className="hidden md:flex gap-8">
-              {['home', 'home2', 'components', 'designs', 'tools', 'about', 'resume'].map((view) => (
+              {['home2', 'designs', 'tools', 'about', 'resume'].map((view) => (
                 <button
                   key={view}
                   onClick={() => navigateTo(view)}
-                  style={{
-                    background: 'transparent',
-                    color: currentView === view ? '#000' : '#666',
-                    border: 'none',
-                    padding: '0.5rem 0',
-                    cursor: 'pointer',
-                    fontWeight: currentView === view ? '600' : '400',
-                    fontSize: '1rem',
-                    position: 'relative',
-                  }}
+                  className={`text-sm font-medium transition-colors relative ${currentView === view ? 'text-black font-bold' : 'text-gray-500 hover:text-black'
+                    }`}
                 >
                   {getDisplayName(view)}
-                  {currentView === view && (
-                    <span style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '2px',
-                      background: '#000',
-                    }} />
-                  )}
                 </button>
               ))}
             </div>
-          </nav>
+
+            {/* Mobile Bottom Dialog/Navbar (Using TubelightNavbar) */}
 
 
 
-          {/* Tubelight Navigation - Mobile Only */}
-          <div className="md:hidden">
-            <TubelightNavbar
-              items={[
-                { name: 'Home', url: 'home', icon: Home },
-                { name: 'Home 2', url: 'home2', icon: Home },
-                { name: 'Designs', url: 'designs', icon: Palette },
-                { name: 'Projects', url: 'components', icon: Layers },
-                { name: 'About', url: 'about', icon: User },
-                { name: 'Resume', url: 'resume', icon: FileText }
-              ]}
-              activeTab={currentView === 'home' ? 'Home' : currentView === 'home2' ? 'Home 2' : currentView === 'designs' ? 'Designs' : currentView === 'components' ? 'Projects' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
-              onTabChange={navigateTo}
-            />
+            {/* Tubelight Navigation - Mobile Only */}
+            <div className="md:hidden">
+              <TubelightNavbar
+                items={[
+                  { name: 'Home', url: 'home', icon: Home },
+                  { name: 'Home 2', url: 'home2', icon: Home },
+                  { name: 'Designs', url: 'designs', icon: Palette },
+                  { name: 'About', url: 'about', icon: User },
+                  { name: 'Resume', url: 'resume', icon: FileText }
+                ]}
+                activeTab={currentView === 'home' ? 'Home' : currentView === 'home2' ? 'Home 2' : currentView === 'designs' ? 'Designs' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
+                onTabChange={navigateTo}
+              />
+            </div>
           </div>
-        </>
-      )}
-
-      <main style={{
-        paddingTop: currentView === 'project-udhaar' || currentView === 'project-udhaar-v2' ? '0' : '80px',
-        minHeight: '100vh',
-        position: 'relative',
-        zIndex: 1,
-        paddingBottom: currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' ? '0' : '0',
-        opacity: isTransitioning ? 0 : 1,
-        transition: 'opacity 150ms ease-in-out'
-      }}>
-        {renderView()}
-      </main>
-
-      {/* Animated Social Links - Desktop Only */}
-      {currentView !== 'project-udhaar' && currentView !== 'project-udhaar-v2' && (
-        <div className="hidden md:flex fixed bottom-8 right-8 z-50 bg-white rounded-full px-4 py-2 shadow-lg border border-gray-200">
-          <AnimatedSocialLinks
-            socials={[
-              {
-                name: 'Instagram',
-                url: 'https://www.instagram.com/corporate__tarzan?igsh=MWQ4YjBkd3JwZmxwag==',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png',
-              },
-              {
-                name: 'LinkedIn',
-                url: 'https://www.linkedin.com/in/raya-surya/',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png',
-              },
-              {
-                name: 'Email',
-                url: 'mailto:raya.work.ux@gmail.com',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png',
-              },
-              {
-                name: 'WhatsApp',
-                url: 'https://wa.me/916382127165',
-                image: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg',
-              },
-              {
-                name: 'Medium',
-                url: 'https://medium.com/@rayasurya292001',
-                image: '/src/assets/Medium Icon.svg',
-              },
-            ]}
-          />
-        </div>
-      )}
-      {/* Comparison Toggle Button (As requested) */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '2rem',
-          left: '2rem',
-          zIndex: 9999,
-          display: 'flex',
-          gap: '0.5rem',
-          background: 'white',
-          padding: '0.5rem',
-          borderRadius: '9999px',
-          boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)',
-          border: '1px solid #f0f0f0'
-        }}
-        className="hidden md:flex"
-      >
-        <button
-          onClick={() => navigateTo('home')}
-          style={{
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            background: currentView === 'home' ? '#000' : 'transparent',
-            color: currentView === 'home' ? '#fff' : '#666',
-            border: 'none',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s'
-          }}
-        >
-          Old Home
-        </button>
-        <button
-          onClick={() => navigateTo('home2')}
-          style={{
-            padding: '0.5rem 1rem',
-            borderRadius: '9999px',
-            background: currentView === 'home2' ? '#a3ff12' : 'transparent',
-            color: currentView === 'home2' ? '#000' : '#666',
-            border: 'none',
-            fontSize: '0.875rem',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s'
-          }}
-        >
-          New (Fresh)
-        </button>
+        )}
       </div>
-
-    </div>
-  );
+    </>
+  )
 }
 
 export default App;

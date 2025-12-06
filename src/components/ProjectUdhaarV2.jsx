@@ -145,18 +145,24 @@ const ProjectUdhaar = ({ onBack }) => {
             {/* Chapter Navigation (sidebar) */}
             <ChapterNavigation chapters={chapters} activeId={activeChapter} />
 
-            {/* Progress Bar */}
-            <ProgressBar chapters={chapters} />
-
-            {/* Navigation */}
-            <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 pointer-events-none flex justify-between items-center">
-                <button
-                    onClick={onBack}
-                    className="pointer-events-auto bg-white/90 backdrop-blur-md border border-gray-200 text-gray-900 px-5 py-2.5 rounded-full flex items-center gap-2 hover:bg-gray-50 transition-all font-medium text-sm shadow-sm"
-                >
-                    <ArrowLeft size={16} />
-                    Back
-                </button>
+            {/* Consolidated Header (Back Button + Progress + Background) */}
+            <div className="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+                <div className="px-6 py-4 flex justify-between items-center">
+                    <button
+                        onClick={onBack}
+                        className="bg-gray-50 border border-gray-200 text-gray-900 px-5 py-2 rounded-full flex items-center gap-2 hover:bg-gray-100 transition-all font-medium text-sm"
+                    >
+                        <ArrowLeft size={16} />
+                        Back
+                    </button>
+                    <div className="text-xs font-bold text-gray-400 uppercase tracking-widest hidden md:block">
+                        Project Overview
+                    </div>
+                </div>
+                {/* Progress Bar - Attached to bottom of header */}
+                <div className="absolute bottom-0 left-0 w-full translate-y-[100%]">
+                    <ProgressBar chapters={chapters} className="!static !h-1" />
+                </div>
             </div>
 
             {/* Hero Section - Centered & Editorial */}

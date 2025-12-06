@@ -111,7 +111,29 @@ body {
 
 /* Smooth scroll behavior */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  /* Let Lenis handle it */
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Improve tap highlight for mobile */
@@ -119,4 +141,20 @@ html {
   * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
   }
+}
+
+/* --- Page Transition Styles --- */
+.transition__div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #111;
+  /* Black transition cover */
+  z-index: 9999;
+  transform: translateY(100%);
+  /* Default hidden at bottom */
+  pointer-events: none;
+  /* Transition handled in JS */
 }
