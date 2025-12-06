@@ -232,13 +232,12 @@ function App() {
             <div className="md:hidden">
               <TubelightNavbar
                 items={[
-                  { name: 'Home', url: 'home', icon: Home },
-                  { name: 'Home 2', url: 'home2', icon: Home },
+                  { name: 'Home', url: 'home2', icon: Home },
                   { name: 'Designs', url: 'designs', icon: Palette },
                   { name: 'About', url: 'about', icon: User },
                   { name: 'Resume', url: 'resume', icon: FileText }
                 ]}
-                activeTab={currentView === 'home' ? 'Home' : currentView === 'home2' ? 'Home 2' : currentView === 'designs' ? 'Designs' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
+                activeTab={currentView === 'home2' ? 'Home' : currentView === 'designs' ? 'Designs' : currentView === 'about' ? 'About' : currentView === 'resume' ? 'Resume' : currentView}
                 onTabChange={navigateTo}
               />
             </div>
