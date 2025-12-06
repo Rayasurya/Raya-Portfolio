@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Home, Briefcase, User, FileText, Layers, Settings, Palette } from 'lucide-react';
 import Hero from './components/Hero';
+import HeroV2 from './components/HeroV2';
 import DesignWall from './components/DesignWall';
 import ReactiveBackground from './components/ReactiveBackground';
 import ProjectUdhaar from './components/ProjectUdhaar';
@@ -91,11 +92,7 @@ function App() {
       case 'home2':
         return (
           <>
-            <Hero onOpenProject={() => navigateTo('project-udhaar-v2')} />
-            <DesignWall onViewProject={(id) => {
-              if (id === 51) navigateTo('project-udhaar-v2');
-            }} />
-            <StaggerTestimonials />
+            <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />
           </>
         );
       case 'components':
@@ -252,6 +249,57 @@ function App() {
           />
         </div>
       )}
+      {/* Comparison Toggle Button (As requested) */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '2rem',
+          left: '2rem',
+          zIndex: 9999,
+          display: 'flex',
+          gap: '0.5rem',
+          background: 'white',
+          padding: '0.5rem',
+          borderRadius: '9999px',
+          boxShadow: '0 10px 30px -10px rgba(0,0,0,0.3)',
+          border: '1px solid #f0f0f0'
+        }}
+        className="hidden md:flex"
+      >
+        <button
+          onClick={() => navigateTo('home')}
+          style={{
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            background: currentView === 'home' ? '#000' : 'transparent',
+            color: currentView === 'home' ? '#fff' : '#666',
+            border: 'none',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
+        >
+          Old Home
+        </button>
+        <button
+          onClick={() => navigateTo('home2')}
+          style={{
+            padding: '0.5rem 1rem',
+            borderRadius: '9999px',
+            background: currentView === 'home2' ? '#a3ff12' : 'transparent',
+            color: currentView === 'home2' ? '#000' : '#666',
+            border: 'none',
+            fontSize: '0.875rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s'
+          }}
+        >
+          New (Fresh)
+        </button>
+      </div>
+
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, Check, Smartphone, WifiOff, ShieldCheck, Users, TrendingUp } from 'lucide-react';
 import AudioPlayer from './ui/AudioPlayer';
+import ChapterNavigation from './ui/ChapterNavigation';
+import ProgressBar from './ui/ProgressBar';
+import ProjectNavigation from './ui/ProjectNavigation';
 
 import udhaarPaying from '../assets/udhaar_paying.png';
 import udhaarNoInternet from '../assets/udhaar_no_internet.png';
@@ -18,6 +21,36 @@ const ProjectUdhaar = ({ onBack }) => {
     const [isDragging, setIsDragging] = React.useState(false);
     const [dragStart, setDragStart] = React.useState({ x: 0, y: 0 });
     const modalRef = React.useRef(null);
+    const [activeChapter, setActiveChapter] = React.useState('overview');
+
+    // Chapter structure for navigation
+    const chapters = [
+        { id: 'overview', title: 'Project Overview' },
+        { id: 'problem', title: 'The Problem' },
+        { id: 'research', title: 'Research' },
+        { id: 'solution', title: 'The Solution' },
+        { id: 'design', title: 'Design Process' },
+        { id: 'impact', title: 'Impact & Outcomes' }
+    ];
+
+    // Track active chapter based on scroll position
+    useEffect(() => {
+        const handleScroll = () => {
+            // Trigger when the section reaches the middle of the viewport
+            const scrollPosition = window.scrollY + (window.innerHeight / 2);
+
+            for (let i = chapters.length - 1; i >= 0; i--) {
+                const element = document.getElementById(chapters[i].id);
+                if (element && element.offsetTop <= scrollPosition) {
+                    setActiveChapter(chapters[i].id);
+                    break;
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     // Reset zoom and pan when image opens/closes
     useEffect(() => {
@@ -109,6 +142,12 @@ const ProjectUdhaar = ({ onBack }) => {
 
     return (
         <div className="bg-white min-h-screen w-full relative z-10 pb-32">
+            {/* Chapter Navigation (sidebar) */}
+            <ChapterNavigation chapters={chapters} activeId={activeChapter} />
+
+            {/* Progress Bar */}
+            <ProgressBar chapters={chapters} />
+
             {/* Navigation */}
             <div className="fixed top-0 left-0 w-full z-50 px-6 py-6 pointer-events-none flex justify-between items-center">
                 <button
@@ -121,7 +160,7 @@ const ProjectUdhaar = ({ onBack }) => {
             </div>
 
             {/* Hero Section - Centered & Editorial */}
-            <header className="pt-40 pb-20 px-6 max-w-5xl mx-auto text-center">
+            <header id="overview" className="pt-40 pb-20 px-6 max-w-5xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-700 rounded-full text-xs font-bold tracking-wider mb-8 border border-orange-100">
                     <span className="w-2 h-2 rounded-full bg-orange-500"></span>
                     FINTECH • UX STRATEGY
@@ -201,7 +240,7 @@ const ProjectUdhaar = ({ onBack }) => {
             <div className="max-w-3xl mx-auto px-6">
 
                 {/* 2. The Context */}
-                <section className="mb-32">
+                <section id="problem" className="mb-32">
                     <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">01 — The Context</h2>
                     <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">The "Bharat" Problem</h3>
 
@@ -250,9 +289,45 @@ const ProjectUdhaar = ({ onBack }) => {
                     </div>
                 </section>
 
+                {/* 02. Human Insight (Moved to correct order) */}
+                <section id="research" className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">02 — Human Insight</h2>
+                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Did it work?</h3>
+
+                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
+                        I took the "Orange Screen" prototype back to the shopkeepers I interviewed to test their reaction to the new sensory cues. The feedback was overwhelmingly positive regarding the visual confirmation.
+                    </p>
+
+                    <div className="border-l-4 border-orange-500 pl-8 py-2 mb-12">
+                        <p className="text-xl italic text-gray-800 mb-4">
+                            "Yes, if the screen turns Orange and makes a 'Tring' sound, that works. I just need the assurance that money will come."
+                        </p>
+                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
+                            <span>Merchant Feedback</span>
+                        </div>
+                        <AudioPlayer
+                            title="Feedback • Shopkeeper 2"
+                            src="/src/assets/merchant_feedback.mp3"
+                        />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8 mt-16">
+                        <div className="bg-green-50 p-6 rounded-2xl">
+                            <div className="text-4xl font-bold text-green-600 mb-2">15%</div>
+                            <div className="text-sm font-medium text-green-900">Reduction in Drop-offs</div>
+                            <div className="text-xs text-green-700 mt-1">Targeted impact during peak hours</div>
+                        </div>
+                        <div className="bg-blue-50 p-6 rounded-2xl">
+                            <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
+                            <div className="text-sm font-medium text-blue-900">Digital Ledger</div>
+                            <div className="text-xs text-blue-700 mt-1">Migration from manual "Khata"</div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* 2. The Strategy - Unified Section */}
                 <section className="mb-32">
-                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">02 — The Strategy</h2>
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">03 — The Core Insight</h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Defining the Logic</h3>
 
                     {/* Trust Score Algorithm Table */}
@@ -367,7 +442,7 @@ const ProjectUdhaar = ({ onBack }) => {
 
                 {/* 3. Visual Diagrams - New Section */}
                 <section className="mb-32">
-                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">03 — Visualizing the Protocol</h2>
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">Final Thoughts</h2>
                     <h3 className="text-2xl md:text-4xl font-bold text-gray-900 mb-12">The Architecture of Trust</h3>
 
                     {/* Diagram A: User Journey */}
@@ -415,7 +490,7 @@ const ProjectUdhaar = ({ onBack }) => {
             </div>
 
             {/* 4. The Solution - Wide Section */}
-            <section className="bg-gray-50 py-32 mb-32">
+            <section id="solution" className="bg-gray-50 py-32 mb-32">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="max-w-3xl mx-auto text-center mb-20">
                         <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — The Solution</h2>
@@ -604,43 +679,10 @@ const ProjectUdhaar = ({ onBack }) => {
 
             {/* 5. Validation & Conclusion */}
             < div className="max-w-3xl mx-auto px-6" >
-                <section className="mb-32">
-                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">04 — Validation</h2>
-                    <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Did it work?</h3>
 
-                    <p className="text-lg text-gray-600 leading-relaxed mb-12">
-                        I took the "Orange Screen" prototype back to the shopkeepers I interviewed to test their reaction to the new sensory cues. The feedback was overwhelmingly positive regarding the visual confirmation.
-                    </p>
 
-                    <div className="border-l-4 border-orange-500 pl-8 py-2 mb-12">
-                        <p className="text-xl italic text-gray-800 mb-4">
-                            "Yes, if the screen turns Orange and makes a 'Tring' sound, that works. I just need the assurance that money will come."
-                        </p>
-                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase tracking-wider mb-6">
-                            <span>Merchant Feedback</span>
-                        </div>
-                        <AudioPlayer
-                            title="Feedback • Shopkeeper 2"
-                            src="/src/assets/merchant_feedback.mp3"
-                        />
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 mt-16">
-                        <div className="bg-green-50 p-6 rounded-2xl">
-                            <div className="text-4xl font-bold text-green-600 mb-2">15%</div>
-                            <div className="text-sm font-medium text-green-900">Reduction in Drop-offs</div>
-                            <div className="text-xs text-green-700 mt-1">Targeted impact during peak hours</div>
-                        </div>
-                        <div className="bg-blue-50 p-6 rounded-2xl">
-                            <div className="text-4xl font-bold text-blue-600 mb-2">100%</div>
-                            <div className="text-sm font-medium text-blue-900">Digital Ledger</div>
-                            <div className="text-xs text-blue-700 mt-1">Migration from manual "Khata"</div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="mb-32">
-                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-8">05 — Engineering</h2>
+                <section id="design" className="mb-32">
+                    <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">05 — Design Principles</h2>
                     <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">Technical Architecture (Under the Hood)</h3>
                     <p className="text-lg text-gray-600 leading-relaxed mb-12">
                         I collaborated with engineering constraints to define how this system remains secure without a live server connection.
@@ -719,7 +761,7 @@ const ProjectUdhaar = ({ onBack }) => {
 
                 {/* 6. Impact Banner (Updated) */}
                 {/* 6. Impact Banner (Updated) */}
-                <section className="mb-32">
+                <section id="impact" className="mb-32">
                     <div className="max-w-5xl mx-auto px-6 mb-12">
                         <h2 className="text-sm font-bold text-[#E67E22] uppercase tracking-widest mb-4">06 — The Results</h2>
                         <h3 className="text-3xl md:text-5xl font-bold text-gray-900">Projected Impact</h3>

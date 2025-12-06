@@ -1,6 +1,7 @@
 import React from 'react';
 import { Connect } from './Connect';
 import { HoverPreview } from './ui/hover-preview';
+import IDCard from './ui/IDCard';
 
 const About = () => {
     const skills = ['User Research', 'Interaction Design', 'Visual Design', 'Leveraging AI for work', 'User Testing', 'Content Management', 'Continuous Learning', 'Content strategy', 'Prompt Engineering'];
@@ -35,9 +36,7 @@ const About = () => {
                         subtitle: "100K+ Subscribers • AI & Design",
                     }
                 }}>
-                    <div className="text-gray-800 text-xl leading-relaxed font-medium" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                        I'm a Product Designer blending psychology, AI, and storytelling to create human-centered experiences. My work spans healthcare and data platforms, turning complex ideas into intuitive interfaces. I enjoy solving messy problems, designing micro-interactions, and making technology feel effortless. I also run a {YouTube} channel exploring AI & Design.
-                    </div>
+                    {"I'm a Product Designer blending psychology, AI, and storytelling to create human-centered experiences. My work spans healthcare and data platforms, turning complex ideas into intuitive interfaces. I enjoy solving messy problems, designing micro-interactions, and making technology feel effortless. I also run a {YouTube} channel exploring AI & Design."}
                 </HoverPreview>
             </div>
 
@@ -133,7 +132,11 @@ const About = () => {
                 }
             `}</style>
 
-            <Connect />
+            <IDCard />
+
+            <div className="mt-16">
+                <Connect />
+            </div>
         </section>
     );
 };
