@@ -151,10 +151,8 @@ function App() {
   const renderView = () => {
     switch (currentView) {
       case 'home':
-        return <Hero onOpenProject={(id) => {
-          // Special handling for Project Udhaar card click
-          if (id === 51) navigateTo('project-udhaar');
-        }} />;
+        // Redirecting old 'home' route to new 'HeroV2' to hide old version
+        return <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />;
       case 'home2':
         return <HeroV2 onOpenProject={() => navigateTo('project-udhaar-v2')} />;
       case 'designs':
